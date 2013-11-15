@@ -10,6 +10,7 @@ Syntax highlighting, matching rules and mappings for [the original Markdown](htt
   * Added tmp, old: {md,...}.{...tmp,old}
 * syntax/mkd.vim
   * Enabled spell check at most of place.
+  * Enable html syntax.
   * `(URL)` is enabled only after `[LINK]`.
   * Enabled mkdInlineURL (modified).
   * Delimiters for codes are set as mkdDelimiter.
