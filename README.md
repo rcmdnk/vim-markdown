@@ -6,9 +6,10 @@ Syntax highlighting, matching rules and mappings for [Markdown](http://daringfir
 
 **rcmdnk's modified version**
 
-* ftdetect/mkd.vim
+* Changed syntax name `mkd` to `markdown`.
+* ftdetect/markdown.vim
   * Added tmp, old: {md,...}.{...tmp,old}
-* syntax/mkd.vim
+* syntax/markdown.vim
   * Enabled spell check at most of place.
   * Enable html syntax.
   * `(URL)` is enabled only after `[LINK]`.
