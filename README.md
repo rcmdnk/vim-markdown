@@ -2,6 +2,22 @@
 
 Syntax highlighting, matching rules and mappings for [Markdown](http://daringfireball.net/projects/markdown/).
 
+- - -
+
+**rcmdnk's modified version**
+
+* ftdetect/mkd.vim
+  * Added tmp, old: {md,...}.{...tmp,old}
+* syntax/mkd.vim
+  * Enabled spell check at most of place.
+  * `(URL)` is enabled only after `[LINK]`.
+  * Enabled mkdInlineURL (modified).
+  * Delimiters for codes are set as mkdDelimiter.
+  * Added liquidTag (`{%~%}`)
+
+- - -
+
+
 ## Installation
 
 If you use [Pathogen](http://www.vim.org/scripts/script.php?script_id=2332)(and you should), do this:
