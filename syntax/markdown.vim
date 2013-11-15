@@ -71,8 +71,7 @@ syn region mkdCode matchgroup=mkdDelimiter start=/^```\s*\w*\s*$/ end=/^```\s*$/
 syn region mkdCode matchgroup=mkdDelimiter start="<pre[^>]*>" end="</pre>"
 syn region mkdCode matchgroup=mkdDelimiter start="<code[^>]*>" end="</code>"
 syn region mkdFootnote     start="\[^"                     end="\]"
-syn match  mkdCode         /^\s*\n\(\(\s\{8,}[^ ]\|\t\t\+[^\t]\).*\n\)\+/
-syn match  mkdIndentCode   /^\s*\n\(\(\s\{4,}[^ ]\|\t\+[^\t]\).*\n\)\+/ contained
+syn match  mkdCode         /^\s*\n\(\(\s\{4,}[^ ]\|\t\t\+[^\t]\).*\n\)\+/
 syn match  mkdListItem     "^\s*[-*+]\s\+"
 syn match  mkdListItem     "^\s*\d\+\.\s\+"
 "syn region mkdNonListItemBlock start="\n\(\_^\_$\|\s\{4,}[^ ]\|\t+[^\t]\)\@!" end="^\(\s*\([-*+]\|\d\+\.\)\s\+\)\@=" contains=@mkdNonListItem
@@ -93,7 +92,7 @@ syn match  htmlH1       /^.\+\n=\+$/ contains=@Spell
 syn match  htmlH2       /^.\+\n-\+$/ contains=@Spell
 
 " Liquid Tag
-syn region liquidTag matchgroup=mkdDelimiter       start="{%"     end="%}"  contained oneline
+syn region liquidTag matchgroup=mkdDelimiter       start="{%"     end="%}" oneline
 
 syn cluster mkdNonListItem contains=htmlItalic,htmlBold,htmlBoldItalic,mkdFootnotes,mkdID,mkdURL,mkdLink,mkdLinkDef,mkdLineBreak,mkdBlockquote,mkdCode,mkdIndentCode,mkdListItem,mkdRule,htmlH1,htmlH2,htmlH3,htmlH4,htmlH5,htmlH6,mkdInlineURL,liquidTag,@Spell
 
