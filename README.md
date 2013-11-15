@@ -2,6 +2,22 @@
 
 Syntax highlighting, matching rules and mappings for [the original Markdown](http://daringfireball.net/projects/markdown/) and extensions.
 
+- - -
+
+**rcmdnk's modified version**
+
+* ftdetect/mkd.vim
+  * Added tmp, old: {md,...}.{...tmp,old}
+* syntax/mkd.vim
+  * Enabled spell check at most of place.
+  * `(URL)` is enabled only after `[LINK]`.
+  * Enabled mkdInlineURL (modified).
+  * Delimiters for codes are set as mkdDelimiter.
+  * Added liquidTag (`{%~%}`)
+
+- - -
+
+
 ## Installation
 
 If you use [Vundle](https://github.com/gmarik/vundle), add the following line to your `~/.vimrc`:
