@@ -48,13 +48,15 @@ syn region mkdFootnotes matchgroup=mkdDelimiter start="\[^"    end="\]"
 syn region mkdID matchgroup=mkdDelimiter        start="\["    end="\]" contained oneline
 syn region mkdURL matchgroup=mkdDelimiter       start="\(\]\)\@<=("     end=")"  contained oneline
 syn region mkdLink matchgroup=mkdDelimiter      start="\\\@<!\[" end="\]\ze\s*[[(]" contains=@Spell nextgroup=mkdURL,mkdID skipwhite oneline
-" mkd  inline links:           protocol   optional  user:pass@       sub/domain                 .com, .co.uk, etc      optional port   path/querystring/hash fragment
-"                            ------------ _____________________ --------------------------- ________________________ ----------------- __
-"syntax match   mkdInlineURL /https\?:\/\/\(\w\+\(:\w\+\)\?@\)\?\([A-Za-z][-_0-9A-Za-z]*\.\)\{1,}\(\w\{2,}\.\?\)\{1,}\(:[0-9]\{1,5}\)\?\S*/
-syn region mkdInlineURL matchgroup=mkdInlineURL start="\(https\?:\|ftp:\|^\)\/\/" end="\()\|}\|]\|,\|\"\|\'\| \|$\|\. \|\.$\)\@="
+
+" Inline url (http(s)://, ftp://, //)
+syn region mkdInlineURL matchgroup=mkdInlineURL start="\(https\?:\|ftp:\|^\|[^:]\@<=\)\/\/" end="\()\|}\|]\|,\|\"\|\'\| \|$\|\. \|\.$\)\@="
+syn region mkdInlineURL matchgroup=mkdDelimiter start="<\(\(https\?:\|ftp:\|^\|[^:]\@<=\)\/\/\)\@=" end=">"
+" Inline mail (user@mail.com)
+syn region mkdInlineURL matchgroup=Normal start="\(^\| \|(\|=\)\([-.[:alnum:]_~+]\+@\)\@=" end="\()\|}\|]\|,\|\"\|\'\| \|$\|\. \|\.$\)\@="
+syn region mkdInlineURL matchgroup=mkdDelimiter start="<\([-.[:alnum:]_~+]\+@\)\@=" end=">"
 
 " Link definitions: [id]: URL (Optional Title)
-" TODO handle automatic links without colliding with htmlTag (<URL>)
 syn region mkdLinkDef matchgroup=mkdDelimiter   start="^ \{,3}\zs\[" end="]:" oneline nextgroup=mkdLinkDefTarget skipwhite
 syn region mkdLinkDefTarget start="<\?\zs\S" excludenl end="\ze[>[:space:]\n]"   contained nextgroup=mkdLinkTitle,mkdLinkDef skipwhite skipnl oneline
 syn region mkdLinkTitle matchgroup=mkdDelimiter start=+"+     end=+"+  contained
@@ -68,13 +70,13 @@ syn region mkdBlockquote   start=/^\s*>/                   end=/$/ contains=mkdL
 syn region mkdCode matchgroup=mkdDelimiter start=/\(\([^\\]\|^\)\\\)\@<!`/ end=/\(\([^\\]\|^\)\\\)\@<!`/
 syn region mkdCode matchgroup=mkdDelimiter start=/\s*``[^`]*/ end=/[^`]*``\s*/
 syn region mkdCode matchgroup=mkdDelimiter start=/^```\s*\w*\s*$/ end=/^```\s*$/
+syn region mkdCode matchgroup=mkdDelimiter start=/^[~]\{3,}\s*\w*\s*$/ end=/^[~]\{3,}\s*$/
 syn region mkdCode matchgroup=mkdDelimiter start="<pre[^>]*>" end="</pre>"
 syn region mkdCode matchgroup=mkdDelimiter start="<code[^>]*>" end="</code>"
 syn region mkdFootnote     start="\[^"                     end="\]"
 syn match  mkdCode         /^\s*\n\(\(\s\{4,}[^ ]\|\t\t\+[^\t]\).*\n\)\+/
 syn match  mkdListItem     "^\s*[-*+]\s\+"
 syn match  mkdListItem     "^\s*\d\+\.\s\+"
-"syn region mkdNonListItemBlock start="\n\(\_^\_$\|\s\{4,}[^ ]\|\t+[^\t]\)\@!" end="^\(\s*\([-*+]\|\d\+\.\)\s\+\)\@=" contains=@mkdNonListItem
 syn match  mkdRule         /^\s*\*\s\{0,1}\*\s\{0,1}\*$/
 syn match  mkdRule         /^\s*-\s\{0,1}-\s\{0,1}-$/
 syn match  mkdRule         /^\s*_\s\{0,1}_\s\{0,1}_$/
@@ -92,9 +94,8 @@ syn match  htmlH1       /^.\+\n=\+$/ contains=@Spell
 syn match  htmlH2       /^.\+\n-\+$/ contains=@Spell
 
 " Liquid Tag
-syn region liquidTag matchgroup=mkdDelimiter       start="{%"     end="%}" oneline
-
-syn cluster mkdNonListItem contains=htmlItalic,htmlBold,htmlBoldItalic,mkdFootnotes,mkdID,mkdURL,mkdLink,mkdLinkDef,mkdLineBreak,mkdBlockquote,mkdCode,mkdIndentCode,mkdListItem,mkdRule,htmlH1,htmlH2,htmlH3,htmlH4,htmlH5,htmlH6,mkdInlineURL,liquidTag,@Spell
+syn region liquidTag matchgroup=mkdDelimiter start="{%\(codeblock\)\@!"    end="%}" oneline
+syn region mkdCode   matchgroup=liquidTag start=/^{%\s*codeblock\s*%}$/ end=/^{%\s*endcodeblock\s*%}$/
 
 "highlighting for Markdown groups
 HtmlHiLink mkdString	    String
