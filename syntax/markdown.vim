@@ -70,7 +70,7 @@ syn region mkdBlockquote   start=/^\s*>/                   end=/$/ contains=mkdL
 syn region mkdCode matchgroup=mkdDelimiter start=/\(\([^\\]\|^\)\\\)\@<!`/ end=/\(\([^\\]\|^\)\\\)\@<!`/
 syn region mkdCode matchgroup=mkdDelimiter start=/\s*``[^`]*/ end=/[^`]*``\s*/
 syn region mkdCode matchgroup=mkdDelimiter start=/^```\s*\w*\s*$/ end=/^```\s*$/
-syn region mkdCode matchgroup=mkdDelimiter start=/^[~]\{3,}\s*\w*\s*$/ end=/^[~]\{3,}\s*$/
+syn region mkdCode matchgroup=mkdDelimiter start=/^[~]\{3,}.*$/ end=/^[~]\{3,}$/
 syn region mkdCode matchgroup=mkdDelimiter start="<pre[^>]*>" end="</pre>"
 syn region mkdCode matchgroup=mkdDelimiter start="<code[^>]*>" end="</code>"
 syn region mkdFootnote     start="\[^"                     end="\]"
@@ -94,8 +94,9 @@ syn match  htmlH1       /^.\+\n=\+$/ contains=@Spell
 syn match  htmlH2       /^.\+\n-\+$/ contains=@Spell
 
 " Liquid Tag
-syn region liquidTag matchgroup=mkdDelimiter start="{%\(codeblock\)\@!"    end="%}" oneline
-syn region mkdCode   matchgroup=liquidTag start=/^{%\s*codeblock\s*%}$/ end=/^{%\s*endcodeblock\s*%}$/
+syn region liquidTag matchgroup=mkdDelimiter start="{%"    end="%}" oneline
+syn region mkdCode   matchgroup=liquidTag start=/^{%\s*codeblock.*%}$/ end=/^{%\s*endcodeblock.*%}$/
+syn region liquidComment  start=/^{%\s*comment.*%}$/ end=/^{%\s*endcomment.*%}$/
 
 "highlighting for Markdown groups
 HtmlHiLink mkdString	    String
@@ -117,6 +118,7 @@ HtmlHiLink mkdLinkDefTarget mkdURL
 HtmlHiLink mkdLinkTitle     htmlString
 
 HtmlHiLink liquidTag        MoreMsg
+HtmlHiLink liquidComment    NonText
 
 HtmlHiLink mkdDelimiter     Delimiter
 

@@ -27,6 +27,13 @@
 "  |
 "d-+
 
+if exists('g:loaded_vim_markdown')
+  finish
+endif
+
+let s:save_cpo = &cpo
+set cpo&vim
+
 let s:headerExpr = '\v^#'
 
 "0 if not found
@@ -44,7 +51,7 @@ fu! b:Markdown_GoCurHeaderGetHashes()
     if l:lineNum != 0
         cal cursor( l:lineNum, 1 )
         retu matchstr( getline( lineNum ), '\v^#+' )
-    el  
+    el
         retu ''
     en
 endf
@@ -178,7 +185,7 @@ fu! b:Markdown_GoPreviousSiblingHeader()
             let l:noSibling = 1
         en
     en
-    
+
     if l:noSibling
         cal setpos('.',l:oldPos)
         ec 'no previous sibling'
@@ -206,3 +213,81 @@ cal <sid>MapNormVis( '[]', 'b:Markdown_GoPreviousSiblingHeader' )
 cal <sid>MapNormVis( ']u', 'b:Markdown_GoHeaderUp' )
 "menmonic: Current
 cal <sid>MapNormVis( ']c', 'b:Markdown_GoCurHeader' )
+
+" quote sytnax: this code was derived from https://github.com/joker1007/vim-markdown-quote-syntax
+if !(exists('g:vim_markdown_codeblock_syntax') && !g:vim_markdown_codeblock_syntax)
+  if !exists('g:markdown_quote_syntax_defaults')
+    let g:markdown_quote_syntax_defaults = {
+          \ "vim" : {
+          \   "start" : "vim",
+          \},
+          \ "diff" : {
+          \   "start" : "diff",
+          \},
+          \ "c" : {
+          \   "start" : "c",
+          \},
+          \ "cpp" : {
+          \   "start" : "cpp",
+          \},
+          \ "java" : {
+          \   "start" : "java",
+          \},
+          \ "ruby" : {
+          \   "start" : "\\%(ruby\\|rb\\)",
+          \},
+          \ "haskell" : {
+          \   "start" : "\\%(haskell\\|hs\\)",
+          \},
+          \ "python" : {
+          \   "start" : "\\%(python\\|py\\)",
+          \},
+          \ "perl" : {
+          \   "start" : "\\%(perl\\|pl\\)",
+          \},
+          \ "javascript" : {
+          \   "start" : "\\%(javascript\\|js\\)",
+          \},
+          \ "html" : {
+          \   "start" : "html",
+          \},
+          \ "sh" : {
+          \   "start" : "sh",
+          \},
+          \ "sql" : {
+          \   "start" : "sql",
+          \},
+          \ "ocaml" : {
+          \   "start" : "ocaml",
+          \},
+          \ "erlang" : {
+          \   "start" : "erlang",
+          \},
+    \}
+  endif
+  
+  if !exists('g:markdown_quote_syntax_filetypes')
+    let g:markdown_quote_syntax_filetypes = {}
+  endif
+  
+  function! s:enable_quote_syntax()
+    let defaults = deepcopy(g:markdown_quote_syntax_defaults)
+    let filetype_dic = extend(defaults, g:markdown_quote_syntax_filetypes)
+  
+  
+    for [filetype, option] in items(filetype_dic)
+      call markdown_quote_syntax#include_other_syntax(filetype)
+      call markdown_quote_syntax#enable_quote_highlight(filetype, option.start)
+    endfor
+  endfunction
+  
+  augroup markdown_quote_syntax
+    autocmd!
+    autocmd Syntax markdown call s:enable_quote_syntax()
+  augroup END
+endif
+
+let g:loaded_vim_markdown = 1
+
+let &cpo = s:save_cpo
+unlet s:save_cpo
