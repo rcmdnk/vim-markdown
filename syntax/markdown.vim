@@ -69,7 +69,7 @@ syn match  mkdLineBreak    /  \+$/
 syn region mkdBlockquote   start=/^\s*>/                   end=/$/ contains=mkdLineBreak,mkdLineContinue,@Spell
 syn region mkdCode matchgroup=mkdDelimiter start=/\(\([^\\]\|^\)\\\)\@<!`/ end=/\(\([^\\]\|^\)\\\)\@<!`/
 syn region mkdCode matchgroup=mkdDelimiter start=/\s*``[^`]*/ end=/[^`]*``\s*/
-syn region mkdCode matchgroup=mkdDelimiter start=/^```\s*\w*\s*$/ end=/^```\s*$/
+syn region mkdCode matchgroup=mkdDelimiter start=/^```.*$/ end=/^```\s*$/
 syn region mkdCode matchgroup=mkdDelimiter start=/^[~]\{3,}.*$/ end=/^[~]\{3,}$/
 syn region mkdCode matchgroup=mkdDelimiter start="<pre[^>]*>" end="</pre>"
 syn region mkdCode matchgroup=mkdDelimiter start="<code[^>]*>" end="</code>"
