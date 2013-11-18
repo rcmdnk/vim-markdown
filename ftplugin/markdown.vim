@@ -410,9 +410,6 @@ if !(exists('g:vim_markdown_codeblock_syntax') && !g:vim_markdown_codeblock_synt
           \ "cpp" : {
           \   "start" : "cpp",
           \},
-          \ "java" : {
-          \   "start" : "java",
-          \},
           \ "ruby" : {
           \   "start" : "\\%(ruby\\|rb\\)",
           \},
