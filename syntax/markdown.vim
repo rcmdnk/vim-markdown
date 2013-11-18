@@ -93,10 +93,12 @@ syn region htmlH6       start="^\s*######"              end="\($\|#\+\)" contain
 syn match  htmlH1       /^.\+\n=\+$/ contains=@Spell
 syn match  htmlH2       /^.\+\n-\+$/ contains=@Spell
 
-" Liquid Tag
+" Liquid
 syn region liquidTag matchgroup=mkdDelimiter start="{%"    end="%}" oneline
+syn region liquidTag matchgroup=mkdDelimiter start="{{"    end="}}" oneline
 syn region mkdCode   matchgroup=liquidTag start=/^{%\s*codeblock.*%}$/ end=/^{%\s*endcodeblock.*%}$/
 syn region liquidComment  start=/^{%\s*comment.*%}$/ end=/^{%\s*endcomment.*%}$/
+syn region liquidOutput matchgroup=mkdDelimiter start="{{"    end="}}" oneline
 
 "highlighting for Markdown groups
 HtmlHiLink mkdString	    String
@@ -119,6 +121,7 @@ HtmlHiLink mkdLinkTitle     htmlString
 
 HtmlHiLink liquidTag        MoreMsg
 HtmlHiLink liquidComment    NonText
+HtmlHiLink liquidOutput     Directory
 
 HtmlHiLink mkdDelimiter     Delimiter
 
