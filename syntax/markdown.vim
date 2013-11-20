@@ -96,8 +96,8 @@ syn match  htmlH2       /^.\+\n-\+$/ contains=@Spell
 " Liquid
 syn region liquidTag matchgroup=mkdDelimiter start="{%"    end="%}" oneline
 syn region liquidTag matchgroup=mkdDelimiter start="{{"    end="}}" oneline
-syn region mkdCode   matchgroup=liquidTag start=/^{%\s*codeblock.*%}$/ end=/^{%\s*endcodeblock.*%}$/
-syn region liquidComment  start=/{%\s*comment.*%}/ end=/{%\s*endcomment.*%}/
+syn region mkdCode   matchgroup=liquidTag start=/^{%\s*codeblock.*$/ end=/^{%\s*endcodeblock.*$/
+syn region liquidComment  start="{%\s*comment\s*%}" end="{%\s*endcomment\s*%}"
 syn region liquidOutput matchgroup=mkdDelimiter start="{{"    end="}}" oneline
 
 "highlighting for Markdown groups
