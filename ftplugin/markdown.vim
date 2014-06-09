@@ -49,6 +49,9 @@ if exists('g:loaded_vim_markdown')
   finish
 endif
 
+let s:save_cpo = &cpo
+set cpo&vim
+
 " For each level, contains the regexp that matches at that level only.
 let s:levelRegexpDict = {
     \ 1: '\v^(\s*#[^#]|.+\n\=+$)',
