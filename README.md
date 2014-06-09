@@ -23,27 +23,6 @@ Syntax highlighting, matching rules and mappings for [the original Markdown](htt
 - - -
 
 
-- - -
-
-**rcmdnk's modified version**
-
-* Changed filetype name `mkd` to `markdown`.
-* ftdetect/markdown.vim
-  * Added tmp, old: {md,...}.{...tmp,old}
-* syntax/markdown.vim
-  * Enabled spell check at most of place.
-  * Enable html syntax.
-  * `(URL)` is enabled only after `[LINK]`.
-  * Enabled mkdInlineURL (modified).
-  * Delimiters for codes are set as mkdDelimiter.
-  * Added liquidTag (`{%~%}`)
-  * Added PHP Markdown Extra codeblock (`~~~`)
-  * Added syntax in codeblock inspired by [vim-markdown-quote-syntax](https://github.com/joker1007/vim-markdown-quote-syntax)
-    * You can disable this feature by `let g:vim_markdown_codeblock_syntax=0`.
-
-- - -
-
-
 ## Installation
 
 If you use [Vundle](https://github.com/gmarik/vundle), add the following line to your `~/.vimrc`:
