@@ -1,6 +1,6 @@
 # Vim Markdown
 
-[![Build Status](https://travis-ci.org/plasticboy/vim-markdown.svg)](https://travis-ci.org/plasticboy/vim-markdown)
+[![Build Status](https://travis-ci.org/rcmdnk/vim-markdown.svg?branch=mod)](https://travis-ci.org/rcmdnk/vim-markdown)
 
 Syntax highlighting, matching rules and mappings for [the original Markdown](http://daringfireball.net/projects/markdown/) and extensions.
 
