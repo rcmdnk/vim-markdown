@@ -2,9 +2,9 @@
 
 1. run this command to do this:
 
-    ```
+```
 some command
-    ```
+```
 
 2. Subsequent list items are correctly highlighted.
 
