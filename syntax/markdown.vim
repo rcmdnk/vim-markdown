@@ -35,23 +35,26 @@ syn case ignore
 syn sync linebreaks=1
 
 "additions to HTML groups
-syn region htmlItalic start="\\\@<!\*\S\@=" end="\S\@<=\\\@<!\*" keepend oneline
-syn region htmlItalic start="\(^\|\s\)\@<=_\|\\\@<!_\([^_]\+\s\)\@=" end="\S\@<=_\|_\S\@=" keepend oneline
-syn region htmlBold start="\S\@<=\*\*\|\*\*\S\@=" end="\S\@<=\*\*\|\*\*\S\@=" keepend oneline
-syn region htmlBold start="\S\@<=__\|__\S\@=" end="\S\@<=__\|__\S\@=" keepend oneline
-syn region htmlBoldItalic start="\S\@<=\*\*\*\|\*\*\*\S\@=" end="\S\@<=\*\*\*\|\*\*\*\S\@=" keepend oneline
-syn region htmlBoldItalic start="\S\@<=___\|___\S\@=" end="\S\@<=___\|___\S\@=" keepend oneline
+syn region htmlItalic start="\\\@<!\*\S\@=" end="\S\@<=\\\@<!\*" keepend oneline contains=@Spell
+syn region htmlItalic start="\(^\|\s\)\@<=_\|\\\@<!_\([^_]\+\s\)\@=" end="\S\@<=_\|_\S\@=" keepend oneline contains=@Spell
+syn region htmlBold start="\S\@<=\*\*\|\*\*\S\@=" end="\S\@<=\*\*\|\*\*\S\@=" keepend oneline contains=@Spell
+syn region htmlBold start="\S\@<=__\|__\S\@=" end="\S\@<=__\|__\S\@=" keepend oneline contains=@Spell
+syn region htmlBoldItalic start="\S\@<=\*\*\*\|\*\*\*\S\@=" end="\S\@<=\*\*\*\|\*\*\*\S\@=" keepend oneline contains=@Spell
+syn region htmlBoldItalic start="\S\@<=___\|___\S\@=" end="\S\@<=___\|___\S\@=" keepend oneline contains=@Spell
 
 " [link](URL) | [link][id] | [link][]
 syn region mkdFootnotes matchgroup=mkdDelimiter start="\[^"    end="\]"
 syn region mkdID matchgroup=mkdDelimiter        start="\["    end="\]" contained oneline
-syn region mkdURL matchgroup=mkdDelimiter       start="("     end=")"  contained oneline
+syn region mkdURL matchgroup=mkdDelimiter       start="\(\]\)\@<=("     end=")"  contained oneline
 syn region mkdLink matchgroup=mkdDelimiter      start="\\\@<!\[" end="\]\ze\s*[[(]" contains=@Spell nextgroup=mkdURL,mkdID skipwhite oneline
 
-" Autolink without angle brackets.
-" mkd  inline links:           protocol   optional  user:pass@       sub/domain                 .com, .co.uk, etc      optional port   path/querystring/hash fragment
-"                            ------------ _____________________ --------------------------- ________________________ ----------------- __
-syntax match   mkdInlineURL /https\?:\/\/\(\w\+\(:\w\+\)\?@\)\?\([A-Za-z][-_0-9A-Za-z]*\.\)\{1,}\(\w\{2,}\.\?\)\{1,}\(:[0-9]\{1,5}\)\?\S*/
+
+" Inline url (http(s)://, ftp://, //)
+syn region mkdInlineURL matchgroup=mkdInlineURL start="\(https\?:\|ftp:\|^\|[^:]\@<=\)\/\/" end="\()\|}\|]\|,\|\"\|\'\| \|$\|\. \|\.$\)\@="
+syn region mkdInlineURL matchgroup=mkdDelimiter start="<\(\(https\?:\|ftp:\|^\|[^:]\@<=\)\/\/\)\@=" end=">"
+" Inline mail (user@mail.com)
+syn region mkdInlineURL matchgroup=Normal start="\(^\| \|(\|=\)\([-.[:alnum:]_~+]\+@\)\@=" end="\()\|}\|]\|,\|\"\|\'\| \|$\|\. \|\.$\)\@="
+syn region mkdInlineURL matchgroup=mkdDelimiter start="<\([-.[:alnum:]_~+]\+@\)\@=" end=">"
 
 " Autolink with angle brackets.
 syn region mkdInlineURL matchgroup=mkdDelimiter start="\\\@<!<\(\(coap\|doi\|javascript\|aaa\|aaas\|about\|acap\|cap\|cid\|crid\|data\|dav\|dict\|dns\|file\|ftp\|geo\|go\|gopher\|h323\|http\|https\|iax\|icap\|im\|imap\|info\|ipp\|iris\|iris.beep\|iris.xpc\|iris.xpcs\|iris.lwz\|ldap\|mailto\|mid\|msrp\|msrps\|mtqp\|mupdate\|news\|nfs\|ni\|nih\|nntp\|opaquelocktoken\|pop\|pres\|rtsp\|service\|session\|shttp\|sieve\|sip\|sips\|sms\|snmp,soap.beep\|soap.beeps\|tag\|tel\|telnet\|tftp\|thismessage\|tn3270\|tip\|tv\|urn\|vemmi\|ws\|wss\|xcon\|xcon-userid\|xmlrpc.beep\|xmlrpc.beeps\|xmpp\|z39.50r\|z39.50s\|adiumxtra\|afp\|afs\|aim\|apt,attachment\|aw\|beshare\|bitcoin\|bolo\|callto\|chrome,chrome-extension\|com-eventbrite-attendee\|content\|cvs,dlna-playsingle\|dlna-playcontainer\|dtn\|dvb\|ed2k\|facetime\|feed\|finger\|fish\|gg\|git\|gizmoproject\|gtalk\|hcp\|icon\|ipn\|irc\|irc6\|ircs\|itms\|jar\|jms\|keyparc\|lastfm\|ldaps\|magnet\|maps\|market,message\|mms\|ms-help\|msnim\|mumble\|mvn\|notes\|oid\|palm\|paparazzi\|platform\|proxy\|psyc\|query\|res\|resource\|rmi\|rsync\|rtmp\|secondlife\|sftp\|sgn\|skype\|smb\|soldat\|spotify\|ssh\|steam\|svn\|teamspeak\|things\|udp\|unreal\|ut2004\|ventrilo\|view-source\|webcal\|wtai\|wyciwyg\|xfire\|xri\|ymsgr\):\/\/[^> ]*>\)\@=" end=">"
@@ -67,19 +70,18 @@ syn region mkdLinkTitle matchgroup=mkdDelimiter start=+(+     end=+)+  contained
 syn match  mkdLineContinue ".$" contained
 syn match  mkdLineBreak    /  \+$/
 syn region mkdBlockquote   start=/^\s*>/                   end=/$/ contains=mkdLineBreak,mkdLineContinue,@Spell
-syn region mkdCode         start=/\(\([^\\]\|^\)\\\)\@<!`/ end=/\(\([^\\]\|^\)\\\)\@<!`/
-syn region mkdCode         start=/\s*``[^`]*/              end=/[^`]*``\s*/
-syn region mkdCode         start=/^\s*```\s*[0-9A-Za-z_-]*\s*$/          end=/^\s*```\s*$/
-syn region mkdCode         start=/\s*\~\~[^\~]*/              end=/[^\~]*\~\~\s*/
-syn region mkdCode         start=/^\s*\~\~\~\s*[0-9A-Za-z_-]*\s*$/          end=/^\s*\~\~\~\s*$/
-syn region mkdCode         start="<pre[^>]*>"              end="</pre>"
-syn region mkdCode         start="<code[^>]*>"             end="</code>"
+syn region mkdCode matchgroup=mkdDelimiter start=/\(\([^\\]\|^\)\\\)\@<!`/ end=/\(\([^\\]\|^\)\\\)\@<!`/
+syn region mkdCode matchgroup=mkdDelimiter start=/\s*``[^`]*/ end=/[^`]*``\s*/
+syn region mkdCode matchgroup=mkdDelimiter start=/^\s*```\s*[0-9A-Za-z_-]*\s*$/ end=/^\s*```\s*$/
+syn region mkdCode matchgroup=mkdDelimiter start=/^[~]\{3,}.*$/ end=/^[~]\{3,}$/
+syn region mkdCode matchgroup=mkdDelimiter start="<pre[^>]*>" end="</pre>"
+syn region mkdCode matchgroup=mkdDelimiter start="<code[^>]*>" end="</code>"
 syn region mkdFootnote     start="\[^"                     end="\]"
-syn match  mkdCode         /^\s*\n\(\(\s\{8,}[^ ]\|\t\t\+[^\t]\).*\n\)\+/
+syn match  mkdCode         /^\s*\n\(\(\s\{4,}[^ ]\|\t\t\+[^\t]\).*\n\)\+/
 syn match  mkdIndentCode   /^\s*\n\(\(\s\{4,}[^ ]\|\t\+[^\t]\).*\n\)\+/ contained
 syn match  mkdListItem     "^\s*[-*+]\s\+"
 syn match  mkdListItem     "^\s*\d\+\.\s\+"
-syn region mkdNonListItemBlock start="\n\(\_^\_$\|\s\{4,}[^ ]\|\t+[^\t]\)\@!" end="^\(\s*\([-*+]\|\d\+\.\)\s\+\)\@=" contains=@mkdNonListItem,@Spell
+"syn region mkdNonListItemBlock start="\n\(\_^\_$\|\s\{4,}[^ ]\|\t+[^\t]\)\@!" end="^\(\s*\([-*+]\|\d\+\.\)\s\+\)\@=" contains=@mkdNonListItem,@Spell
 syn match  mkdRule         /^\s*\*\s\{0,1}\*\s\{0,1}\*$/
 syn match  mkdRule         /^\s*-\s\{0,1}-\s\{0,1}-$/
 syn match  mkdRule         /^\s*_\s\{0,1}_\s\{0,1}_$/
@@ -96,6 +98,15 @@ syn region htmlH6       start="^\s*######"              end="\($\|#\+\)" contain
 syn match  htmlH1       /^.\+\n=\+$/ contains=@Spell
 syn match  htmlH2       /^.\+\n-\+$/ contains=@Spell
 
+" Liquid
+syn region liquidTag matchgroup=mkdDelimiter start="{%"    end="%}" oneline
+syn region liquidTag matchgroup=mkdDelimiter start="{{"    end="}}" oneline
+syn region mkdCode   matchgroup=liquidTag start=/^{%\s*codeblock.*$/ end=/^{%\s*endcodeblock.*$/
+syn region liquidComment  start="{%\s*comment\s*%}" end="{%\s*endcomment\s*%}"
+syn region liquidOutput matchgroup=mkdDelimiter start="{{"    end="}}" oneline
+
+"highlighting for Markdown groups
+
 if get(g:, 'vim_markdown_math', 0)
   syn region mkdMath matchgroup=mkdDelimiter start="\\\@<!\$" end="\$"
   syn region mkdMath matchgroup=mkdDelimiter start="\\\@<!\$\$" end="\$\$"
@@ -107,7 +118,7 @@ if get(g:, 'vim_markdown_frontmatter', 0)
   syn region Comment matchgroup=mkdDelimiter start="\%^---$" end="^---$" contains=@yamlTop
 endif
 
-syn cluster mkdNonListItem contains=htmlItalic,htmlBold,htmlBoldItalic,mkdFootnotes,mkdInlineURL,mkdLink,mkdLinkDef,mkdLineBreak,mkdBlockquote,mkdCode,mkdIndentCode,mkdListItem,mkdRule,htmlH1,htmlH2,htmlH3,htmlH4,htmlH5,htmlH6,mkdMath
+"syn cluster mkdNonListItem contains=htmlItalic,htmlBold,htmlBoldItalic,mkdFootnotes,mkdInlineURL,mkdLink,mkdLinkDef,mkdLineBreak,mkdBlockquote,mkdCode,mkdIndentCode,mkdListItem,mkdRule,htmlH1,htmlH2,htmlH3,htmlH4,htmlH5,htmlH6,mkdMath
 
 "highlighting for Markdown groups
 HtmlHiLink mkdString	    String
@@ -129,6 +140,19 @@ HtmlHiLink mkdLinkDefTarget mkdURL
 HtmlHiLink mkdLinkTitle     htmlString
 HtmlHiLink mkdMath          Statement
 HtmlHiLink mkdDelimiter     Delimiter
+HtmlHiLink liquidTag        MoreMsg
+HtmlHiLink liquidComment    NonText
+HtmlHiLink liquidOutput     Directory
+
+"" Automatically insert bullets
+"setlocal formatoptions+=r
+"" Do not automatically insert bullets when auto-wrapping with text-width
+"setlocal formatoptions-=c
+"" Accept various markers as bullets
+"setlocal comments=b:*,b:+,b:-
+"
+"" Automatically continue blockquote on line break
+"setlocal comments+=b:>
 
 let b:current_syntax = "mkd"
 
