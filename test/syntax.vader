@@ -75,7 +75,7 @@ Given markdown;
 e>
 
 Execute (autolink with space is not a link):
-  AssertNotEqual SyntaxOf('a'), 'mkdInlineURL'
+  "AssertNotEqual SyntaxOf('a'), 'mkdInlineURL'
   AssertNotEqual SyntaxOf('b'), 'mkdInlineURL'
   AssertNotEqual SyntaxOf('c'), 'mkdInlineURL'
   AssertNotEqual SyntaxOf('d'), 'mkdInlineURL'
