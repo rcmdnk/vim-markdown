@@ -54,8 +54,8 @@ syn region mkdLink matchgroup=mkdDelimiter      start="\\\@<!\[" end="\]\ze\s*[[
 syn region mkdInlineURL start=/\([[:alnum:]._-]\+:\)\=\/\// end=/\()\|}\|]\|,\|\"\|\'\| \|$\|\. \|\.$\)\@=/
 syn region mkdInlineURL matchgroup=mkdDelimiter start=/\\\@<!<\(\([[:alnum:]._-]\+:\)\=\/\/[^> ]*>\)\@=/ end=/>/
 " Inline mail (user@mail.com)
-syn region mkdInlineURL start=/\(mailto:\)\=[[:alnum:]._-~+]\+@\S\+\.\S\+/ end=/\()\|}\|]\|,\|\"\|\'\| \|$\|\. \|\.$\)\@=/
-syn region mkdInlineURL matchgroup=mkdDelimiter start="\\\@<!<\(\(mailto:\)\=[[:alnum:]._-~+]\+@[^> ]\+\.[^> ]\+>\)\@=" end=">"
+syn region mkdInlineURL start=/\(mailto:\)\=[[:alnum:]._-~+]\+@[[:alnum:]_-]\+\.[[:alnum:]_-]\+/ end=/\()\|}\|]\|,\|\"\|\'\| \|$\|\. \|\.$\)\@=/
+syn region mkdInlineURL matchgroup=mkdDelimiter start="\\\@<!<\(\(mailto:\)\=[[:alnum:]._-~+]\+@[^> .]\+\.[^> .]\+>\)\@=" end=">"
 
 " Link definitions: [id]: URL (Optional Title)
 syn region mkdLinkDef matchgroup=mkdDelimiter   start="^ \{,3}\zs\[" end="]:" oneline nextgroup=mkdLinkDefTarget skipwhite

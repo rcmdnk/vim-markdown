@@ -1,4 +1,32 @@
-https://github.com/rcmdnk/vim-markdown
+---
+layout: test
+title: "vim-markdown: test with vim-markdown-quote-syntax"
+subtitle: "Here is yaml block test"
+comments: true
+categories: Computer
+tags: ["Vim", "Markdown"]
+keywords: Vim, Markdown
+---
+
+To install with [Shougo/neobundle.vim](https://github.com/Shougo/neobundle.vim),
+add following lines in **~/.vimrc**:
+
+```vim
+" Markdown syntax
+NeoBundle "junegunn/vader.vim"
+NeoBundle "godlygeek/tabular"
+NeoBundle "rcmdnk/vim-markdown-quote-syntax"
+NeoBundle "rcmdnk/vim-markdown"
+```
+
+In addition, following settings are useful:
+
+```vim
+let g:vim_markdown_liquid=1
+let g:vim_markdown_frontmatter=1
+let g:vim_markdown_math=1
+au BufRead,BufNewFile *.{txt,text} set filetype=markdown
+```
 
 colorscheme ron
 hi link htmlItalic LineNr
@@ -116,15 +144,17 @@ triple backticks
 (Only Parentheses)
 {Only Braces}
 [Only Square Brackets]
-<Only Angle Brackets>
+<Only Angle Brackets: This is "html tag">
 
 This is https://inline.url. End with `.`, `,`, ` ` or etc... (don't markup last `.`)
 ftp://ftp.is.also.markuped end with space.
 (https://url.in.brackets)
 Double slash is //also.url, ok.
 
-mail address: user@mail.com.
-mail address: <user@mail.com>.
+Mail address: user@mail.com.
+Mail address: <user@mail.com>.
+Mail address: mailto:user@mail.com
+Wrong Mail address in brackets: <user@mail.com.>.
 
 Single asterisk *is not markupped.
 Single underscore _is not markupped.
@@ -145,9 +175,8 @@ echo no lang
 
 ```sh
 #!/bin/sh
-echo triple backtick
+echo triple backticks
 valu=${aaa}
-
 ```
 
 {%codeblock lang:cpp%}
@@ -160,37 +189,31 @@ for(int i=0;i<10;i++){
 {%codeblock title lang:cpp%}
 #include <iostream>
 for(int i=0;i<10;i++){
-  std::cout << "codeblock" << std::endl;
-}
-{%endcodeblock%}
-
-{%codeblock a.vim lang:cpp%}
-#include <iostream>
-for(int i=0;i<10;i++){
-  std::cout << "codeblock" << std::endl;
+  std::cout << "codeblock with lang" << std::endl;
 }
 {%endcodeblock%}
 
 {%codeblock a.cpp %}
 #include <iostream>
 for(int i=0;i<10;i++){
-  std::cout << "codeblock" << std::endl;
+  std::cout << "codeblock with file extension" << std::endl;
+}
+{%endcodeblock%}
+
+{%codeblock a.vim lang:cpp%}
+#include <iostream>
+for(int i=0;i<10;i++){
+  std::cout << "If both lang and extension are available, lang is used for the syntax" << std::endl;
 }
 {%endcodeblock%}
 
 ```java
 import java.awt.Color;
 public void test() {
+  System.out.println("Java is now available.");
   return;
 }
 ```
-
-{%codeblock lang:cpp%}
-#include <iostream>
-for(int i=0;i<10;i++){
-  std::cout << "codeblock" << std::endl;
-}
-{%endcodeblock%}
 
 ~~~ .ruby
 puts "PHP Markdown Extra wave codeblock"
@@ -204,7 +227,9 @@ end
 ~~~
 
 # Spell Check
-spelll check
+spelll check is available in normal place.
 
-# spelll check
+# spelll check is also available in the title or some places.
+
+    spelll cehck is disabled in the code block.
 
