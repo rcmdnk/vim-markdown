@@ -150,6 +150,34 @@ valu=${aaa}
 
 ```
 
+{%codeblock lang:cpp%}
+#include <iostream>
+for(int i=0;i<10;i++){
+  std::cout << "codeblock" << std::endl;
+}
+{%endcodeblock%}
+
+{%codeblock title lang:cpp%}
+#include <iostream>
+for(int i=0;i<10;i++){
+  std::cout << "codeblock" << std::endl;
+}
+{%endcodeblock%}
+
+{%codeblock a.vim lang:cpp%}
+#include <iostream>
+for(int i=0;i<10;i++){
+  std::cout << "codeblock" << std::endl;
+}
+{%endcodeblock%}
+
+{%codeblock a.cpp %}
+#include <iostream>
+for(int i=0;i<10;i++){
+  std::cout << "codeblock" << std::endl;
+}
+{%endcodeblock%}
+
 ```java
 import java.awt.Color;
 public void test() {
