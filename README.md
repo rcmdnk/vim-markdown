@@ -19,9 +19,18 @@ Syntax highlighting, matching rules and mappings for [the original Markdown](htt
   * Delimiters for codes are set as mkdDelimiter.
   * Added liquidTag (`{%~%}`)
   * Added PHP Markdown Extra codeblock (`~~~`)
-  * Added syntax in codeblock inspired by [vim-markdown-quote-syntax](https://github.com/joker1007/vim-markdown-quote-syntax)
-    * You can disable this feature by `let g:vim_markdown_codeblock_syntax=0`.
+  * <strike>Added syntax in codeblock inspired by [vim-markdown-quote-syntax](https://github.com/joker1007/vim-markdown-quote-syntax)</strike>
+    * <strike>You can disable this feature by `let g:vim_markdown_codeblock_syntax=0`.</strike>
+    * Use forked version of [rcmdnk/vim-markdown-quote-syntax](https://github.com/rcmdnk/vim-markdown-quote-syntax)
+    for codeblock syntaxes:
 
+If you use [Vundle](https://github.com/gmarik/Vundle.vim), do:
+
+```vim
+Plugin 'godlygeek/tabular'
+Plugin 'rcmdnk/vim-markdown-quote-syntax'
+Plugin 'rcmdnk/vim-markdown'
+```
 - - -
 
 ## Installation
