@@ -97,11 +97,12 @@ syn match  htmlH1       /^.\+\n=\+$/ contains=@Spell
 syn match  htmlH2       /^.\+\n-\+$/ contains=@Spell
 
 " Liquid
-syn region liquidTag matchgroup=mkdDelimiter start="{%"    end="%}" oneline
-syn region liquidTag matchgroup=mkdDelimiter start="{{"    end="}}" oneline
-syn region mkdCode   matchgroup=liquidTag start=/^{%\s*codeblock.*$/ end=/^{%\s*endcodeblock.*$/
-syn region liquidComment  start="{%\s*comment\s*%}" end="{%\s*endcomment\s*%}"
-syn region liquidOutput matchgroup=mkdDelimiter start="{{"    end="}}" oneline
+if get(g:, "vim_markdown_liquid", 1)
+  syn region liquidTag matchgroup=mkdDelimiter start="{%"    end="%}" oneline
+  syn region liquidOutput matchgroup=mkdDelimiter start="{{"    end="}}" oneline
+  syn region mkdCode   matchgroup=liquidTag start=/^{%\s*codeblock\( .*\|\)%}/ end=/^{%\s*endcodeblock\( .*\|\)%}/
+  syn region liquidComment  start="{%\s*comment\s*%}" end="{%\s*endcomment\s*%}"
+endif
 
 "highlighting for Markdown groups
 
@@ -116,7 +117,7 @@ if get(g:, 'vim_markdown_frontmatter', 0)
   syn region Comment matchgroup=mkdDelimiter start="\%^---$" end="^---$" contains=@yamlTop
 endif
 
-"syn cluster mkdNonListItem contains=htmlItalic,htmlBold,htmlBoldItalic,mkdFootnotes,mkdInlineURL,mkdLink,mkdLinkDef,mkdLineBreak,mkdBlockquote,mkdCode,mkdIndentCode,mkdListItem,mkdRule,htmlH1,htmlH2,htmlH3,htmlH4,htmlH5,htmlH6,mkdMath
+syn cluster mkdNonListItem contains=htmlItalic,htmlBold,htmlBoldItalic,mkdFootnotes,mkdInlineURL,mkdLink,mkdLinkDef,mkdLineBreak,mkdBlockquote,mkdCode,mkdIndentCode,mkdListItem,mkdRule,htmlH1,htmlH2,htmlH3,htmlH4,htmlH5,htmlH6,mkdMath,liquidTag,liquidOut,liquidComment,markdownCodeRegionRUBY,markdownCodeGroupRUBY
 
 "highlighting for Markdown groups
 HtmlHiLink mkdString	    String
@@ -141,6 +142,7 @@ HtmlHiLink mkdDelimiter     Delimiter
 HtmlHiLink liquidTag        MoreMsg
 HtmlHiLink liquidComment    NonText
 HtmlHiLink liquidOutput     Directory
+HtmlHiLink markdownCodeDelimiter liquidTag
 
 "" Automatically insert bullets
 "setlocal formatoptions+=r
