@@ -26,7 +26,7 @@ func! Foldexpr_markdown(lnum)
     elseif l1 =~ '^#'
         " don't include the section title in the fold
         return '-1'
-    elseif l0 =~ '^#'
+    elseif l0 =~ '^#[^!]'
         " current line starts with hashes
         return '>'.matchend(l0, '^#\+')
     else
