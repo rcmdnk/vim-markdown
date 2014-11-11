@@ -21,14 +21,16 @@ Syntax highlighting, matching rules and mappings for [the original Markdown](htt
   * Added PHP Markdown Extra codeblock (`~~~`)
   * <strike>Added syntax in codeblock inspired by [vim-markdown-quote-syntax](https://github.com/joker1007/vim-markdown-quote-syntax)</strike>
     * <strike>You can disable this feature by `let g:vim_markdown_codeblock_syntax=0`.</strike>
-    * Use forked version of [rcmdnk/vim-markdown-quote-syntax](https://github.com/rcmdnk/vim-markdown-quote-syntax)
-    for codeblock syntaxes:
+    * <strike>Use forked version of [rcmdnk/vim-markdown-quote-syntax](https://github.com/rcmdnk/vim-markdown-quote-syntax)
+    for codeblock syntaxes</strike>
+    * Original [vim-markdown-quote-syntax](https://github.com/joker1007/vim-markdown-quote-syntax)
+    has now these features.
 
 If you use [Vundle](https://github.com/gmarik/Vundle.vim), do:
 
 ```vim
 Plugin 'godlygeek/tabular'
-Plugin 'rcmdnk/vim-markdown-quote-syntax'
+Plugin 'joker1007/vim-markdown-quote-syntax'
 Plugin 'rcmdnk/vim-markdown'
 ```
 - - -
