@@ -141,6 +141,7 @@ Remails html syntax in most places: `runtime! syntax/html.vim`
 ```
 triple backticks
 ```
+
 (Only Parentheses)
 {Only Braces}
 [Only Square Brackets]
@@ -161,16 +162,24 @@ Single underscore _is not markupped.
 
 {%Liquid Tag%}
 
-{%codeblock%}
-Jekyll Codeblocke
-{%endcodeblock%}
-
 {%comment%}
 Here is Liquid Comment.
 {%endcomment%}
 
+{%codeblock%}
+Jekyll Codeblocke
+{%endcodeblock%}
+
+    code with 4 spaces
+    code with 4 spaces
+    code with 4 spaces
+
+One line test
+
+    code with 4 spaces
+
 ```
-echo no lang
+echo no lang, triple backticks
 ```
 
 ```sh
@@ -178,6 +187,10 @@ echo no lang
 echo triple backticks
 valu=${aaa}
 ```
+
+~~~
+triple waves
+~~~
 
 {%codeblock lang:cpp%}
 #include <iostream>
