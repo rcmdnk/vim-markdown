@@ -47,7 +47,7 @@ function GetMarkdownIndent()
     if s:is_li_start(cline) 
         " Current line is the first line of a list item, do not change indent
         return indent(v:lnum)
-    elseif s:is_li_start(line)
+    elseif s:is_li_start(line) && v:lnum - lnum < 3
         " Last line is the first line of a list item, increase indent
         return ind + list_ind
     else
