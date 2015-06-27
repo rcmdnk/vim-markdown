@@ -145,17 +145,17 @@ HtmlHiLink liquidComment    NonText
 HtmlHiLink liquidOutput     Directory
 HtmlHiLink markdownCodeDelimiter liquidTag
 
-"" Automatically insert bullets
-"setlocal formatoptions+=r
-"" Do not automatically insert bullets when auto-wrapping with text-width
-"setlocal formatoptions-=c
-"" Accept various markers as bullets
-"setlocal comments=b:*,b:+,b:-
-"
-"" Automatically continue blockquote on line break
-"setlocal comments+=b:>
+" Automatically insert bullets
+setlocal formatoptions+=r
+" Do not automatically insert bullets when auto-wrapping with text-width
+setlocal formatoptions-=c
+" Accept various markers as bullets
+setlocal comments=b:*,b:+,b:-,b:1.
 
-let b:current_syntax = "mkd"
+" Automatically continue blockquote on line break
+setlocal comments+=bn:>
+
+let b:current_syntax = "markdown"
 
 delcommand HtmlHiLink
 " vim: ts=8
