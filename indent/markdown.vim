@@ -13,7 +13,7 @@ setlocal formatoptions-=c
 setlocal comments=b:*,b:+,b:-,b:1.
 
 " Automatically continue blockquote on line break
-setlocal comments+=b:>
+setlocal comments+=bn:>
 
 " Only define the function once
 if exists("*GetMarkdownIndent") | finish | endif
