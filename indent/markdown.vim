@@ -10,7 +10,7 @@ setlocal formatoptions+=r
 " Do not automatically insert bullets when auto-wrapping with text-width
 setlocal formatoptions-=c
 " Accept various markers as bullets
-setlocal comments=b:*,b:+,b:-
+setlocal comments=b:*,b:+,b:-,b:1.
 
 " Automatically continue blockquote on line break
 setlocal comments+=b:>
