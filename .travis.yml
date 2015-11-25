@@ -3,12 +3,7 @@ env:
   - TEST=package
   - TEST=latest
 
-addons:
-  apt:
-    packages:
-      - vim
-
-install: |
+before_script: |
   cd ..
   if [ "$TEST" = "package" ]; then
     sudo apt-get -y update
