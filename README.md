@@ -8,7 +8,7 @@ Syntax highlighting, matching rules and mappings for [the original Markdown](htt
 
 **rcmdnk's modified version**
 
-* Changed filetype name `mkd` to `markdown`.
+* Changed filetype name `mkd` to `markdown`. (:information_source: plasticboy version has also changed to use `markdown` until 9/Sep/2015.)
 * ftdetect/markdown.vim
   * Added tmp, old: {md,...}.{...tmp,old}
 * syntax/markdown.vim
