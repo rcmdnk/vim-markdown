@@ -43,7 +43,7 @@ syn region htmlBoldItalic start="\%(^\|\s\)\@<=\*\*\*\%([^\*]\)\@=" end="\*\@<!\
 syn region htmlBoldItalic start="\%(^\|\s\)\@<=___\%([^_]\)\@=" end="_\@<!___\%(\s\|$\)\@=" keepend oneline contains=@Spell
 
 " [link](URL) | [link][id] | [link][]
-syn region mkdFootnotes matchgroup=mkdDelimiter start="\[^"    end="\]"
+syn region mkdFootnotes matchgroup=mkdDelimiter start="\[^"   end="\]"
 syn region mkdID matchgroup=mkdDelimiter        start="\["    end="\]" contained oneline
 syn match  mkdURL "(\@<=\S\+)\@=" contained
 syn region mkdURLBracket matchgroup=mkdDelimiter start="\(\]\)\@<=(" end=")"  contained oneline contains=mkdURL keepend
@@ -58,7 +58,7 @@ syn region mkdInlineURL start=/\(mailto:\)\=[[:alnum:]._-~+]\+@[[:alnum:]_-]\+\.
 syn region mkdInlineURL matchgroup=mkdDelimiter start="\\\@<!<\(\(mailto:\)\=[[:alnum:]._-~+]\+@[^> .]\+\.[^> .]\+>\)\@=" end=">"
 
 " Link definitions: [id]: URL (Optional Title)
-syn region mkdLinkDef matchgroup=mkdDelimiter   start="^ \{,3}\zs\[" end="]:" oneline nextgroup=mkdLinkDefTarget skipwhite
+syn region mkdLinkDef matchgroup=mkdDelimiter   start="^ \{,3}\zs\[^\@!" end="]:" oneline nextgroup=mkdLinkDefTarget skipwhite
 syn region mkdLinkDefTarget start="<\?\zs\S" excludenl end="\ze[>[:space:]\n]"   contained nextgroup=mkdLinkTitle,mkdLinkDef skipwhite skipnl oneline
 syn region mkdLinkTitle matchgroup=mkdDelimiter start=+"+     end=+"+  contained
 syn region mkdLinkTitle matchgroup=mkdDelimiter start=+'+     end=+'+  contained
@@ -74,7 +74,6 @@ syn region mkdCode matchgroup=mkdDelimiter start=/^\s*```\s*[0-9A-Za-z_-]*\s*$/ 
 syn region mkdCode matchgroup=mkdDelimiter start=/^[~]\{3,}.*$/ end=/^[~]\{3,}$/
 syn region mkdCode matchgroup=mkdDelimiter start="<pre[^>]*>" end="</pre>"
 syn region mkdCode matchgroup=mkdDelimiter start="<code[^>]*>" end="</code>"
-syn region mkdFootnote     start="\[^"                     end="\]"
 syn match  mkdCode         /^\s*\n\(\(\s\{4,}[^ ]\|\t\t\+[^\t]\).*\n\)\+/
 syn match  mkdIndentCode   /^\s*\n\(\(\s\{4,}[^ ]\|\t\+[^\t]\).*\n\)\+/ contained
 syn match  mkdListItem     "^\s*[-*+]\s\+"
@@ -123,7 +122,6 @@ syn cluster mkdNonListItem contains=htmlItalic,htmlBold,htmlBoldItalic,mkdFootno
 HtmlHiLink mkdString	    String
 HtmlHiLink mkdCode          String
 HtmlHiLink mkdIndentCode    String
-HtmlHiLink mkdFootnote    Comment
 HtmlHiLink mkdBlockquote    Comment
 HtmlHiLink mkdLineContinue  Comment
 HtmlHiLink mkdListItem      Identifier
