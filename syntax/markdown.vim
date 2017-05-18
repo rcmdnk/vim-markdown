@@ -45,7 +45,7 @@ syn region htmlBoldItalic start="\%(^\|\s\)\@<=___\%([^_]\)\@=" end="_\@<!___\%(
 " [link](URL) | [link][id] | [link][]
 syn region mkdFootnotes matchgroup=mkdDelimiter start="\[^"   end="\]"
 syn region mkdID matchgroup=mkdDelimiter        start="\["    end="\]" contained oneline
-syn match  mkdURL "(\@<=\S\+)\@=" contained
+syn match  mkdURL "(\@<=\S\+\%(.*)\)\@=" contained
 syn region mkdURLBracket matchgroup=mkdDelimiter start="\%(\]\)\@<=(" end=")"  contained oneline contains=mkdURL keepend
 syn region mkdLink matchgroup=mkdDelimiter      start="\\\@<!\[" end="\]\ze\s*[[(]" contains=@Spell nextgroup=mkdURLBracket,mkdID skipwhite oneline
 
