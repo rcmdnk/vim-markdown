@@ -35,12 +35,12 @@ syn case ignore
 syn sync linebreaks=1
 
 "additions to HTML groups
-syn region htmlItalic start="\\\@<!\*\S\@=" end="\S\@<=\\\@<!\*" keepend oneline contains=@Spell
-"syn region htmlItalic start="\(^\|\s\)\@<=_\|\\\@<!_\([^_]\+\s\)\@=" end="\S\@<=_\|_\S\@=" keepend oneline contains=@Spell
-syn region htmlBold start="\S\@<=\*\*\|\*\*\S\@=" end="\S\@<=\*\*\|\*\*\S\@=" keepend oneline contains=@Spell
-syn region htmlBold start="\S\@<=__\|__\S\@=" end="\S\@<=__\|__\S\@=" keepend oneline contains=@Spell
-syn region htmlBoldItalic start="\S\@<=\*\*\*\|\*\*\*\S\@=" end="\S\@<=\*\*\*\|\*\*\*\S\@=" keepend oneline contains=@Spell
-syn region htmlBoldItalic start="\S\@<=___\|___\S\@=" end="\S\@<=___\|___\S\@=" keepend oneline contains=@Spell
+syn region htmlItalic start="\%(^\|\s\)\@<=\*\%([^\*]\)\@=" end="\*\@<!\*\%(\s\|$\)\@=" keepend oneline contains=@Spell
+syn region htmlItalic start="\%(^\|\s\)\@<=_\%([^_]\)\@=" end="_\@<!_\%(\s\|$\)\@=" keepend oneline contains=@Spell
+syn region htmlBold start="\%(^\|\s\)\@<=\*\*\%([^\*]\)\@=" end="\*\@<!\*\*\%(\s\|$\)\@=" keepend oneline contains=@Spell
+syn region htmlBold start="\%(^\|\s\)\@<=__\%([^_]\)\@=" end="_\@<!__\%(\s\|$\)\@=" keepend oneline contains=@Spell
+syn region htmlBoldItalic start="\%(^\|\s\)\@<=\*\*\*\%([^\*]\)\@=" end="\*\@<!\*\*\*\%(\s\|$\)\@=" keepend oneline contains=@Spell
+syn region htmlBoldItalic start="\%(^\|\s\)\@<=___\%([^_]\)\@=" end="_\@<!___\%(\s\|$\)\@=" keepend oneline contains=@Spell
 
 " [link](URL) | [link][id] | [link][]
 syn region mkdFootnotes matchgroup=mkdDelimiter start="\[^"    end="\]"
