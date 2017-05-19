@@ -12,21 +12,22 @@ Syntax highlighting, matching rules and mappings for [the original Markdown](htt
 
 * Changed filetype name `mkd` to `markdown`. (:information_source: plasticboy version has also changed to use `markdown` since 9/Sep/2015.)
 * ftdetect/markdown.vim
-  * Added tmp, old: {md,...}.{...tmp,old}
+    * Added tmp, old: {md,...}.{...tmp,old}
 * syntax/markdown.vim
-  * Enabled spell check at most of place.
-  * Enable html syntax.
-  * `(URL)` is enabled only after `[LINK]`.
-  * Enabled mkdInlineURL (modified).
-  * Delimiters for codes are set as mkdDelimiter.
-  * Added liquidTag (`{%~%}`)
-  * Added PHP Markdown Extra codeblock (`~~~`)
-  * <strike>Added syntax in codeblock inspired by [vim-markdown-quote-syntax](https://github.com/joker1007/vim-markdown-quote-syntax)</strike>
-    * <strike>You can disable this feature by `let g:vim_markdown_codeblock_syntax=0`.</strike>
-    * <strike>Use forked version of [rcmdnk/vim-markdown-quote-syntax](https://github.com/rcmdnk/vim-markdown-quote-syntax)
-    for codeblock syntaxes</strike>
-    * Original [vim-markdown-quote-syntax](https://github.com/joker1007/vim-markdown-quote-syntax)
-    has now these features.
+    * Enabled spell check at most of place.
+    * Enable html syntax.
+    * `(URL)` is enabled only after `[LINK]`.
+    * Enabled mkdInlineURL (modified).
+    * Delimiters for codes are set as mkdDelimiter.
+    * Added liquidTag (`{%~%}`)
+        * `let g:vim_markdown_liquid=0` to disable liquidTag (default: enabled).
+    * Added PHP Markdown Extra codeblock (`~~~`)
+    * <strike>Added syntax in codeblock inspired by [vim-markdown-quote-syntax](https://github.com/joker1007/vim-markdown-quote-syntax)</strike>
+        * <strike>You can disable this feature by `let g:vim_markdown_codeblock_syntax=0`.</strike>
+        * <strike>Use forked version of [rcmdnk/vim-markdown-quote-syntax](https://github.com/rcmdnk/vim-markdown-quote-syntax)
+        for codeblock syntaxes</strike>
+        * Original [vim-markdown-quote-syntax](https://github.com/joker1007/vim-markdown-quote-syntax)
+        has now these features.
 * Better folding
     * `let g:vim_markdown_better_folding=1` allows better folding, especially
     for YAML block, Jekyll/Octopress codeblock.
