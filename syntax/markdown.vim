@@ -1,9 +1,9 @@
 " Vim syntax file
-" Language:	Markdown
-" Maintainer:	Ben Williams <benw@plasticboy.com>
-" URL:		http://plasticboy.com/markdown-vim-mode/
-" Remark:	Uses HTML syntax file
-" TODO: 	Handle stuff contained within stuff (e.g. headings within blockquotes)
+" Language:     Markdown
+" Maintainer:   Ben Williams <benw@plasticboy.com>
+" URL:          http://plasticboy.com/markdown-vim-mode/
+" Remark:       Uses HTML syntax file
+" TODO:         Handle stuff contained within stuff (e.g. headings within blockquotes)
 
 
 " Read the HTML syntax to start with
@@ -68,17 +68,15 @@ syn region mkdLinkTitle matchgroup=mkdDelimiter start=+(+     end=+)+  contained
 syn match  mkdLineContinue ".$" contained
 syn match  mkdLineBreak    /  \+$/
 syn region mkdBlockquote   start=/^\s*>/                   end=/$/ contains=mkdLineBreak,mkdLineContinue,@Spell
-syn region mkdCode matchgroup=mkdDelimiter start=/\%(\%([^\\]\|^\)\\\)\@<!`/ end=/\%(\%([^\\]\|^\)\\\)\@<!`/
-syn region mkdCode matchgroup=mkdDelimiter start=/\s*``[^`]*/ end=/[^`]*``\s*/
-syn region mkdCode matchgroup=mkdDelimiter start=/^\s*```\s*[0-9A-Za-z_-]*\s*$/ end=/^\s*```\s*$/
-syn region mkdCode matchgroup=mkdDelimiter start=/^[~]\{3,}.*$/ end=/^[~]\{3,}$/
-syn region mkdCode matchgroup=mkdDelimiter start="<pre[^>]*>" end="</pre>"
-syn region mkdCode matchgroup=mkdDelimiter start="<code[^>]*>" end="</code>"
-syn match  mkdCode         /^\s*\n\%(\%(\s\{4,}[^ ]\|\t\t\+[^\t]\).*\n\)\+/
-syn match  mkdIndentCode   /^\s*\n\%(\%(\s\{4,}[^ ]\|\t\+[^\t]\).*\n\)\+/ contained
+syn region mkdCode matchgroup=mkdCodeDelimiter start=/\%(\%([^\\]\|^\)\\\)\@<!`/ end=/\%(\%([^\\]\|^\)\\\)\@<!`/
+syn region mkdCode matchgroup=mkdCodeDelimiter start=/\s*``[^`]*/ end=/[^`]*``\s*/
+syn region mkdCode matchgroup=mkdCodeDelimiter start=/^\s*```\s*[0-9A-Za-z_-]*\s*$/ end=/^\s*```\s*$/
+syn region mkdCode matchgroup=mkdCodeDelimiter start=/^[~]\{3,}.*$/ end=/^[~]\{3,}$/
+syn region mkdCode matchgroup=mkdInlineCodeDelimiter start="<pre[^>]*>" end="</pre>"
+syn region mkdCode matchgroup=mkdInlineCodeDelimiter start="<code[^>]*>" end="</code>"
+syn match  mkdIndentCode   /^\s*\n\%(\%(\s\{4,}[^ ]\|\t\t\+[^\t]\).*\n\)\+/
 syn match  mkdListItem     "^\s*[-*+]\s\+"
 syn match  mkdListItem     "^\s*\d\+\.\s\+"
-"syn region mkdNonListItemBlock start="\n\%(\_^\_$\|\s\{4,}[^ ]\|\t+[^\t]\)\@!" end="^\%(\s*\%([-*+]\|\d\+\.\)\s\+\)\@=" contains=@mkdNonListItem,@Spell
 syn match  mkdRule         /^\s*\*\s\{0,1}\*\s\{0,1}\*$/
 syn match  mkdRule         /^\s*-\s\{0,1}-\s\{0,1}-$/
 syn match  mkdRule         /^\s*_\s\{0,1}_\s\{0,1}_$/
@@ -99,18 +97,18 @@ syn match  htmlH2       /^.\+\n-\+$/ contains=@Spell
 if get(g:, "vim_markdown_liquid", 1)
   syn region liquidTag matchgroup=mkdDelimiter start="{%"    end="%}" oneline
   syn region liquidOutput matchgroup=mkdDelimiter start="{{"    end="}}" oneline
-  syn region mkdCode   matchgroup=liquidTag start=/^{%\s*codeblock\%( .*\|\)%}/ end=/^{%\s*endcodeblock\%( .*\|\)%}/
-  syn region liquidComment  start="{%\s*comment\s*%}" end="{%\s*endcomment\s*%}"
+  syn region mkdCode matchgroup=liquidCodeTag start=/^{%\s*codeblock\%( .*\|\)%}/ end=/^{%\s*endcodeblock\%( .*\|\)%}/
+  syn region liquidComment matchgroup=liquidCommentTag start="{%\s*comment\s*%}" end="{%\s*endcomment\s*%}"
 endif
 
 " YAML
 if get(g:, 'vim_markdown_frontmatter', 0)
   try
     syn include @yamlTop syntax/yaml.vim
-    syn region Comment matchgroup=yamlDelimiter start="\%^---$" end="^---$" contains=@yamlTop
+    syn region Comment matchgroup=mkdFrontmatterDelimiter start="\%^---$" end="^---$" contains=@yamlTop
     unlet! b:current_syntax
   catch /E484/
-    syn region Comment matchgroup=yamlDelimiter start="\%^---$" end="^---$"
+    syn region Comment matchgroup=mkdFrontmatterDelimiter start="\%^---$" end="^---$"
   endtry
 endif
 
@@ -118,10 +116,10 @@ endif
 if get(g:, 'vim_markdown_toml_frontmatter', 0)
   try
     syn include @tomlTop syntax/toml.vim
-    syn region Comment matchgroup=mkdDelimiter start="\%^+++$" end="^+++$" transparent contains=@tomlTop
+    syn region Comment matchgroup=mkdFrontmatterDelimiter start="\%^+++$" end="^+++$" transparent contains=@tomlTop
     unlet! b:current_syntax
   catch /E484/
-    syn region Comment matchgroup=mkdDelimiter start="\%^+++$" end="^+++$" transparent
+    syn region Comment matchgroup=mkdFrontmatterDelimiter start="\%^+++$" end="^+++$" transparent
   endtry
 endif
 
@@ -129,13 +127,12 @@ endif
 if get(g:, 'vim_markdown_json_frontmatter', 0)
   try
     syn include @jsonTop syntax/json.vim
-    syn region Comment matchgroup=mkdDelimiter start="\%^{$" end="^}$" contains=@jsonTop
+    syn region Comment matchgroup=mkdFrontmatterDelimiter start="\%^{$" end="^}$" contains=@jsonTop
     unlet! b:current_syntax
   catch /E484/
-    syn region Comment matchgroup=mkdDelimiter start="\%^{$" end="^}$"
+    syn region Comment matchgroup=mkdFrontmatterDelimiter start="\%^{$" end="^}$"
   endtry
 endif
-
 
 " Math
 if get(g:, 'vim_markdown_math', 0)
@@ -150,10 +147,8 @@ if get(g:, 'vim_markdown_math', 0)
   endtry
 endif
 
-syn cluster mkdNonListItem contains=htmlItalic,htmlBold,htmlBoldItalic,mkdFootnotes,mkdInlineURL,mkdLink,mkdLinkDef,mkdLineBreak,mkdBlockquote,mkdCode,mkdIndentCode,mkdListItem,mkdRule,htmlH1,htmlH2,htmlH3,htmlH4,htmlH5,htmlH6,mkdMath,liquidTag,liquidOut,liquidComment,markdownCodeRegionRUBY,markdownCodeGroupRUBY
-
 "highlighting for Markdown groups
-HtmlHiLink mkdString	    String
+HtmlHiLink mkdString        String
 HtmlHiLink mkdCode          String
 HtmlHiLink mkdIndentCode    String
 HtmlHiLink mkdBlockquote    Comment
@@ -171,10 +166,15 @@ HtmlHiLink mkdLinkDefTarget mkdURL
 HtmlHiLink mkdLinkTitle     htmlString
 HtmlHiLink mkdMath          Statement
 HtmlHiLink mkdDelimiter     Delimiter
-HtmlHiLink yamlDelimiter    Delimiter
+HtmlHiLink mkdCodeDelimiter Delimiter
+HtmlHiLink mkdInlineCodeDelimiter Delimiter
+HtmlHiLink mkdFrontmatterDelimiter     Delimiter
 HtmlHiLink liquidTag        MoreMsg
+HtmlHiLink liquidCodeTag    MoreMsg
 HtmlHiLink liquidComment    NonText
+HtmlHiLink liquidCommentTag NonText
 HtmlHiLink liquidOutput     Directory
+" For markdown_quote_syntax
 HtmlHiLink markdownCodeDelimiter liquidTag
 
 let b:current_syntax = "markdown"

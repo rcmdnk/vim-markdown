@@ -7,68 +7,74 @@
 " original version from Steve Losh's gist: https://gist.github.com/1038710
 
 func! Foldexpr_markdown(lnum)
+  if get(g:, 'vim_markdown_better_folding', 0)
+
+    let syn1 = synIDattr(synID(a:lnum,1,1), 'name')
+
+    " Frontmatter
+    if syn1 == 'mkdFrontmatterDelimiter'
+      if b:frontmatter == 0
+        let b:frontmatter = 1
+        return 'a1'
+      else
+        let b:frontmatter = 0
+        return 's1'
+      endif
+    elseif b:frontmatter == 1
+      return '='
+    endif
+
+    " Liquid Comment
+    if syn1 == 'liquidCommentTag'
+      if b:comment == 0
+        let b:comment = 1
+        return 'a1'
+      else
+        let b:comment = 0
+        return 's1'
+      endif
+    elseif b:comment == 1
+      return '='
+      endif
+    endif
+
+    " Code
+    if syn1 == 'liquidCodeTag' || syn1 == 'mkdCodeDelimiter' || syn1 == 'markdownCodeDelimiter'
+      if b:codeblock == 0
+        let b:codeblock = 1
+        return 'a1'
+      else
+        let b:codeblock = 0
+        return 's1'
+      endif
+    elseif b:codeblock == 1
+      return '='
+    endif
+
+    " Code with four spaces
+    if syn1 == 'mkdIndentCode'
+      if b:indent_codeblock == 0
+        let b:indent_codeblock = 1
+        return 'a1'
+      else
+        return '='
+      endif
+    elseif b:indent_codeblock == 1
+      let syn2 = synIDattr(synID(a:lnum+1,1,1), 'name')
+      if syn2 == 'mkdIndentCode'
+        return '='
+      else
+        let b:indent_codeblock = 0
+        return 's1'
+      endif
+    endif
+
+  endif
+
   " Get line contents
   let l0 = getline(a:lnum-1)
   let l1 = getline(a:lnum)
   let l2 = getline(a:lnum+1)
-
-  if get(g:, 'vim_markdown_better_folding', 0)
-    " Get syntaxes
-    let syn0 = synIDattr(synID(a:lnum-1,1,1), 'name')
-    let syn1 = synIDattr(synID(a:lnum,1,1), 'name')
-    let syn2 = synIDattr(synID(a:lnum+1,1,1), 'name')
-
-    " YAML block
-    if syn1 == 'yamlDelimiter'
-      if a:lnum == 1
-        return 'a1'
-      else
-        return 's1'
-      endif
-    endif
-    if syn1 == 'yamlBlockMappingKey'
-      return '='
-    endif
-
-    " Code
-    if syn1 == 'mkdDelimiter' || syn1 == 'liquidTag'
-      if syn2 == 'mkdCode'
-        return 'a1'
-      elseif syn0 == 'mkdCode'
-        return 's1'
-      endif
-    endif
-
-    " Code with vim-markdown-quote-syntax
-    if syn1 == 'markdownCodeDelimiter'
-      if syn0 == ''
-        return 'a1'
-      elseif syn2 == ''
-        return 's1'
-      endif
-    endif
-
-    " Code with four spaces
-    if syn1 == 'mkdCode'
-      if syn0 == ''
-        " Avoid one line code
-        if syn2 != ''
-          return 'a1'
-        endif
-      elseif syn2 == ''
-        return 's1'
-      endif
-    endif
-
-    " Liquid Comment
-    if syn1 == 'liquidComment'
-      if syn0 != 'liquidComment'
-        return 'a1'
-      elseif syn2 != 'liquidComment'
-        return 's1'
-      endif
-    endif
-  endif
 
   " Section
   if  l2 =~ '^==\+\s*'
@@ -77,19 +83,21 @@ func! Foldexpr_markdown(lnum)
   elseif l2 =~ '^--\+\s*'
       " next line is underlined (level 2)
       return '>2'
-  elseif l1 =~ '^#'
-      " don't include the section title in the fold
-      return '-1'
-  elseif l0 =~ '^#[^!]'
+  elseif l1 =~ '^#[^!]'
       " current line starts with hashes
-      return '>'.matchend(l0, '^#\+')
+      return '>'.matchend(l1, '^#\+')
   endif
 
   " keep previous foldlevel
   return '='
 endfunc
 
+let b:frontmatter = 0
+let b:comment = 0
+let b:codeblock = 0
+let b:indent_codeblock = 0
+
 if !get(g:, "vim_markdown_folding_disabled", 0)
-  setlocal foldexpr=Foldexpr_markdown(v:lnum)
   setlocal foldmethod=expr
+  setlocal foldexpr=Foldexpr_markdown(v:lnum)
 endif
