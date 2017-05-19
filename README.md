@@ -8,7 +8,7 @@ Syntax highlighting, matching rules and mappings for [the original Markdown](htt
 
 **rcmdnk's modified version**
 
-* Changed filetype name `mkd` to `markdown`. (:information_source: plasticboy version has also changed to use `markdown` until 9/Sep/2015.)
+* Changed filetype name `mkd` to `markdown`. (:information_source: plasticboy version has also changed to use `markdown` since 9/Sep/2015.)
 * ftdetect/markdown.vim
   * Added tmp, old: {md,...}.{...tmp,old}
 * syntax/markdown.vim
@@ -36,6 +36,14 @@ If you use [Vundle](https://github.com/gmarik/Vundle.vim), do:
 Plugin 'godlygeek/tabular'
 Plugin 'joker1007/vim-markdown-quote-syntax'
 Plugin 'rcmdnk/vim-markdown'
+```
+
+or with [Dein.vim](https://github.com/Shougo/dein.vim):
+
+```vim
+call dein#add('godlygeek/tabular')
+call dein#add('joker1007/vim-markdown-quote-syntax')
+call dein#add('rcmdnk/vim-markdown')
 ```
 - - -
 

@@ -1,0 +1,586 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<title>~/Documents/octopress/octopress/source/others/tests/syntax-test.md.html</title>
+<meta name="Generator" content="Vim/8.0">
+<meta name="plugin-version" content="vim7.4_v2">
+<meta name="syntax" content="markdown">
+<meta name="settings" content="use_css,pre_wrap,no_foldcolumn,expand_tabs,prevent_copy=">
+<meta name="colorscheme" content="ron">
+<style type="text/css">
+<!--
+pre { white-space: pre-wrap; font-family: monospace; color: #ffffff; background-color: #000000; }
+body { font-family: monospace; color: #ffffff; background-color: #000000; }
+* { font-size: 1em; }
+.Type { color: #87ffaf; }
+.Underlined { color: #5fd7ff; text-decoration: underline; }
+.NonText { color: #8080ff; }
+.Directory { color: #afffff; }
+.MoreMsg { color: #87ffaf; }
+.ErrorMsg { color: #ffffff; background-color: #c00000; padding-bottom: 1px; }
+.WarningMsg { color: #ffd7d7; }
+.LineNr { color: #ffff00; }
+.Title { color: #ffd7ff; }
+.Comment { color: #00ffff; }
+.Constant { color: #ff40ff; }
+.Special { color: #ffd7d7; }
+.Identifier { color: #00ffff; font-weight: bold; }
+.Statement { color: #ffff00; }
+.PreProc { color: #5fd7ff; }
+-->
+</style>
+
+<script type='text/javascript'>
+<!--
+
+-->
+</script>
+</head>
+<body>
+<pre id='vimCodeElement'>
+<span class="Special">---</span>
+<span class="Identifier">layout</span><span class="Special">:</span><span class="Comment"> </span>page
+<span class="Identifier">title</span><span class="Special">:</span><span class="Comment"> </span><span class="Constant">&quot;</span><span class="Constant">Syntax tests</span><span class="Constant">&quot;</span>
+<span class="Identifier">date</span><span class="Special">:</span><span class="Comment"> </span>2014-12-15<span class="Comment"> </span><span class="Constant">12:00</span>
+<span class="Identifier">published</span><span class="Special">:</span><span class="Comment"> </span><span class="Constant">true</span>
+<span class="Special">---</span>
+
+Before more
+
+<span class="Comment">&lt;!</span><span class="Comment">-- more --</span><span class="Comment">&gt;</span>
+<span class="Special">{%</span><span class="MoreMsg">include after_excerpt.html</span><span class="Special">%}</span>
+
+After more
+
+<span class="Title"># Bracket, Link, etc...</span>
+
+(Only Parentheses)
+{Only Braces}
+[Only Square Brackets]
+<span class="Identifier">&lt;</span>Only<span class="Identifier"> Angle Brackets: This is </span><span class="Constant">&quot;html tag&quot;</span><span class="Identifier">&gt;</span>
+
+Bracket test [  w/o line break ]
+
+Bracket test [  w/ line break
+]
+
+This is <span class="Underlined"><a href="https://inline.url">https://inline.url</a></span>. End with <span class="Special">`</span><span class="Constant">.</span><span class="Special">`</span>, <span class="Special">`</span><span class="Constant">,</span><span class="Special">`</span>, <span class="Special">`</span><span class="Constant"> </span><span class="Special">`</span> or etc... (don't markup last <span class="Special">`</span><span class="Constant">.</span><span class="Special">`</span>)
+<span class="Underlined">ftp://ftp.is.also.markuped</span> end with space.
+(<span class="Underlined"><a href="https://url.in.brackets">https://url.in.brackets</a></span>)
+Double slash is <span class="Underlined">//also.url</span>, ok.
+Single slash starting word is /not.highlighted.
+
+Mail address: <span class="Underlined">user@mail.com</span>.
+Mail address: <span class="Special">&lt;</span><span class="Underlined">user@mail.com</span><span class="Special">&gt;</span>.
+Mail address: <span class="Underlined">mailto:user@mail.com</span>
+Wrong Mail address in brackets: <span class="Identifier">&lt;</span>user<span class="Identifier">@mail.com.&gt;</span>.
+
+Single asterisk *is not markupped.
+Single underscore _is not markupped.
+
+<span class="LineNr">*Multi*</span> *asterisks*between** *words*test*test*test.
+
+<span class="WarningMsg">__Multi__</span> _underscores_between__ _words_test_test_test.
+
+<span class="Special">{%</span><span class="MoreMsg">Liquid Tag</span><span class="Special">%}</span>
+
+<span class="NonText">{%comment%}</span>
+<span class="NonText">Here is Liquid Comment.</span>
+<span class="NonText">{%endcomment%}</span>
+
+<span class="Title"># Codes test</span>
+
+<span class="Special">~~~~~~~~~~~~~~~~~~~~~</span>
+
+<span class="Constant">a one-line code block</span>
+
+<span class="Special">~~~~~~~~~~~~~~~~~~~~~</span>
+
+
+
+Remain html syntax in most places: <span class="Special">`</span><span class="Constant">runtime! syntax/html.vim</span><span class="Special">`</span>
+
+<span class="Identifier">&lt;</span><span class="Statement">div</span><span class="Identifier"> </span><span class="Type">class</span><span class="Identifier">=</span><span class="Constant">&quot;html&quot;</span><span class="Identifier">&gt;</span>Use html syntax<span class="Identifier">&lt;/</span><span class="Statement">div</span><span class="Identifier">&gt;</span>
+<span class="Identifier">&lt;</span><span class="Statement">a</span><span class="Identifier"> </span><span class="Type">href</span><span class="Identifier">=</span><span class="Constant">&quot;http...&quot;</span><span class="Identifier">&gt;</span><span class="Underlined">aaa</span><span class="Identifier">&lt;/</span><span class="Statement">a</span><span class="Identifier">&gt;</span>
+<span class="Special">&lt;code&gt;</span><span class="Constant">code</span><span class="Special">&lt;/code&gt;</span>
+<span class="Special">&lt;pre&gt;</span><span class="Constant">pre</span><span class="Special">&lt;/pre&gt;</span>
+
+<span class="Special">```</span>
+<span class="Constant">triple backticks</span>
+<span class="Special">```</span>
+
+<span class="MoreMsg">{%codeblock%}</span>
+<span class="Constant">Jekyll Codeblocke</span>
+<span class="MoreMsg">{%endcodeblock%}</span>
+
+<span class="Constant">    code with 4 spaces</span>
+<span class="Constant">    code with 4 spaces</span>
+<span class="Constant">    code with 4 spaces</span>
+
+One line test
+
+<span class="Constant">    code with 4 spaces</span>
+
+<span class="Special">```</span>
+echo no lang, triple backticks
+<span class="Special">```</span>
+
+<span class="Constant">```sh</span>
+<span class="Constant">#!/bin/sh</span>
+<span class="Constant">echo triple backticks</span>
+<span class="Constant">valu=${aaa}</span>
+
+<span class="Special">```</span>
+
+<span class="Special">~~~</span>
+<span class="Constant">triple waves</span>
+<span class="Special">~~~</span>
+
+<span class="MoreMsg">{%codeblock lang:cpp%}</span>
+<span class="PreProc">#include </span><span class="Constant">&lt;iostream&gt;</span>
+<span class="Statement">for</span>(<span class="Type">int</span> i=<span class="Constant">0</span>;i&lt;<span class="Constant">10</span>;i++){
+  std::cout &lt;&lt; <span class="Constant">&quot;codeblock&quot;</span> &lt;&lt; std::endl;
+}
+<span class="MoreMsg">{%endcodeblock%}</span>
+
+<span class="MoreMsg">{%codeblock title lang:cpp%}</span>
+<span class="PreProc">#include </span><span class="Constant">&lt;iostream&gt;</span>
+<span class="Statement">for</span>(<span class="Type">int</span> i=<span class="Constant">0</span>;i&lt;<span class="Constant">10</span>;i++){
+  std::cout &lt;&lt; <span class="Constant">&quot;codeblock with lang&quot;</span> &lt;&lt; std::endl;
+}
+<span class="MoreMsg">{%endcodeblock%}</span>
+
+<span class="MoreMsg">{%codeblock a.cpp %}</span>
+<span class="PreProc">#include </span><span class="Constant">&lt;iostream&gt;</span>
+<span class="Statement">for</span>(<span class="Type">int</span> i=<span class="Constant">0</span>;i&lt;<span class="Constant">10</span>;i++){
+  std::cout &lt;&lt; <span class="Constant">&quot;codeblock with file extension&quot;</span> &lt;&lt; std::endl;
+}
+<span class="MoreMsg">{%endcodeblock%}</span>
+
+<span class="MoreMsg">{%codeblock a.vim lang:cpp%}</span>
+<span class="PreProc">#include </span><span class="Constant">&lt;iostream&gt;</span>
+<span class="Statement">for</span>(<span class="Type">int</span> i=<span class="Constant">0</span>;i&lt;<span class="Constant">10</span>;i++){
+  std::cout &lt;&lt; <span class="Constant">&quot;If both lang and extension are available, lang is used for the syntax&quot;</span> &lt;&lt; std::endl;
+}
+<span class="MoreMsg">{%endcodeblock%}</span>
+
+<span class="MoreMsg">```java</span>
+<span class="PreProc">import</span> java.awt.Color;
+<span class="Type">public</span> <span class="Type">void</span> test() {
+  System.out.println(<span class="Constant">&quot;Java is now available. with triple backtick ```&quot;</span>);
+  <span class="Statement">return</span>;
+}
+<span class="MoreMsg">```</span>
+
+<span class="MoreMsg">~~~ .ruby</span>
+puts <span class="Special">&quot;</span><span class="Constant">PHP Markdown Extra wave codeblock</span><span class="Special">&quot;</span>
+<span class="PreProc">def</span> <span class="Identifier">func</span>(flag)
+  <span class="Statement">if</span>(flag)
+    puts <span class="Special">&quot;</span><span class="Constant">OK</span><span class="Special">&quot;</span>
+  <span class="Statement">else</span>
+    puts <span class="Special">&quot;</span><span class="Constant">FAILED</span><span class="Special">&quot;</span>
+  <span class="Statement">end</span>
+<span class="PreProc">end</span>
+<span class="MoreMsg">~~~</span>
+
+<span class="Special">~~~ruby</span>
+<span class="Constant">puts &quot;PHP Markdown Extra wave codeblock&quot;</span>
+<span class="Constant">def func(flag)</span>
+<span class="Constant">  if(flag)</span>
+<span class="Constant">    puts &quot;OK&quot;</span>
+<span class="Constant">  else</span>
+<span class="Constant">    puts &quot;FAILED&quot;</span>
+<span class="Constant">  end</span>
+<span class="Constant">end</span>
+<span class="Special">~~~</span>
+
+
+<span class="MoreMsg">{%codeblock Rakefile lang:ruby%}</span>
+ <span class="Comment">## -- Misc Configs -- ##</span>
+stash_dir       = <span class="Special">&quot;</span><span class="Constant">_stash</span><span class="Special">&quot;</span>    <span class="Comment"># directory to stash posts for speedy generation</span>
+full_stash_dir  = <span class="Special">&quot;</span><span class="Special">#{</span>source_dir<span class="Special">}</span><span class="Constant">/</span><span class="Special">#{</span>stash_dir<span class="Special">}</span><span class="Special">&quot;</span>    <span class="Comment"># full path for stash dir</span>
+stash_root_dir  = <span class="Special">&quot;</span><span class="Constant">_stash_root</span><span class="Special">&quot;</span> <span class="Comment"># directory to stash pages (in /source/)</span>
+full_stash_root_dir = <span class="Special">&quot;</span><span class="Special">#{</span>source_dir<span class="Special">}</span><span class="Constant">/</span><span class="Special">#{</span>stash_root_dir<span class="Special">}</span><span class="Special">&quot;</span> <span class="Comment"># full path for stash_root dir</span>
+root_stashes    = [<span class="Special">'</span><span class="Constant">Your-Page</span><span class="Special">'</span>] <span class="Comment"># directories to be stashed in /source/</span>
+
+
+<span class="Comment"># usage rake isolate[my-post]</span>
+desc <span class="Special">&quot;</span><span class="Constant">Move all other posts than the one currently being worked on to a temporary stash location (stash) so regenerating the site happens much more quickly.</span><span class="Special">&quot;</span>
+task <span class="Constant">:isolate</span>, <span class="Constant">:filename</span> <span class="Statement">do</span> |<span class="Identifier">t</span>, <span class="Identifier">args</span>|
+  <span class="Statement">if</span> args.filename
+    filename = args.filename
+  <span class="Statement">else</span>
+    filename = <span class="Type">Dir</span>.glob(<span class="Special">&quot;</span><span class="Special">#{</span>source_dir<span class="Special">}</span><span class="Constant">/</span><span class="Special">#{</span>posts_dir<span class="Special">}</span><span class="Constant">/*.</span><span class="Special">#{</span>new_post_ext<span class="Special">}</span><span class="Special">&quot;</span>).sort_by{|<span class="Identifier">f</span>| <span class="Type">File</span>.mtime(f)}.last
+  <span class="Statement">end</span>
+  <span class="Statement">if</span> filename == <span class="Constant">nil</span>
+    puts <span class="Special">&quot;&quot;</span>
+    puts <span class="Special">&quot;</span><span class="Constant">There is no markdown file (*.</span><span class="Special">#{</span>new_post_ext<span class="Special">}</span><span class="Constant">) in </span><span class="Special">#{</span>source_dir<span class="Special">}</span><span class="Constant">/</span><span class="Special">#{</span>posts_dir<span class="Special">}</span><span class="Constant">.</span><span class="Special">&quot;</span>
+    <span class="Statement">exit</span> <span class="Constant">1</span>
+  <span class="Statement">end</span>
+  puts <span class="Special">&quot;</span><span class="Constant">## Stashing other posts than </span><span class="Special">#{</span>filename<span class="Special">}</span><span class="Special">&quot;</span>
+  <span class="Type">FileUtils</span>.mkdir(full_stash_dir) <span class="Statement">unless</span> <span class="Type">File</span>.exist?(full_stash_dir)
+  <span class="Type">Dir</span>.glob(<span class="Special">&quot;</span><span class="Special">#{</span>source_dir<span class="Special">}</span><span class="Constant">/</span><span class="Special">#{</span>posts_dir<span class="Special">}</span><span class="Constant">/*</span><span class="Special">&quot;</span>) <span class="Statement">do</span> |<span class="Identifier">post</span>|
+    <span class="Statement">if</span> post.include?(filename)
+      p <span class="Special">&quot;</span><span class="Constant">Remaining </span><span class="Special">#{</span>post<span class="Special">}</span><span class="Constant">...</span><span class="Special">&quot;</span>
+    <span class="Statement">else</span>
+      <span class="Type">FileUtils</span>.mv post, full_stash_dir
+    <span class="Statement">end</span>
+  <span class="Statement">end</span>
+  <span class="Type">FileUtils</span>.mkdir(full_stash_root_dir) <span class="Statement">unless</span> <span class="Type">File</span>.exist?(full_stash_root_dir)
+  <span class="Statement">if</span> defined? root_stashes == <span class="Constant">nil</span>
+    <span class="Statement">if</span> root_stashes.class == <span class="Type">String</span>
+      <span class="Type">FileUtils</span>.mv <span class="Special">&quot;</span><span class="Special">#{</span>source_dir<span class="Special">}</span><span class="Constant">/</span><span class="Special">#{</span>root_stashes<span class="Special">}</span><span class="Special">&quot;</span>, full_stash_root_dir
+    <span class="Statement">elsif</span> root_stashes.class == <span class="Type">Array</span>
+      <span class="Statement">for</span> d <span class="Statement">in</span> root_stashes <span class="Statement">do</span>
+        <span class="Type">FileUtils</span>.mv <span class="Special">&quot;</span><span class="Special">#{</span>source_dir<span class="Special">}</span><span class="Constant">/</span><span class="Special">#{</span>d<span class="Special">}</span><span class="Special">&quot;</span>, full_stash_root_dir
+      <span class="Statement">end</span>
+    <span class="Statement">end</span>
+  <span class="Statement">end</span>
+  system <span class="Special">&quot;</span><span class="Constant">touch .isolated</span><span class="Special">&quot;</span>
+<span class="Statement">end</span>
+
+desc <span class="Special">&quot;</span><span class="Constant">Move all stashed posts back into the posts directory, ready for site generation.</span><span class="Special">&quot;</span>
+task <span class="Constant">:integrate</span> <span class="Statement">do</span>
+  <span class="Type">FileUtils</span>.mv <span class="Type">Dir</span>.glob(<span class="Special">&quot;</span><span class="Special">#{</span>full_stash_dir<span class="Special">}</span><span class="Constant">/*</span><span class="Special">&quot;</span>), <span class="Special">&quot;</span><span class="Special">#{</span>source_dir<span class="Special">}</span><span class="Constant">/</span><span class="Special">#{</span>posts_dir<span class="Special">}</span><span class="Constant">/</span><span class="Special">&quot;</span>
+  <span class="Type">FileUtils</span>.mv <span class="Type">Dir</span>.glob(<span class="Special">&quot;</span><span class="Special">#{</span>full_stash_root_dir<span class="Special">}</span><span class="Constant">/*</span><span class="Special">&quot;</span>), <span class="Special">&quot;</span><span class="Special">#{</span>source_dir<span class="Special">}</span><span class="Constant">/</span><span class="Special">&quot;</span>
+  system <span class="Special">&quot;</span><span class="Constant">rm -f .isolated</span><span class="Special">&quot;</span>
+  system <span class="Special">&quot;</span><span class="Constant">touch .integrated</span><span class="Special">&quot;</span>
+<span class="Statement">end</span>
+<span class="MoreMsg">{%endcodeblock%}</span>
+
+<span class="MoreMsg">{%codeblock source/javascript/utils.js lang:javascript%}</span>
+jQuery(<span class="Identifier">function</span>($)<span class="Identifier">{</span>
+  $(<span class="Statement">document</span>).on(<span class="Constant">'copy'</span>, <span class="Identifier">function</span>(e) <span class="Identifier">{</span>
+    <span class="Identifier">var</span> selected = <span class="Constant">&quot;&quot;</span>;
+    <span class="Statement">if</span> (typeof <span class="Statement">window</span>.getSelection != <span class="Constant">&quot;undefined&quot;</span>) <span class="Identifier">{</span>
+        <span class="Identifier">var</span> sel = <span class="Statement">window</span>.getSelection();
+        <span class="Statement">if</span> (sel.rangeCount) <span class="Identifier">{</span>
+            <span class="Identifier">var</span> container = <span class="Statement">document</span>.createElement(<span class="Constant">&quot;div&quot;</span>);
+            <span class="Statement">for</span> (<span class="Identifier">var</span> i = 0, len = sel.rangeCount; i &lt; len; ++i) <span class="Identifier">{</span>
+                container.appendChild(sel.getRangeAt(i).cloneContents());
+            <span class="Identifier">}</span>
+            selected = container.innerHTML;
+        <span class="Identifier">}</span>
+    <span class="Identifier">}</span> <span class="Statement">else</span> <span class="Statement">if</span> (typeof <span class="Statement">document</span>.selection != <span class="Constant">&quot;undefined&quot;</span>) <span class="Identifier">{</span>
+        <span class="Statement">if</span> (<span class="Statement">document</span>.selection.type == <span class="Constant">&quot;Text&quot;</span>) <span class="Identifier">{</span>
+            selected = <span class="Statement">document</span>.selection.createRange().htmlText;
+        <span class="Identifier">}</span>
+    <span class="Identifier">}</span>
+    <span class="Identifier">var</span> title = <span class="Statement">document</span>.title;
+    <span class="Identifier">var</span>  url = <span class="Statement">location</span>.href;
+    $.ajax(<span class="Identifier">{</span>
+      type: <span class="Constant">&quot;POST&quot;</span>,
+      url: <span class="Constant">&quot;<a href="https://mandrillapp.com/api/1.0/messages/send.json">https://mandrillapp.com/api/1.0/messages/send.json</a>&quot;</span>,
+      data: <span class="Identifier">{</span>
+        <span class="Constant">'key'</span>: <span class="Constant">'YOUR_API_KEY'</span>,
+        <span class="Constant">'message'</span>: <span class="Identifier">{</span>
+          <span class="Constant">'from_email'</span>: <span class="Constant">'your_sender@example.com'</span>,
+          <span class="Constant">'to'</span>: <span class="Identifier">[</span>
+            <span class="Identifier">{</span>
+              <span class="Constant">'email'</span>: <span class="Constant">'your_receiver@example.com'</span>,
+              <span class="Constant">'name'</span>: <span class="Constant">'your receiver'</span>,
+              <span class="Constant">'type'</span>: <span class="Constant">'to'</span>
+            <span class="Identifier">}</span>
+          <span class="Identifier">]</span>,
+          <span class="Constant">'subject'</span>: <span class="Constant">'Copied at '</span> + title,
+          <span class="Constant">'html'</span>: <span class="Constant">'&lt;div&gt;&lt;a href=&quot;'</span> + url + <span class="Constant">'&quot;&gt;'</span> + title + <span class="Constant">'&lt;/a&gt;&lt;/div&gt;&lt;br&gt;&lt;br&gt;&lt;div&gt;'</span> + selected + <span class="Constant">'&lt;/div&gt;'</span>
+        <span class="Identifier">}</span>
+      <span class="Identifier">}</span>
+    <span class="Identifier">}</span>);
+  <span class="Identifier">}</span>);
+<span class="Identifier">}</span>);
+<span class="MoreMsg">{%endcodeblock utils.js lang:javascript%}</span>
+
+In Octopress, I made <span class="Special">`</span><span class="Constant">source/javascript/utils.js</span><span class="Special">`</span>
+and put my functions there.
+
+It is read from <span class="Special">`</span><span class="Constant">source/_includes/head.html</span><span class="Special">`</span>:
+
+<span class="MoreMsg">{%codeblock source/_includes/head.html%}</span>
+...
+<span class="Identifier">&lt;</span><span class="Statement">head</span><span class="Identifier">&gt;</span>
+<span class="PreProc">...</span>
+<span class="PreProc">  </span><span class="Identifier">&lt;</span><span class="Statement">script</span><span class="Identifier"> </span><span class="Type">src</span><span class="Identifier">=</span><span class="Constant">&quot;//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js&quot;</span><span class="Identifier">&gt;</span><span class="Identifier">&lt;/</span><span class="Statement">script</span><span class="Identifier">&gt;</span>
+<span class="PreProc">...</span>
+<span class="PreProc">  </span><span class="Identifier">&lt;</span><span class="Statement">script</span><span class="Identifier"> </span><span class="Type">src</span><span class="Identifier">=</span><span class="Constant">&quot;{{root_url}}/javascripts/utils.js&quot;</span><span class="Identifier">&gt;</span><span class="Identifier">&lt;/</span><span class="Statement">script</span><span class="Identifier">&gt;</span>
+<span class="Identifier">&lt;/</span><span class="Statement">head</span><span class="Identifier">&gt;</span>
+...
+<span class="MoreMsg">{%endcodeblock%}</span>
+
+<span class="MoreMsg">{%codeblock lang:sh%}</span>
+<span class="Special">{</span>%raw%<span class="Special">}</span>
+<span class="Comment"># Execution part {{{</span>
+<span class="Identifier">_s_is_exec</span>=<span class="Constant">1</span>
+<span class="Identifier">_sf_check_args_first () {</span> <span class="Comment"># {{{</span>
+  while [ <span class="PreProc">$#</span> <span class="Statement">-gt</span> <span class="Constant">0</span> ];<span class="Statement">do</span>
+    <span class="Statement">case</span> <span class="PreProc">$1</span> <span class="Statement">in</span>
+      &quot;<span class="Constant">-h</span>&quot;|&quot;<span class="Constant">-N</span>&quot;|&quot;<span class="Constant">-m</span>&quot;|&quot;<span class="Constant">-p</span>&quot;|&quot;<span class="Constant">-F</span>&quot;|&quot;<span class="Constant">-v</span>&quot; <span class="Statement">)</span> <span class="Identifier">_s_is_exec</span>=<span class="Constant">2</span>;<span class="Statement">shift</span><span class="Statement">;;</span>
+      &quot;<span class="Constant">-n</span>&quot; <span class="Statement">)</span> <span class="Identifier">_s_is_exec</span>=<span class="Constant">0</span>;<span class="Statement">shift</span><span class="Statement">;;</span>
+      &quot;<span class="Constant">-c</span>&quot; <span class="Statement">)</span> <span class="Identifier">_SENTAKU_CHILD</span>=<span class="Constant">1</span>;<span class="Statement">shift</span><span class="Statement">;;</span>
+    * <span class="Statement">)</span><span class="Statement">break</span><span class="Statement">;;</span>
+    <span class="Statement">esac</span>
+  <span class="Statement">done</span>
+<span class="Identifier">}</span> <span class="Comment"># }}}</span>
+
+_sf_check_args_first &quot;<span class="PreProc">$@</span>&quot;
+
+<span class="Comment"># Execute if stdin is available, or any of help/file/push is on</span>
+<span class="Statement">if </span>[ <span class="PreProc">$_s_is_exec</span> <span class="Statement">-ne</span> <span class="Constant">0</span> ];<span class="Statement">then</span>
+  <span class="Statement">if </span>[ <span class="Statement">-p</span> /dev/stdin ] || [ <span class="PreProc">$_s_is_exec</span> <span class="Statement">-eq</span> <span class="Constant">2</span> ];<span class="Statement">then</span>
+    _sf_main &quot;<span class="PreProc">$@</span>&quot;
+  <span class="Statement">fi</span>
+<span class="Statement">fi</span>
+
+<span class="Comment"># Clean up</span>
+<span class="Statement">unset</span><span class="Identifier"> _s_is_exec</span>
+<span class="Comment"># }}}</span>
+<span class="Special">{</span>%endraw%<span class="Special">}</span>
+<span class="MoreMsg">{%endcodeblock lang:sh%}</span>
+
+<span class="MoreMsg">{%codeblock lang:diff%}</span>
+<span class="Type">diff --git a/.themes/octogray b/.themes/octogray</span>
+<span class="PreProc">index 69e224c..a519ddb 160000</span>
+<span class="Type">--- a/.themes/octogray</span>
+<span class="Type">+++ b/.themes/octogray</span>
+<span class="Statement">@@ -1 +1 @@</span>
+<span class="Special">-Subproject commit 69e224c5def49917f7fe5527532f8cb50614e81f</span>
+<span class="Identifier">+Subproject commit a519ddbdb6a3b40e48ef7713c3be5d15f853b880</span>
+<span class="MoreMsg">{%endcodeblock%}</span>
+
+<span class="MoreMsg">{%codeblock test.cxx lang:cpp%}</span>
+<span class="PreProc">#include </span><span class="Constant">&lt;iostream&gt;</span>
+<span class="Statement">for</span>(<span class="Type">int</span> i=<span class="Constant">0</span>;i&lt;<span class="Constant">10</span>;i++){
+  std::cout &lt;&lt; <span class="Constant">&quot;coeblock&quot;</span> &lt;&lt; std::endl;
+}
+<span class="MoreMsg">{%endcodeblock%}</span>
+
+<span class="MoreMsg">```cpp</span>
+<span class="PreProc">#include </span><span class="Constant">&lt;iostream&gt;</span>
+<span class="Statement">for</span>(<span class="Type">int</span> i=<span class="Constant">0</span>;i&lt;<span class="Constant">10</span>;i++){
+  std::cout &lt;&lt; <span class="Constant">&quot;triple backticks&quot;</span> &lt;&lt; std::endl;
+}
+<span class="MoreMsg">```</span>
+
+<span class="Special">~~~cpp</span>
+<span class="Constant">#include &lt;iostream&gt;</span>
+<span class="Constant">for(int i=0;i&lt;10;i++){</span>
+<span class="Constant">  std::cout &lt;&lt; &quot;triple ~&quot; &lt;&lt; std::endl;</span>
+<span class="Constant">}</span>
+<span class="Special">~~~</span>
+
+<span class="MoreMsg">```cpp</span>
+{%codeblock test.cxx lang:cpp%}
+<span class="PreProc">#include </span><span class="Constant">&lt;iostream&gt;</span>
+<span class="Statement">for</span>(<span class="Type">int</span> i=<span class="Constant">0</span>;i&lt;<span class="Constant">10</span>;i++){
+  std::cout &lt;&lt; <span class="Constant">&quot;coeblock&quot;</span> &lt;&lt; std::endl;
+}
+{%endcodeblock%}
+<span class="MoreMsg">```</span>
+
+<span class="NonText">{%comment%}</span>
+<span class="NonText">need space after raw before ```,</span>
+<span class="NonText">otherwise Jekyll will give error like</span>
+
+<span class="NonText">    jekyll 2.5.3 | Error:  Pygments can't parse unknown language: &lt;/p&gt;.</span>
+<span class="NonText">    rake aborted!</span>
+<span class="NonText">    FAILD</span>
+
+<span class="NonText">{%endcomment%}</span>
+
+<span class="Special">{%</span><span class="MoreMsg">raw</span><span class="Special">%}</span>
+
+<span class="MoreMsg">```cpp</span>
+
+{%codeblock test.cxx lang:cpp%}
+<span class="PreProc">#include </span><span class="Constant">&lt;iostream&gt;</span>
+<span class="Statement">for</span>(<span class="Type">int</span> i=<span class="Constant">0</span>;i&lt;<span class="Constant">10</span>;i++){
+  std::cout &lt;&lt; <span class="Constant">&quot;coeblock&quot;</span> &lt;&lt; std::endl;
+}
+{%endcodeblock%}
+<span class="MoreMsg">```</span>
+
+<span class="Special">{%</span><span class="MoreMsg">endraw</span><span class="Special">%}</span>
+
+<span class="Special">{{</span><span class="Directory">site.title</span><span class="Special">}}</span>
+
+<span class="Title">## Gist</span>
+
+<span class="Special">{%</span><span class="MoreMsg">gist 6807826 </span><span class="Special">%}</span>
+
+<span class="Title">## HTML Blocks</span>
+
+<span class="Comment">&gt; [HTML Blocks (Kramdown)](<a href="http://kramdown.gettalong.org/syntax.html#html-blocks">http://kramdown.gettalong.org/syntax.html#html-blocks</a></span><span class="Comment">)</span>
+
+<span class="Identifier">&lt;</span><span class="Statement">div</span><span class="Identifier">&gt;</span>
+This is <span class="LineNr">*nottrue*</span> markdown text.
+<span class="Identifier">&lt;/</span><span class="Statement">div</span><span class="Identifier">&gt;</span>
+
+<span class="Identifier">&lt;</span><span class="Statement">div</span><span class="Identifier"> markdown=</span><span class="Constant">&quot;1&quot;</span><span class="Identifier">&gt;</span>
+This is <span class="LineNr">*true*</span> markdown text.
+<span class="Identifier">&lt;/</span><span class="Statement">div</span><span class="Identifier">&gt;</span>
+
+<span class="NonText">{%comment%}</span>
+<span class="NonText">&lt;table&gt;</span>
+<span class="NonText">&lt;tr&gt;</span>
+<span class="NonText">&lt;td markdown=&quot;1&quot;&gt;This is *first* markdown text.&lt;/td&gt;</span>
+<span class="NonText">&lt;/tr&gt;</span>
+<span class="NonText">&lt;/table&gt;</span>
+<span class="NonText">{%endcomment%}</span>
+
+<span class="Identifier">&lt;</span><span class="Statement">div</span><span class="Identifier"> markdown=</span><span class="Constant">&quot;block&quot;</span><span class="Identifier">&gt;</span>
+<span class="Identifier">&lt;</span><span class="Statement">table</span><span class="Identifier">&gt;</span>
+<span class="Identifier">&lt;</span><span class="Statement">tr</span><span class="Identifier">&gt;</span>
+<span class="Identifier">&lt;</span><span class="Statement">td</span><span class="Identifier">&gt;</span>This is <span class="LineNr">*divtest*</span> markdown text.<span class="Identifier">&lt;/</span><span class="Statement">td</span><span class="Identifier">&gt;</span>
+<span class="Identifier">&lt;/</span><span class="Statement">tr</span><span class="Identifier">&gt;</span>
+<span class="Identifier">&lt;/</span><span class="Statement">table</span><span class="Identifier">&gt;</span>
+<span class="Identifier">&lt;/</span><span class="Statement">div</span><span class="Identifier">&gt;</span>
+
+<span class="Identifier">&lt;</span><span class="Statement">table</span><span class="Identifier"> markdown=</span><span class="Constant">&quot;block&quot;</span><span class="Identifier">&gt;</span>
+<span class="Identifier">&lt;</span><span class="Statement">tr</span><span class="Identifier">&gt;</span>
+<span class="Identifier">&lt;</span><span class="Statement">td</span><span class="Identifier">&gt;</span>This is <span class="LineNr">*second*</span> markdown text.<span class="Identifier">&lt;/</span><span class="Statement">td</span><span class="Identifier">&gt;</span>
+<span class="Identifier">&lt;/</span><span class="Statement">tr</span><span class="Identifier">&gt;</span>
+<span class="Identifier">&lt;/</span><span class="Statement">table</span><span class="Identifier">&gt;</span>
+
+<span class="NonText">{%comment%}</span>
+<span class="NonText">&lt;table &gt;</span>
+<span class="NonText">&lt;tr&gt;</span>
+<span class="NonText">&lt;td markdown=&quot;block&quot;&gt;This is *third* markdown text.&lt;/td&gt;</span>
+<span class="NonText">&lt;/tr&gt;</span>
+<span class="NonText">&lt;/table&gt;</span>
+<span class="NonText">{%endcomment%}</span>
+
+<span class="Identifier">&lt;</span><span class="Statement">table</span><span class="Identifier"> &gt;</span>
+<span class="Identifier">&lt;</span><span class="Statement">tr</span><span class="Identifier"> markdown=</span><span class="Constant">&quot;block&quot;</span><span class="Identifier">&gt;</span>
+<span class="Identifier">&lt;</span><span class="Statement">td</span><span class="Identifier">&gt;</span>This is <span class="LineNr">*4th*</span> markdown text.<span class="Identifier">&lt;/</span><span class="Statement">td</span><span class="Identifier">&gt;</span>
+<span class="Identifier">&lt;/</span><span class="Statement">tr</span><span class="Identifier">&gt;</span>
+<span class="Identifier">&lt;/</span><span class="Statement">table</span><span class="Identifier">&gt;</span>
+
+<span class="Identifier">&lt;</span><span class="Statement">table</span><span class="Identifier"> &gt;</span>
+<span class="Identifier">&lt;</span><span class="Statement">tr</span><span class="Identifier"> markdown=</span><span class="Constant">&quot;1&quot;</span><span class="Identifier">&gt;</span>
+<span class="Identifier">&lt;</span><span class="Statement">td</span><span class="Identifier">&gt;</span>This is <span class="LineNr">*5th*</span> markdown text.<span class="Identifier">&lt;/</span><span class="Statement">td</span><span class="Identifier">&gt;</span>
+<span class="Identifier">&lt;/</span><span class="Statement">tr</span><span class="Identifier">&gt;</span>
+<span class="Identifier">&lt;/</span><span class="Statement">table</span><span class="Identifier">&gt;</span>
+
+<span class="Identifier">&lt;</span><span class="Statement">div</span><span class="Identifier">&gt;</span>
+This is <span class="LineNr">*6th*</span> markdown text.
+<span class="Identifier">&lt;/</span><span class="Statement">div</span><span class="Identifier">&gt;</span>
+
+<span class="Title">## postscript</span>
+
+<span class="Special">{%</span><span class="MoreMsg">ps 2013/05/03</span><span class="Special">%}</span>
+
+PS test
+
+<span class="Special">{%</span><span class="MoreMsg">endps</span><span class="Special">%}</span>
+
+
+<span class="Title">## Footnote</span>
+
+footnote<span class="Special">{%</span><span class="MoreMsg">fnin</span><span class="Special">%}</span>
+test test test
+
+hoge
+
+<span class="Constant">    indent code</span>
+
+aaa
+
+<span class="Identifier">* </span>1
+<span class="Identifier">* </span>2
+<span class="Identifier">* </span>3
+<span class="Special">{%</span><span class="MoreMsg">endfnin</span><span class="Special">%}</span>。
+
+
+<span class="Title"># [Daring Fireball: Markdown Syntax Documentation](<a href="http://daringfireball.net/projects/markdown/syntax)">http://daringfireball.net/projects/markdown/syntax)</a></span>
+
+<span class="Title">This is an H1</span>
+<span class="Title">=============</span>
+
+<span class="Title">This is an H2</span>
+<span class="Title">-------------</span>
+
+<span class="Title">## This is an H1</span>
+Test
+
+<span class="Title">## This is an H1 #</span>
+
+<span class="Comment">&gt; ## This is a header</span><span class="Comment">.</span>
+<span class="Comment">&gt;</span><span class="Comment"> </span>
+<span class="Comment">&gt; 1.   This is the first list item</span><span class="Comment">.</span>
+<span class="Comment">&gt; 2.   This is the second list item</span><span class="Comment">.</span>
+<span class="Comment">&gt;</span><span class="Comment"> </span>
+<span class="Comment">&gt; Here's some example code</span><span class="Comment">:</span>
+<span class="Comment">&gt;</span><span class="Comment"> </span>
+<span class="Comment">&gt;     return shell_exec(&quot;echo $input | $markdown_script&quot;)</span><span class="Comment">;</span>
+
+<span class="Identifier">* </span>Red
+<span class="Identifier">* </span>Green
+<span class="Identifier">* </span>Blue
+
+<span class="Identifier">1. </span>Bird
+<span class="Identifier">2. </span>McHale
+<span class="Identifier">3. </span>Parish
+
+This is a normal paragraph:
+
+<span class="Constant">    This is a code block.</span>
+
+<span class="Identifier">* * *</span>
+
+This is <span class="Special">[</span><span class="Underlined">an example</span><span class="Special">](</span><span class="Constant"><a href="http://example.com/">http://example.com/</a></span> &quot;Title&quot;<span class="Special">)</span> inline link.
+This is <span class="Special">[</span><span class="Underlined">an example</span><span class="Special">][</span><span class="Identifier">id</span><span class="Special">]</span> reference-style link.
+<span class="Special">[</span><span class="Identifier">id</span><span class="Special">]:</span> <span class="Constant"><a href="http://example.com/">http://example.com/</a></span>  <span class="Special">&quot;</span><span class="Constant">Optional Title Here</span><span class="Special">&quot;</span>
+<span class="Special">[</span><span class="Identifier">foo</span><span class="Special">]:</span> <span class="Constant"><a href="http://example.com/">http://example.com/</a></span>  <span class="Special">&quot;</span><span class="Constant">Optional Title Here</span><span class="Special">&quot;</span>
+<span class="Special">[</span><span class="Identifier">foo</span><span class="Special">]:</span> <span class="Constant"><a href="http://example.com/">http://example.com/</a></span>  <span class="Special">'</span><span class="Constant">Optional Title Here</span><span class="Special">'</span>
+<span class="Special">[</span><span class="Identifier">foo</span><span class="Special">]:</span> <span class="Constant"><a href="http://example.com/">http://example.com/</a></span>  <span class="Special">(</span><span class="Constant">Optional Title Here</span><span class="Special">)</span>
+<span class="Special">[</span><span class="Identifier">foo</span><span class="Special">]:</span> <span class="Special">&lt;</span><span class="Underlined"><a href="http://example.com/">http://example.com/</a></span><span class="Special">&gt;</span>  &quot;Optional Title Here&quot;
+
+I get 10 times more traffic from <span class="Special">[</span><span class="Underlined">Google</span><span class="Special">]</span> <span class="Special">[</span><span class="Identifier">1</span><span class="Special">]</span> than from
+<span class="Special">[</span><span class="Underlined">Yahoo</span><span class="Special">]</span> <span class="Special">[</span><span class="Identifier">2</span><span class="Special">]</span> or <span class="Special">[</span><span class="Underlined">MSN</span><span class="Special">]</span> <span class="Special">[</span><span class="Identifier">3</span><span class="Special">]</span>.
+
+  <span class="Special">[</span><span class="Identifier">1</span><span class="Special">]:</span> <span class="Constant"><a href="http://google.com/">http://google.com/</a></span>        <span class="Special">&quot;</span><span class="Constant">Google</span><span class="Special">&quot;</span>
+  <span class="Special">[</span><span class="Identifier">2</span><span class="Special">]:</span> <span class="Constant"><a href="http://search.yahoo.com/">http://search.yahoo.com/</a></span>  <span class="Special">&quot;</span><span class="Constant">Yahoo Search</span><span class="Special">&quot;</span>
+  <span class="Special">[</span><span class="Identifier">3</span><span class="Special">]:</span> <span class="Constant"><a href="http://search.msn.com/">http://search.msn.com/</a></span>    <span class="Special">&quot;</span><span class="Constant">MSN Search</span><span class="Special">&quot;</span>
+
+<span class="LineNr">*single asterisks*</span>
+<span class="LineNr">_single underscores_</span>
+<span class="WarningMsg">**double asterisks**</span>
+<span class="WarningMsg">__double underscores__</span>
+<span class="ErrorMsg">***triple asterisks***</span>
+<span class="ErrorMsg">___triple underscores___</span>
+
+un*frigging*believable
+\*this text is surrounded by literal asterisks\*
+
+Use the <span class="Special">`</span><span class="Constant">printf()</span><span class="Special">`</span> function.
+<span class="Special">``There is a literal backtick (</span><span class="Constant">`</span><span class="Special">) here.``</span>
+A single backtick in a code span:<span class="Special"> `` </span><span class="Constant">`</span><span class="Special"> ``</span>
+A backtick-delimited string in a code span:<span class="Special"> `` </span><span class="Constant">`foo`</span><span class="Special"> ``</span>
+Please don't use any <span class="Special">`</span><span class="Constant">&lt;blink&gt;</span><span class="Special">`</span> tags.
+
+!<span class="Special">[</span><span class="Underlined">Alt text</span><span class="Special">](</span><span class="Constant">/path/to/img.jpg</span><span class="Special">)</span>
+!<span class="Special">[</span><span class="Underlined">Alt text</span><span class="Special">](</span><span class="Constant">/path/to/img.jpg</span> &quot;Optional title&quot;<span class="Special">)</span>
+!<span class="Special">[</span><span class="Underlined">Alt text</span><span class="Special">][</span><span class="Identifier">id</span><span class="Special">]</span>
+<span class="Special">[</span><span class="Identifier">id</span><span class="Special">]:</span> <span class="Constant">url/to/image</span>  <span class="Special">&quot;</span><span class="Constant">Optional title attribute</span><span class="Special">&quot;</span>
+
+<span class="Special">[</span><span class="Underlined">Michel Fortin – PHP Markdown Extra</span><span class="Special">](</span><span class="Constant"><a href="http://michelf.ca/projects/php-markdown/extra/">http://michelf.ca/projects/php-markdown/extra/</a></span><span class="Special">)</span>
+
+<span class="Identifier">&lt;</span><span class="Statement">div</span><span class="Identifier"> markdown=</span><span class="Constant">&quot;1&quot;</span><span class="Identifier">&gt;</span>
+This is <span class="LineNr">*true*</span> markdown text.
+<span class="Identifier">&lt;/</span><span class="Statement">div</span><span class="Identifier">&gt;</span>
+
+Apple
+:   Pomaceous fruit of plants of the genus Malus in
+    the family Rosaceae.
+
+That's some text with a footnote.<span class="Special">[^</span><span class="Underlined">1</span><span class="Special">]</span>
+
+<span class="Special">[^</span><span class="Underlined">1</span><span class="Special">]</span>: And that's the footnote.
+
+<span class="Constant">    That's the second paragraph.</span>
+
+</pre>
+</body>
+</html>
+<!-- vim: set foldmethod=manual : -->
