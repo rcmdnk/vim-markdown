@@ -8,6 +8,8 @@ Syntax highlighting, matching rules and mappings for [the original Markdown](htt
 
 **rcmdnk's modified version**
 
+* [Syntax hilight test with rcmdnk version](https://rcmdnk.com/vim-markdown/syntax-test.html)
+
 * Changed filetype name `mkd` to `markdown`. (:information_source: plasticboy version has also changed to use `markdown` since 9/Sep/2015.)
 * ftdetect/markdown.vim
   * Added tmp, old: {md,...}.{...tmp,old}
