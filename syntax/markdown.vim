@@ -35,12 +35,12 @@ syn case ignore
 syn sync linebreaks=1
 
 "additions to HTML groups
-syn region htmlItalic start="\%(^\|\s\)\@<=\*\%([^\*]\)\@=" end="\*\@<!\*\%(\s\|$\)\@=" keepend oneline contains=@Spell
-syn region htmlItalic start="\%(^\|\s\)\@<=_\%([^_]\)\@=" end="_\@<!_\%(\s\|$\)\@=" keepend oneline contains=@Spell
-syn region htmlBold start="\%(^\|\s\)\@<=\*\*\%([^\*]\)\@=" end="\*\@<!\*\*\%(\s\|$\)\@=" keepend oneline contains=@Spell
-syn region htmlBold start="\%(^\|\s\)\@<=__\%([^_]\)\@=" end="_\@<!__\%(\s\|$\)\@=" keepend oneline contains=@Spell
-syn region htmlBoldItalic start="\%(^\|\s\)\@<=\*\*\*\%([^\*]\)\@=" end="\*\@<!\*\*\*\%(\s\|$\)\@=" keepend oneline contains=@Spell
-syn region htmlBoldItalic start="\%(^\|\s\)\@<=___\%([^_]\)\@=" end="_\@<!___\%(\s\|$\)\@=" keepend oneline contains=@Spell
+syn region htmlItalic start="\%(^\|\s\)\@<=\*\%([^\*]\)\@=" end="\*\@<!\*\%(\s\|$\)\@=" oneline contains=@Spell
+syn region htmlItalic start="\%(^\|\s\)\@<=_\%([^_]\)\@=" end="_\@<!_\%(\s\|$\)\@=" oneline contains=@Spell
+syn region htmlBold start="\%(^\|\s\)\@<=\*\*\%([^\*]\)\@=" end="\*\@<!\*\*\%(\s\|$\)\@=" oneline contains=@Spell
+syn region htmlBold start="\%(^\|\s\)\@<=__\%([^_]\)\@=" end="_\@<!__\%(\s\|$\)\@=" oneline contains=@Spell
+syn region htmlBoldItalic start="\%(^\|\s\)\@<=\*\*\*\%([^\*]\)\@=" end="\*\@<!\*\*\*\%(\s\|$\)\@=" oneline contains=@Spell
+syn region htmlBoldItalic start="\%(^\|\s\)\@<=___\%([^_]\)\@=" end="_\@<!___\%(\s\|$\)\@=" oneline contains=@Spell
 
 " [link](URL) | [link][id] | [link][]
 syn region mkdFootnotes matchgroup=mkdDelimiter start="\[^"   end="\]"
@@ -103,17 +103,51 @@ if get(g:, "vim_markdown_liquid", 1)
   syn region liquidComment  start="{%\s*comment\s*%}" end="{%\s*endcomment\s*%}"
 endif
 
-"highlighting for Markdown groups
-
-if get(g:, 'vim_markdown_math', 0)
-  syn region mkdMath matchgroup=mkdDelimiter start="\\\@<!\$" end="\$"
-  syn region mkdMath matchgroup=mkdDelimiter start="\\\@<!\$\$" end="\$\$"
+" YAML
+if get(g:, 'vim_markdown_frontmatter', 0)
+  try
+    syn include @yamlTop syntax/yaml.vim
+    syn region Comment matchgroup=yamlDelimiter start="\%^---$" end="^---$" contains=@yamlTop
+    unlet! b:current_syntax
+  catch /E484/
+    syn region Comment matchgroup=yamlDelimiter start="\%^---$" end="^---$"
+  endtry
 endif
 
-" YAML frontmatter
-if get(g:, 'vim_markdown_frontmatter', 0)
-  syn include @yamlTop syntax/yaml.vim
-  syn region Comment matchgroup=yamlDelimiter start="\%^---$" end="^---$" contains=@yamlTop
+" TOML
+if get(g:, 'vim_markdown_toml_frontmatter', 0)
+  try
+    syn include @tomlTop syntax/toml.vim
+    syn region Comment matchgroup=mkdDelimiter start="\%^+++$" end="^+++$" transparent contains=@tomlTop
+    unlet! b:current_syntax
+  catch /E484/
+    syn region Comment matchgroup=mkdDelimiter start="\%^+++$" end="^+++$" transparent
+  endtry
+endif
+
+" JSON
+if get(g:, 'vim_markdown_json_frontmatter', 0)
+  try
+    syn include @jsonTop syntax/json.vim
+    syn region Comment matchgroup=mkdDelimiter start="\%^{$" end="^}$" contains=@jsonTop
+    unlet! b:current_syntax
+  catch /E484/
+    syn region Comment matchgroup=mkdDelimiter start="\%^{$" end="^}$"
+  endtry
+endif
+
+
+" Math
+if get(g:, 'vim_markdown_math', 0)
+  try
+    syn include @tex syntax/tex.vim
+    syn region mkdMath start="\\\@<!\$" end="\$" skip="\\\$" contains=@tex keepend
+    syn region mkdMath start="\\\@<!\$\$" end="\$\$" skip="\\\$" contains=@tex keepend
+    unlet! b:current_syntax
+  catch /E484/
+    syn region mkdMath start="\\\@<!\$" end="\$" skip="\\\$" keepend
+    syn region mkdMath start="\\\@<!\$\$" end="\$\$" skip="\\\$" keepend
+  endtry
 endif
 
 syn cluster mkdNonListItem contains=htmlItalic,htmlBold,htmlBoldItalic,mkdFootnotes,mkdInlineURL,mkdLink,mkdLinkDef,mkdLineBreak,mkdBlockquote,mkdCode,mkdIndentCode,mkdListItem,mkdRule,htmlH1,htmlH2,htmlH3,htmlH4,htmlH5,htmlH6,mkdMath,liquidTag,liquidOut,liquidComment,markdownCodeRegionRUBY,markdownCodeGroupRUBY
