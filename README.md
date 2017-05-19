@@ -105,7 +105,7 @@ tar --strip=1 -zxf vim-markdown-master.tar.gz
 Add the following line to your `.vimrc` to disable the folding configuration:
 
 ```vim
-let g:vim_markdown_folding_disabled=1
+let g:vim_markdown_folding_disabled = 1
 ```
 
 This option only controls Vim Markdown specific folding configuration.
@@ -121,7 +121,7 @@ set [no]foldenable
 Add the following line to your `.vimrc` to disable default key mappings:
 
 ```vim
-let g:vim_markdown_no_default_key_mappings=1
+let g:vim_markdown_no_default_key_mappings = 1
 ```
 
 You can also map them by yourself with `<Plug>` mappings.
@@ -135,7 +135,37 @@ The following options control which syntax extensions will be turned on. They ar
 Used as `$x^2$`, `$$x^2$$`, escapable as `\$x\$` and `\$\$x\$\$`.
 
 ```vim
-let g:vim_markdown_math=1
+let g:vim_markdown_math = 1
+```
+
+#### YAML Front Matter
+
+Highlight YAML front matter as used by Jekyll or [Hugo](https://gohugo.io/content/front-matter/).
+
+```vim
+let g:vim_markdown_frontmatter = 1
+```
+
+#### TOML Front Matter
+
+Highlight TOML front matter as used by [Hugo](https://gohugo.io/content/front-matter/).
+
+TOML syntax highlight requires [vim-toml](https://github.com/cespare/vim-toml).
+
+```vim
+let g:vim_markdown_toml_frontmatter = 1
+```
+
+#### JSON Front Matter
+
+Highlight JSON front matter as used by [Hugo](https://gohugo.io/content/front-matter/).
+
+JSON syntax highlight requires [vim-json](https://github.com/elzr/vim-json).
+
+```vim
+let g:vim_markdown_json_frontmatter = 1
+```
+
 ```
 
 #### YAML frontmatter
@@ -188,6 +218,8 @@ To disable a map use:
 
 ## Commands
 
+The following requires `:filetype plugin on`.
+
 -   `:HeaderDecrease`:
 
     Decrease level of all headers in buffer: `h2` to `h1`, `h3` to `h2`, etc.
@@ -206,7 +238,7 @@ To disable a map use:
 
     If a range is given, e.g. hit `:` from visual mode, only operate on the range.
 
--   `:TableFormat`: Format the table under the cursor [like this](http://www.cirosantilli.com/markdown-styleguide/#tables).
+-   `:TableFormat`: Format the table under the cursor [like this](http://www.cirosantilli.com/markdown-style-guide/#tables).
 
     Requires [Tabular](https://github.com/godlygeek/tabular).
 
@@ -221,7 +253,7 @@ To disable a map use:
 
 -   `:Toct`: Same as `:Toc` but in a new tab.
 
--   `:Tocv`: Same as `:Toc` for symmetry with `:Toch` and `Tocv`.
+-   `:Tocv`: Same as `:Toc` for symmetry with `:Toch` and `:Tocv`.
 
 ## Credits
 
