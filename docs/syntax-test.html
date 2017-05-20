@@ -17,11 +17,11 @@ body { font-family: monospace; color: #ffffff; background-color: #000000; }
 .Underlined { color: #5fd7ff; text-decoration: underline; }
 .NonText { color: #8080ff; }
 .Directory { color: #afffff; }
-.MoreMsg { color: #87ffaf; }
 .ErrorMsg { color: #ffffff; background-color: #c00000; padding-bottom: 1px; }
-.WarningMsg { color: #ffd7d7; }
+.MoreMsg { color: #87ffaf; }
 .LineNr { color: #ffff00; }
 .Title { color: #ffd7ff; }
+.WarningMsg { color: #ffd7d7; }
 .Comment { color: #00ffff; }
 .Constant { color: #ff40ff; }
 .Special { color: #ffd7d7; }
@@ -83,6 +83,11 @@ Single underscore _is not markupped.
 
 <span class="WarningMsg">__Multi__</span> _underscores_between__ _words_test_test_test.
 
+<span class="Identifier">* </span>List
+<span class="Identifier">* </span>List
+<span class="Identifier">    * </span>List (<span class="Underlined"><a href="https://url.in.brackets">https://url.in.brackets</a></span>)
+<span class="Identifier">    * </span><span class="LineNr">*List*</span> <span class="WarningMsg">__List__</span>
+
 <span class="Special">{%</span><span class="MoreMsg">Liquid Tag</span><span class="Special">%}</span>
 
 <span class="NonText">{%comment%}</span>
@@ -97,7 +102,10 @@ Single underscore _is not markupped.
 
 <span class="Special">~~~~~~~~~~~~~~~~~~~~~</span>
 
-
+<span class="Special">~~~~~~~~~~~~~~~~~~~~~</span>
+<span class="Constant">a one-line code block</span>
+<span class="Constant">a one-line code block</span>
+<span class="Special">~~~~~~~~~~~~~~~~~~~~~</span>
 
 Remain html syntax in most places: <span class="Special">`</span><span class="Constant">runtime! syntax/html.vim</span><span class="Special">`</span>
 
@@ -118,20 +126,52 @@ Remain html syntax in most places: <span class="Special">`</span><span class="Co
 <span class="Constant">    code with 4 spaces</span>
 <span class="Constant">    code with 4 spaces</span>
 
+
+With space
+
+<span class="Constant">    code with 4 spaces</span>
+<span class="Constant">    code with 4 spaces</span>
+<span class="Constant">    code with 4 spaces</span>
+
+One line test
+
+<span class="Constant">    code with 4 spaces</span>
+<span class="Constant">    code with 4 spaces</span>
+<span class="Constant">    code with 4 spaces</span>
+
+One line test
+
+<span class="Constant">    code with 4 spaces</span>
+<span class="Constant">    code with 4 spaces</span>
+<span class="Constant">    code with 4 spaces</span>
+
+<span class="Constant">    code with 4 spaces</span>
+
 One line test
 
 <span class="Constant">    code with 4 spaces</span>
 
+One line test
+
+<span class="Constant">    code with 4 spaces</span>
+<span class="Constant">    code with 4 spaces</span>
+<span class="Constant">    code with 4 spaces</span>
+
+<span class="Constant">    code with 4 spaces</span>
+
+
+
+
 <span class="Special">```</span>
-echo no lang, triple backticks
+<span class="Constant">echo no lang, triple backticks</span>
 <span class="Special">```</span>
 
-<span class="Constant">```sh</span>
-<span class="Constant">#!/bin/sh</span>
-<span class="Constant">echo triple backticks</span>
-<span class="Constant">valu=${aaa}</span>
+<span class="MoreMsg">```sh</span>
+<span class="Comment">#!/bin/sh</span>
+<span class="Statement">echo</span><span class="Constant"> triple backticks</span>
+<span class="Identifier">valu</span>=<span class="PreProc">${</span><span class="PreProc">aaa</span><span class="PreProc">}</span>
 
-<span class="Special">```</span>
+<span class="MoreMsg">```</span>
 
 <span class="Special">~~~</span>
 <span class="Constant">triple waves</span>
@@ -311,13 +351,13 @@ It is read from <span class="Special">`</span><span class="Constant">source/_inc
 <span class="MoreMsg">{%codeblock lang:sh%}</span>
 <span class="Special">{</span>%raw%<span class="Special">}</span>
 <span class="Comment"># Execution part {{{</span>
-<span class="Identifier">_s_is_exec</span>=<span class="Constant">1</span>
+_<span class="Identifier">s_is_exec</span>=<span class="Constant">1</span>
 <span class="Identifier">_sf_check_args_first () {</span> <span class="Comment"># {{{</span>
   while [ <span class="PreProc">$#</span> <span class="Statement">-gt</span> <span class="Constant">0</span> ];<span class="Statement">do</span>
     <span class="Statement">case</span> <span class="PreProc">$1</span> <span class="Statement">in</span>
-      &quot;<span class="Constant">-h</span>&quot;|&quot;<span class="Constant">-N</span>&quot;|&quot;<span class="Constant">-m</span>&quot;|&quot;<span class="Constant">-p</span>&quot;|&quot;<span class="Constant">-F</span>&quot;|&quot;<span class="Constant">-v</span>&quot; <span class="Statement">)</span> <span class="Identifier">_s_is_exec</span>=<span class="Constant">2</span>;<span class="Statement">shift</span><span class="Statement">;;</span>
-      &quot;<span class="Constant">-n</span>&quot; <span class="Statement">)</span> <span class="Identifier">_s_is_exec</span>=<span class="Constant">0</span>;<span class="Statement">shift</span><span class="Statement">;;</span>
-      &quot;<span class="Constant">-c</span>&quot; <span class="Statement">)</span> <span class="Identifier">_SENTAKU_CHILD</span>=<span class="Constant">1</span>;<span class="Statement">shift</span><span class="Statement">;;</span>
+      &quot;<span class="Constant">-h</span>&quot;|&quot;<span class="Constant">-N</span>&quot;|&quot;<span class="Constant">-m</span>&quot;|&quot;<span class="Constant">-p</span>&quot;|&quot;<span class="Constant">-F</span>&quot;|&quot;<span class="Constant">-v</span>&quot; <span class="Statement">)</span> _<span class="Identifier">s_is_exec</span>=<span class="Constant">2</span>;<span class="Statement">shift</span><span class="Statement">;;</span>
+      &quot;<span class="Constant">-n</span>&quot; <span class="Statement">)</span> _<span class="Identifier">s_is_exec</span>=<span class="Constant">0</span>;<span class="Statement">shift</span><span class="Statement">;;</span>
+      &quot;<span class="Constant">-c</span>&quot; <span class="Statement">)</span> _<span class="Identifier">SENTAKU_CHILD</span>=<span class="Constant">1</span>;<span class="Statement">shift</span><span class="Statement">;;</span>
     * <span class="Statement">)</span><span class="Statement">break</span><span class="Statement">;;</span>
     <span class="Statement">esac</span>
   <span class="Statement">done</span>
