@@ -639,24 +639,3 @@ command! -buffer Toc call s:Toc()
 command! -buffer Toch call s:Toc('horizontal')
 command! -buffer Tocv call s:Toc('vertical')
 command! -buffer Toct call s:Toc('tab')
-
-function! s:MarkdownRefreshSyntax(force)
-    if &filetype == 'markdown' && line('$') > 1
-        call s:MarkdownHighlightSources(a:force)
-    endif
-endfunction
-
-function! s:MarkdownClearSyntaxVariables()
-    if &filetype == 'markdown'
-        unlet! b:mkd_included_filetypes
-    endif
-endfunction
-
-augroup Mkd
-    autocmd!
-    au BufWinEnter * call s:MarkdownRefreshSyntax(1)
-    au BufUnload * call s:MarkdownClearSyntaxVariables()
-    au BufWritePost * call s:MarkdownRefreshSyntax(0)
-    au InsertEnter,InsertLeave * call s:MarkdownRefreshSyntax(0)
-    au CursorHold,CursorHoldI * call s:MarkdownRefreshSyntax(0)
-augroup END

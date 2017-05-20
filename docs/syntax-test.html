@@ -19,8 +19,8 @@ body { font-family: monospace; color: #ffffff; background-color: #000000; }
 .Directory { color: #afffff; }
 .ErrorMsg { color: #ffffff; background-color: #c00000; padding-bottom: 1px; }
 .MoreMsg { color: #87ffaf; }
-.LineNr { color: #ffff00; }
 .Title { color: #ffd7ff; }
+.LineNr { color: #ffff00; }
 .WarningMsg { color: #ffd7d7; }
 .Comment { color: #00ffff; }
 .Constant { color: #ff40ff; }
@@ -79,14 +79,14 @@ Wrong Mail address in brackets: <span class="Identifier">&lt;</span>user<span cl
 Single asterisk *is not markupped.
 Single underscore _is not markupped.
 
-<span class="LineNr">*Multi*</span> *asterisks*between** *words*test*test*test.
+<span class="LineNr">*</span><span class="LineNr">Multi</span><span class="LineNr">*</span> *asterisks*between** *words*test*test*test.
 
-<span class="WarningMsg">__Multi__</span> _underscores_between__ _words_test_test_test.
+<span class="WarningMsg">__</span><span class="WarningMsg">Multi</span><span class="WarningMsg">__</span> _underscores_between__ _words_test_test_test.
 
 <span class="Identifier">* </span>List
 <span class="Identifier">* </span>List
 <span class="Identifier">    * </span>List (<span class="Underlined"><a href="https://url.in.brackets">https://url.in.brackets</a></span>)
-<span class="Identifier">    * </span><span class="LineNr">*List*</span> <span class="WarningMsg">__List__</span>
+<span class="Identifier">    * </span><span class="LineNr">*</span><span class="LineNr">List</span><span class="LineNr">*</span> <span class="WarningMsg">__</span><span class="WarningMsg">List</span><span class="WarningMsg">__</span>
 
 <span class="Special">{%</span><span class="MoreMsg">Liquid Tag</span><span class="Special">%}</span>
 
@@ -450,14 +450,14 @@ _sf_check_args_first &quot;<span class="PreProc">$@</span>&quot;
 
 <span class="Title">## HTML Blocks</span>
 
-<span class="Comment">&gt; [HTML Blocks (Kramdown)](<a href="http://kramdown.gettalong.org/syntax.html#html-blocks">http://kramdown.gettalong.org/syntax.html#html-blocks</a></span><span class="Comment">)</span>
+<span class="Comment">&gt; </span><span class="Special">[</span><span class="Underlined">HTML Blocks (Kramdown)</span><span class="Special">](</span><span class="Constant"><a href="http://kramdown.gettalong.org/syntax.html#html-blocks">http://kramdown.gettalong.org/syntax.html#html-blocks</a></span><span class="Special">)</span>
 
 <span class="Identifier">&lt;</span><span class="Statement">div</span><span class="Identifier">&gt;</span>
-This is <span class="LineNr">*nottrue*</span> markdown text.
+This is <span class="LineNr">*</span><span class="LineNr">nottrue</span><span class="LineNr">*</span> markdown text.
 <span class="Identifier">&lt;/</span><span class="Statement">div</span><span class="Identifier">&gt;</span>
 
 <span class="Identifier">&lt;</span><span class="Statement">div</span><span class="Identifier"> markdown=</span><span class="Constant">&quot;1&quot;</span><span class="Identifier">&gt;</span>
-This is <span class="LineNr">*true*</span> markdown text.
+This is <span class="LineNr">*</span><span class="LineNr">true</span><span class="LineNr">*</span> markdown text.
 <span class="Identifier">&lt;/</span><span class="Statement">div</span><span class="Identifier">&gt;</span>
 
 <span class="NonText">{%comment%}</span>
@@ -471,14 +471,14 @@ This is <span class="LineNr">*true*</span> markdown text.
 <span class="Identifier">&lt;</span><span class="Statement">div</span><span class="Identifier"> markdown=</span><span class="Constant">&quot;block&quot;</span><span class="Identifier">&gt;</span>
 <span class="Identifier">&lt;</span><span class="Statement">table</span><span class="Identifier">&gt;</span>
 <span class="Identifier">&lt;</span><span class="Statement">tr</span><span class="Identifier">&gt;</span>
-<span class="Identifier">&lt;</span><span class="Statement">td</span><span class="Identifier">&gt;</span>This is <span class="LineNr">*divtest*</span> markdown text.<span class="Identifier">&lt;/</span><span class="Statement">td</span><span class="Identifier">&gt;</span>
+<span class="Identifier">&lt;</span><span class="Statement">td</span><span class="Identifier">&gt;</span>This is <span class="LineNr">*</span><span class="LineNr">divtest</span><span class="LineNr">*</span> markdown text.<span class="Identifier">&lt;/</span><span class="Statement">td</span><span class="Identifier">&gt;</span>
 <span class="Identifier">&lt;/</span><span class="Statement">tr</span><span class="Identifier">&gt;</span>
 <span class="Identifier">&lt;/</span><span class="Statement">table</span><span class="Identifier">&gt;</span>
 <span class="Identifier">&lt;/</span><span class="Statement">div</span><span class="Identifier">&gt;</span>
 
 <span class="Identifier">&lt;</span><span class="Statement">table</span><span class="Identifier"> markdown=</span><span class="Constant">&quot;block&quot;</span><span class="Identifier">&gt;</span>
 <span class="Identifier">&lt;</span><span class="Statement">tr</span><span class="Identifier">&gt;</span>
-<span class="Identifier">&lt;</span><span class="Statement">td</span><span class="Identifier">&gt;</span>This is <span class="LineNr">*second*</span> markdown text.<span class="Identifier">&lt;/</span><span class="Statement">td</span><span class="Identifier">&gt;</span>
+<span class="Identifier">&lt;</span><span class="Statement">td</span><span class="Identifier">&gt;</span>This is <span class="LineNr">*</span><span class="LineNr">second</span><span class="LineNr">*</span> markdown text.<span class="Identifier">&lt;/</span><span class="Statement">td</span><span class="Identifier">&gt;</span>
 <span class="Identifier">&lt;/</span><span class="Statement">tr</span><span class="Identifier">&gt;</span>
 <span class="Identifier">&lt;/</span><span class="Statement">table</span><span class="Identifier">&gt;</span>
 
@@ -492,18 +492,18 @@ This is <span class="LineNr">*true*</span> markdown text.
 
 <span class="Identifier">&lt;</span><span class="Statement">table</span><span class="Identifier"> &gt;</span>
 <span class="Identifier">&lt;</span><span class="Statement">tr</span><span class="Identifier"> markdown=</span><span class="Constant">&quot;block&quot;</span><span class="Identifier">&gt;</span>
-<span class="Identifier">&lt;</span><span class="Statement">td</span><span class="Identifier">&gt;</span>This is <span class="LineNr">*4th*</span> markdown text.<span class="Identifier">&lt;/</span><span class="Statement">td</span><span class="Identifier">&gt;</span>
+<span class="Identifier">&lt;</span><span class="Statement">td</span><span class="Identifier">&gt;</span>This is <span class="LineNr">*</span><span class="LineNr">4th</span><span class="LineNr">*</span> markdown text.<span class="Identifier">&lt;/</span><span class="Statement">td</span><span class="Identifier">&gt;</span>
 <span class="Identifier">&lt;/</span><span class="Statement">tr</span><span class="Identifier">&gt;</span>
 <span class="Identifier">&lt;/</span><span class="Statement">table</span><span class="Identifier">&gt;</span>
 
 <span class="Identifier">&lt;</span><span class="Statement">table</span><span class="Identifier"> &gt;</span>
 <span class="Identifier">&lt;</span><span class="Statement">tr</span><span class="Identifier"> markdown=</span><span class="Constant">&quot;1&quot;</span><span class="Identifier">&gt;</span>
-<span class="Identifier">&lt;</span><span class="Statement">td</span><span class="Identifier">&gt;</span>This is <span class="LineNr">*5th*</span> markdown text.<span class="Identifier">&lt;/</span><span class="Statement">td</span><span class="Identifier">&gt;</span>
+<span class="Identifier">&lt;</span><span class="Statement">td</span><span class="Identifier">&gt;</span>This is <span class="LineNr">*</span><span class="LineNr">5th</span><span class="LineNr">*</span> markdown text.<span class="Identifier">&lt;/</span><span class="Statement">td</span><span class="Identifier">&gt;</span>
 <span class="Identifier">&lt;/</span><span class="Statement">tr</span><span class="Identifier">&gt;</span>
 <span class="Identifier">&lt;/</span><span class="Statement">table</span><span class="Identifier">&gt;</span>
 
 <span class="Identifier">&lt;</span><span class="Statement">div</span><span class="Identifier">&gt;</span>
-This is <span class="LineNr">*6th*</span> markdown text.
+This is <span class="LineNr">*</span><span class="LineNr">6th</span><span class="LineNr">*</span> markdown text.
 <span class="Identifier">&lt;/</span><span class="Statement">div</span><span class="Identifier">&gt;</span>
 
 <span class="Title">## postscript</span>
@@ -532,7 +532,7 @@ aaa
 <span class="Special">{%</span><span class="MoreMsg">endfnin</span><span class="Special">%}</span>。
 
 
-<span class="Title"># [Daring Fireball: Markdown Syntax Documentation](<a href="http://daringfireball.net/projects/markdown/syntax)">http://daringfireball.net/projects/markdown/syntax)</a></span>
+<span class="Title"># </span><span class="Special">[</span><span class="Underlined">Daring Fireball: Markdown Syntax Documentation</span><span class="Special">](</span><span class="Constant"><a href="http://daringfireball.net/projects/markdown/syntax">http://daringfireball.net/projects/markdown/syntax</a></span><span class="Special">)</span>
 
 <span class="Title">This is an H1</span>
 <span class="Title">=============</span>
@@ -545,14 +545,14 @@ Test
 
 <span class="Title">## This is an H1 #</span>
 
-<span class="Comment">&gt; ## This is a header</span><span class="Comment">.</span>
-<span class="Comment">&gt;</span><span class="Comment"> </span>
-<span class="Comment">&gt; 1.   This is the first list item</span><span class="Comment">.</span>
-<span class="Comment">&gt; 2.   This is the second list item</span><span class="Comment">.</span>
-<span class="Comment">&gt;</span><span class="Comment"> </span>
-<span class="Comment">&gt; Here's some example code</span><span class="Comment">:</span>
-<span class="Comment">&gt;</span><span class="Comment"> </span>
-<span class="Comment">&gt;     return shell_exec(&quot;echo $input | $markdown_script&quot;)</span><span class="Comment">;</span>
+<span class="Comment">&gt; ## This is a header.</span>
+<span class="Comment">&gt; </span>
+<span class="Comment">&gt; 1.   This is the first list item.</span>
+<span class="Comment">&gt; 2.   This is the second list item.</span>
+<span class="Comment">&gt; </span>
+<span class="Comment">&gt; Here's some example code:</span>
+<span class="Comment">&gt; </span>
+<span class="Comment">&gt;     return shell_exec(&quot;echo $input | $markdown_script&quot;);</span>
 
 <span class="Identifier">* </span>Red
 <span class="Identifier">* </span>Green
@@ -583,12 +583,12 @@ I get 10 times more traffic from <span class="Special">[</span><span class="Unde
   <span class="Special">[</span><span class="Identifier">2</span><span class="Special">]:</span> <span class="Constant"><a href="http://search.yahoo.com/">http://search.yahoo.com/</a></span>  <span class="Special">&quot;</span><span class="Constant">Yahoo Search</span><span class="Special">&quot;</span>
   <span class="Special">[</span><span class="Identifier">3</span><span class="Special">]:</span> <span class="Constant"><a href="http://search.msn.com/">http://search.msn.com/</a></span>    <span class="Special">&quot;</span><span class="Constant">MSN Search</span><span class="Special">&quot;</span>
 
-<span class="LineNr">*single asterisks*</span>
-<span class="LineNr">_single underscores_</span>
-<span class="WarningMsg">**double asterisks**</span>
-<span class="WarningMsg">__double underscores__</span>
-<span class="ErrorMsg">***triple asterisks***</span>
-<span class="ErrorMsg">___triple underscores___</span>
+<span class="LineNr">*</span><span class="LineNr">single asterisks</span><span class="LineNr">*</span>
+<span class="LineNr">_</span><span class="LineNr">single underscores</span><span class="LineNr">_</span>
+<span class="WarningMsg">**</span><span class="WarningMsg">double asterisks</span><span class="WarningMsg">**</span>
+<span class="WarningMsg">__</span><span class="WarningMsg">double underscores</span><span class="WarningMsg">__</span>
+<span class="ErrorMsg">***</span><span class="ErrorMsg">triple asterisks</span><span class="ErrorMsg">***</span>
+<span class="ErrorMsg">___</span><span class="ErrorMsg">triple underscores</span><span class="ErrorMsg">___</span>
 
 un*frigging*believable
 \*this text is surrounded by literal asterisks\*
@@ -607,7 +607,7 @@ Please don't use any <span class="Special">`</span><span class="Constant">&lt;bl
 <span class="Special">[</span><span class="Underlined">Michel Fortin – PHP Markdown Extra</span><span class="Special">](</span><span class="Constant"><a href="http://michelf.ca/projects/php-markdown/extra/">http://michelf.ca/projects/php-markdown/extra/</a></span><span class="Special">)</span>
 
 <span class="Identifier">&lt;</span><span class="Statement">div</span><span class="Identifier"> markdown=</span><span class="Constant">&quot;1&quot;</span><span class="Identifier">&gt;</span>
-This is <span class="LineNr">*true*</span> markdown text.
+This is <span class="LineNr">*</span><span class="LineNr">true</span><span class="LineNr">*</span> markdown text.
 <span class="Identifier">&lt;/</span><span class="Statement">div</span><span class="Identifier">&gt;</span>
 
 Apple
