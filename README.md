@@ -116,6 +116,21 @@ To enable/disable folding use Vim's standard folding configuration.
 set [no]foldenable
 ```
 
+### Set header folding level
+
+Folding level is a number between 1 and 6. By default, if not specified, it is set to 1.
+
+```vim
+let g:vim_markdown_folding_level = 6
+```
+
+Tip: it can be changed on the fly with:
+
+```vim
+:let g:vim_markdown_folding_level = 1
+:edit
+```
+
 ### Disable Default Key Mappings
 
 Add the following line to your `.vimrc` to disable default key mappings:
@@ -125,6 +140,51 @@ let g:vim_markdown_no_default_key_mappings = 1
 ```
 
 You can also map them by yourself with `<Plug>` mappings.
+
+### Enable TOC window auto-fit
+
+Allow for the TOC window to auto-fit when it's possible for it to shrink.
+It never increases its default size (half screen), it only shrinks.
+
+```vim
+let g:vim_markdown_toc_autofit = 1
+```
+
+### Text emphasis restriction to single-lines
+
+By default text emphasis works across multiple lines until a closing token is found. However, it's possible to restrict text emphasis to a single line (ie, for it to be applied a closing token must be found on the same line). To do so:
+
+```vim
+let g:vim_markdown_emphasis_multiline = 0
+```
+
+### Syntax Concealing
+
+Concealing is set for some syntax.
+
+For example, conceal `[link text](link url)` as just `link text`.
+Also, `_italic_` and `*italic*` will conceal to just _italic_.
+Similarly `__bold__`, `**bold**`, `___italic bold___`, and `***italic bold***`
+will conceal to just __bold__, **bold**, ___italic bold___, and ***italic bold*** respectively.
+
+To enable conceal use Vim's standard conceal configuration.
+
+```vim
+set conceallevel=2
+```
+
+To disable conceal regardless of `conceallevel` setting, add the following to your `.vimrc`:
+
+```vim
+let g:vim_markdown_conceal = 0
+```
+
+To disable math conceal with LaTeX math syntax enabled, add the following to your `.vimrc`:
+
+```vim
+let g:tex_conceal = ""
+let g:vim_markdown_math = 1
+```
 
 ### Syntax extensions
 
@@ -166,14 +226,23 @@ JSON syntax highlight requires [vim-json](https://github.com/elzr/vim-json).
 let g:vim_markdown_json_frontmatter = 1
 ```
 
-```
+### Do not require .md extensions for Markdown links
 
-#### YAML frontmatter
-
-Highlight YAML frontmatter as used by Jekyll:
+If you want to have a link like this `[link text](link-url)` and follow it for editing in vim using the `ge` command, but have it open the file "link-url.md" instead of the file "link-url", then use this option:
 
 ```vim
-let g:vim_markdown_frontmatter=1
+let g:vim_markdown_no_extensions_in_markdown = 1
+```
+This is super useful for GitLab and GitHub wiki repositories.
+
+Normal behaviour would be that vim-markup required you to do this `[link text](link-url.md)`, but this is not how the Gitlab and GitHub wiki repositories work. So this option adds some consistency between the two. 
+
+### Auto-write when following link
+
+If you follow a link like this `[link text](link-url)` using the `ge` shortcut, this option will automatically save any edits you made before moving you:
+
+```vim
+let g:vim_markdown_autowrite = 1
 ```
 
 ## Mappings
@@ -195,6 +264,10 @@ The following work on normal and visual modes:
         1  2               3
 
     Known limitation: does not work for links that span multiple lines.
+
+-   `ge`: open the link under the cursor in Vim for editing. Useful for relative markdown links. `<Plug>Markdown_EditUrlUnderCursor`
+
+    The rules for the cursor position are the same as the `gx` command.
 
 -   `]]`: go to next header. `<Plug>Markdown_MoveToNextHeader`
 
@@ -262,8 +335,7 @@ The main contributors of vim-markdown are:
 - **Ben Williams** (A.K.A. **plasticboy**). The original developer of vim-markdown. [Homepage](http://plasticboy.com/).
 
 If you feel that your name should be on this list, please make a pull request listing your contributions.
-
-## License
+ License
 
 The MIT License (MIT)
 

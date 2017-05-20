@@ -35,7 +35,6 @@ func! Foldexpr_markdown(lnum)
       endif
     elseif b:comment == 1
       return '='
-      endif
     endif
 
     " Code
@@ -77,15 +76,20 @@ func! Foldexpr_markdown(lnum)
   let l2 = getline(a:lnum+1)
 
   " Section
-  if  l2 =~ '^==\+\s*'
-      " next line is underlined (level 1)
-      return '>1'
-  elseif l2 =~ '^--\+\s*'
-      " next line is underlined (level 2)
+  if  l2 =~ '^==\+\s*$'
+    " next line is underlined (level 1)
+    return '>1'
+  elseif l2 =~ '^--\+\s*$'
+    " next line is underlined (level 2)
+    if s:vim_markdown_folding_level >= 2
+      return '='
+    else
       return '>2'
-  elseif l1 =~ '^#[^!]'
-      " current line starts with hashes
-      return '>'.matchend(l1, '^#\+')
+    endif
+    return '>2'
+  elseif l1 =~ '^#[^!]' && matchend(l1, '^#\+') <= s:vim_markdown_folding_level
+    " current line starts with hashes
+    return '>'.matchend(l1, '^#\+')
   endif
 
   " keep previous foldlevel
@@ -96,6 +100,7 @@ let b:frontmatter = 0
 let b:comment = 0
 let b:codeblock = 0
 let b:indent_codeblock = 0
+let s:vim_markdown_folding_level = get(g:, "vim_markdown_folding_level", 1)
 
 if !get(g:, "vim_markdown_folding_disabled", 0)
   setlocal foldexpr=Foldexpr_markdown(v:lnum)

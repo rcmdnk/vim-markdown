@@ -34,21 +34,32 @@ syn spell toplevel
 syn case ignore
 syn sync linebreaks=1
 
-"additions to HTML groups
-syn region htmlItalic start="\%(^\|\s\)\@<=\*\%([^\*]\)\@=" end="\*\@<!\*\%(\s\|$\)\@=" oneline contains=@Spell
-syn region htmlItalic start="\%(^\|\s\)\@<=_\%([^_]\)\@=" end="_\@<!_\%(\s\|$\)\@=" oneline contains=@Spell
-syn region htmlBold start="\%(^\|\s\)\@<=\*\*\%([^\*]\)\@=" end="\*\@<!\*\*\%(\s\|$\)\@=" oneline contains=@Spell
-syn region htmlBold start="\%(^\|\s\)\@<=__\%([^_]\)\@=" end="_\@<!__\%(\s\|$\)\@=" oneline contains=@Spell
-syn region htmlBoldItalic start="\%(^\|\s\)\@<=\*\*\*\%([^\*]\)\@=" end="\*\@<!\*\*\*\%(\s\|$\)\@=" oneline contains=@Spell
-syn region htmlBoldItalic start="\%(^\|\s\)\@<=___\%([^_]\)\@=" end="_\@<!___\%(\s\|$\)\@=" oneline contains=@Spell
+let s:conceal = ''
+let s:concealends = ''
+if has('conceal') && get(g:, 'vim_markdown_conceal', 1)
+  let s:conceal = ' conceal'
+  let s:concealends = ' concealends'
+endif
 
-" [link](URL) | [link][id] | [link][]
+" additions to HTML groups
+if get(g:, 'vim_markdown_emphasis_multiline', 1)
+    let s:oneline = ''
+else
+    let s:oneline = ' oneline'
+endif
+execute 'syn region htmlItalic matchgroup=mkdItalic start="\%(^\|\s\)\@<=\*\%([^\*]\)\@=" end="\*\@<!\*\%(\s\|$\)\@=" contains=@Spell' . s:oneline . s:concealends
+execute 'syn region htmlItalic matchgroup=mkdItalic start="\%(^\|\s\)\@<=_\%([^_]\)\@=" end="_\@<!_\%(\s\|$\)\@=" contains=@Spell' . s:oneline . s:concealends
+execute 'syn region htmlBold matchgroup=mkdBold start="\%(^\|\s\)\@<=\*\*\%([^\*]\)\@=" end="\*\@<!\*\*\%(\s\|$\)\@=" contains=@Spell' . s:oneline . s:concealends
+execute 'syn region htmlBold matchgroup=mkdBold start="\%(^\|\s\)\@<=__\%([^_]\)\@=" end="_\@<!__\%(\s\|$\)\@=" contains=@Spell' . s:oneline . s:concealends
+execute 'syn region htmlBoldItalic matchgroup=mkdBoldItalic start="\%(^\|\s\)\@<=\*\*\*\%([^\*]\)\@=" end="\*\@<!\*\*\*\%(\s\|$\)\@=" contains=@Spell' . s:oneline . s:concealends
+execute 'syn region htmlBoldItalic matchgroup=mkdBoldItalic start="\%(^\|\s\)\@<=___\%([^_]\)\@=" end="_\@<!___\%(\s\|$\)\@=" contains=@Spell' . s:oneline . s:concealends
+
+" [link](URL) | [link][id] | [link][] | ![image](URL)
 syn region mkdFootnotes matchgroup=mkdDelimiter start="\[^"   end="\]"
-syn region mkdID matchgroup=mkdDelimiter        start="\["    end="\]" contained oneline
-syn match  mkdURL "(\@<=\S\+\%(.*)\)\@=" contained
-syn region mkdURLBracket matchgroup=mkdDelimiter start="\%(\]\)\@<=(" end=")"  contained oneline contains=mkdURL keepend
-syn region mkdLink matchgroup=mkdDelimiter      start="\\\@<!\[" end="\]\ze\s*[[(]" contains=@Spell nextgroup=mkdURLBracket,mkdID skipwhite oneline
-
+execute 'syn region mkdID matchgroup=mkdDelimiter    start="\["    end="\]" contained oneline' . s:conceal
+execute 'syn match  mkdURL "(\@<=\S\+\%(.*)\)\@=" contained oneline' . s:conceal
+execute 'syn region mkdURLBracket matchgroup=mkdDelimiter start="\%(\]\)\@<=(" end=")"  contained oneline contains=mkdURL keepend' . s:concealends
+execute 'syn region mkdLink matchgroup=mkdDelimiter  start="\\\@<!\[" end="\]\ze\s*[[(]" contains=@Spell nextgroup=mkdURLBracket,mkdID skipwhite oneline' . s:concealends
 
 " Inline url (http(s)://, ftp://, //)
 syn region mkdInlineURL start=/\%([[:alnum:]._-]\+:\)\=\/\// end=/\%()\|}\|]\|,\|\"\|\'\| \|$\|\. \|\.$\)\@=/
@@ -58,16 +69,26 @@ syn region mkdInlineURL start=/\%(mailto:\)\=[[:alnum:]._-~+]\+@[[:alnum:]_-]\+\
 syn region mkdInlineURL matchgroup=mkdDelimiter start="\\\@<!<\%(\(mailto:\)\=[[:alnum:]._-~+]\+@[^> .]\+\.[^> .]\+>\)\@=" end=">"
 
 " Link definitions: [id]: URL (Optional Title)
-syn region mkdLinkDef matchgroup=mkdDelimiter   start="^ \{,3}\zs\[^\@!" end="]:" oneline nextgroup=mkdLinkDefTarget skipwhite
+syn region mkdLinkDef matchgroup=mkdDelimiter   start="^ \{,3}\zs\[\^\@!" end="]:" oneline nextgroup=mkdLinkDefTarget skipwhite
+
 syn region mkdLinkDefTarget start="<\?\zs\S" excludenl end="\ze[>[:space:]\n]"   contained nextgroup=mkdLinkTitle,mkdLinkDef skipwhite skipnl oneline
 syn region mkdLinkTitle matchgroup=mkdDelimiter start=+"+     end=+"+  contained
 syn region mkdLinkTitle matchgroup=mkdDelimiter start=+'+     end=+'+  contained
 syn region mkdLinkTitle matchgroup=mkdDelimiter start=+(+     end=+)+  contained
 
+"HTML headings
+syn region htmlH1       start="^\s*#"                   end="$" contains=mkdLink,mkdInlineURL,@Spell
+syn region htmlH2       start="^\s*##"                  end="$" contains=mkdLink,mkdInlineURL,@Spell
+syn region htmlH3       start="^\s*###"                 end="$" contains=mkdLink,mkdInlineURL,@Spell
+syn region htmlH4       start="^\s*####"                end="$" contains=mkdLink,mkdInlineURL,@Spell
+syn region htmlH5       start="^\s*#####"               end="$" contains=mkdLink,mkdInlineURL,@Spell
+syn region htmlH6       start="^\s*######"              end="$" contains=mkdLink,mkdInlineURL,@Spell
+syn match  htmlH1       /^.\+\n=\+$/ contains=mkdLink,mkdInlineURL,@Spell
+syn match  htmlH2       /^.\+\n-\+$/ contains=mkdLink,mkdInlineURL,@Spell
+
 "define Markdown groups
-syn match  mkdLineContinue ".$" contained
 syn match  mkdLineBreak    /  \+$/
-syn region mkdBlockquote   start=/^\s*>/                   end=/$/ contains=mkdLineBreak,mkdLineContinue,@Spell
+syn region mkdBlockquote   start=/^\s*>/                   end=/$/ contains=mkdLink,mkdInlineURL,mkdLineBreak,@Spell
 syn region mkdCode matchgroup=mkdInlineCodeDelimiter start=/\%(\%([^\\]\|^\)\\\)\@<!`/ end=/\%(\%([^\\]\|^\)\\\)\@<!`/
 syn region mkdCode matchgroup=mkdInlineCodeDelimiter start=/\s*``[^`]*/ end=/[^`]*``\s*/
 syn region mkdCode matchgroup=mkdCodeDelimiter start=/^\s*```\s*[0-9A-Za-z_-]*\s*$/ end=/^\s*```\s*$/
@@ -83,16 +104,6 @@ syn match  mkdRule         /^\s*_\s\{0,1}_\s\{0,1}_$/
 syn match  mkdRule         /^\s*-\{3,}$/
 syn match  mkdRule         /^\s*\*\{3,5}$/
 
-"HTML headings
-syn region htmlH1       start="^\s*#"                   end="\%($\|#\+\)" contains=@Spell
-syn region htmlH2       start="^\s*##"                  end="\%($\|#\+\)" contains=@Spell
-syn region htmlH3       start="^\s*###"                 end="\%($\|#\+\)" contains=@Spell
-syn region htmlH4       start="^\s*####"                end="\%($\|#\+\)" contains=@Spell
-syn region htmlH5       start="^\s*#####"               end="\%($\|#\+\)" contains=@Spell
-syn region htmlH6       start="^\s*######"              end="\%($\|#\+\)" contains=@Spell
-syn match  htmlH1       /^.\+\n=\+$/ contains=@Spell
-syn match  htmlH2       /^.\+\n-\+$/ contains=@Spell
-
 " Liquid
 if get(g:, "vim_markdown_liquid", 1)
   syn region liquidTag matchgroup=mkdDelimiter start="{%"    end="%}" oneline
@@ -101,7 +112,7 @@ if get(g:, "vim_markdown_liquid", 1)
   syn region liquidComment matchgroup=liquidCommentTag start="{%\s*comment\s*%}" end="{%\s*endcomment\s*%}"
 endif
 
-" YAML
+" YAML frontmatter
 if get(g:, 'vim_markdown_frontmatter', 0)
   try
     syn include @yamlTop syntax/yaml.vim
@@ -152,10 +163,9 @@ HtmlHiLink mkdString        String
 HtmlHiLink mkdCode          String
 HtmlHiLink mkdIndentCode    String
 HtmlHiLink mkdBlockquote    Comment
-HtmlHiLink mkdLineContinue  Comment
 HtmlHiLink mkdListItem      Identifier
 HtmlHiLink mkdRule          Identifier
-HtmlHiLink mkdLineBreak     Todo
+HtmlHiLink mkdLineBreak     Visual
 HtmlHiLink mkdFootnotes     htmlLink
 HtmlHiLink mkdLink          htmlLink
 HtmlHiLink mkdURL           htmlString
@@ -164,7 +174,6 @@ HtmlHiLink mkdID            Identifier
 HtmlHiLink mkdLinkDef       mkdID
 HtmlHiLink mkdLinkDefTarget mkdURL
 HtmlHiLink mkdLinkTitle     htmlString
-HtmlHiLink mkdMath          Statement
 HtmlHiLink mkdDelimiter     Delimiter
 HtmlHiLink mkdCodeDelimiter Delimiter
 HtmlHiLink mkdInlineCodeDelimiter Delimiter
