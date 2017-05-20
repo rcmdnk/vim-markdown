@@ -42,7 +42,7 @@ if has('conceal') && get(g:, 'vim_markdown_conceal', 1)
 endif
 
 " additions to HTML groups
-if get(g:, 'vim_markdown_emphasis_multiline', 1)
+if get(g:, 'vim_markdown_emphasis_multiline', 0)
     let s:oneline = ''
 else
     let s:oneline = ' oneline'
@@ -160,6 +160,9 @@ endif
 
 "highlighting for Markdown groups
 HtmlHiLink mkdString        String
+HtmlHiLink mkdItalic        htmlItalic
+HtmlHiLink mkdBold          htmlBold
+HtmlHiLink mkdBoldItalic    htmlBoldItalic
 HtmlHiLink mkdCode          String
 HtmlHiLink mkdIndentCode    String
 HtmlHiLink mkdBlockquote    Comment
