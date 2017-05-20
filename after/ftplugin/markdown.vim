@@ -98,6 +98,6 @@ let b:codeblock = 0
 let b:indent_codeblock = 0
 
 if !get(g:, "vim_markdown_folding_disabled", 0)
-  setlocal foldmethod=expr
   setlocal foldexpr=Foldexpr_markdown(v:lnum)
+  setlocal foldmethod=expr
 endif

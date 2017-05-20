@@ -68,8 +68,8 @@ syn region mkdLinkTitle matchgroup=mkdDelimiter start=+(+     end=+)+  contained
 syn match  mkdLineContinue ".$" contained
 syn match  mkdLineBreak    /  \+$/
 syn region mkdBlockquote   start=/^\s*>/                   end=/$/ contains=mkdLineBreak,mkdLineContinue,@Spell
-syn region mkdCode matchgroup=mkdCodeDelimiter start=/\%(\%([^\\]\|^\)\\\)\@<!`/ end=/\%(\%([^\\]\|^\)\\\)\@<!`/
-syn region mkdCode matchgroup=mkdCodeDelimiter start=/\s*``[^`]*/ end=/[^`]*``\s*/
+syn region mkdCode matchgroup=mkdInlineCodeDelimiter start=/\%(\%([^\\]\|^\)\\\)\@<!`/ end=/\%(\%([^\\]\|^\)\\\)\@<!`/
+syn region mkdCode matchgroup=mkdInlineCodeDelimiter start=/\s*``[^`]*/ end=/[^`]*``\s*/
 syn region mkdCode matchgroup=mkdCodeDelimiter start=/^\s*```\s*[0-9A-Za-z_-]*\s*$/ end=/^\s*```\s*$/
 syn region mkdCode matchgroup=mkdCodeDelimiter start=/^[~]\{3,}.*$/ end=/^[~]\{3,}$/
 syn region mkdCode matchgroup=mkdInlineCodeDelimiter start="<pre[^>]*>" end="</pre>"
