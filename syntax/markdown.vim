@@ -178,16 +178,16 @@ HtmlHiLink mkdLinkDef       mkdID
 HtmlHiLink mkdLinkDefTarget mkdURL
 HtmlHiLink mkdLinkTitle     htmlString
 HtmlHiLink mkdDelimiter     Delimiter
-HtmlHiLink mkdCodeDelimiter Delimiter
+HtmlHiLink mkdCodeDelimiter MoreMsg
 HtmlHiLink mkdInlineCodeDelimiter Delimiter
 HtmlHiLink mkdFrontmatterDelimiter     Delimiter
 HtmlHiLink liquidTag        MoreMsg
-HtmlHiLink liquidCodeTag    MoreMsg
+HtmlHiLink liquidCodeTag    mkdCodeDelimiter
 HtmlHiLink liquidComment    NonText
 HtmlHiLink liquidCommentTag NonText
 HtmlHiLink liquidOutput     Directory
 " For markdown_quote_syntax
-HtmlHiLink markdownCodeDelimiter liquidTag
+HtmlHiLink markdownCodeDelimiter mkdCodeDelimiter
 
 let b:current_syntax = "markdown"
 
