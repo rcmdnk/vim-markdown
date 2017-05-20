@@ -14,16 +14,15 @@ Contents ~
   6. Text emphasis restriction to single-lines
                        |vim-markdown-text-emphasis-restriction-to-single-lines|
   7. Syntax Concealing                         |vim-markdown-syntax-concealing|
-  8. Fenced code block languages     |vim-markdown-fenced-code-block-languages|
-  9. Syntax extensions                         |vim-markdown-syntax-extensions|
+  8. Syntax extensions                         |vim-markdown-syntax-extensions|
    1. LaTeX math                                      |vim-markdown-latex-math|
    2. YAML Front Matter                        |vim-markdown-yaml-front-matter|
    3. TOML Front Matter                        |vim-markdown-toml-front-matter|
    4. JSON Front Matter                        |vim-markdown-json-front-matter|
-  10. Adjust new list item indent    |vim-markdown-adjust-new-list-item-indent|
-  11. Do not require .md extensions for Markdown links
+  9. Adjust new list item indent    |vim-markdown-adjust-new-list-item-indent|
+  10. Do not require .md extensions for Markdown links
                 |vim-markdown-do-not-require-.md-extensions-for-markdown-links|
-  12. Auto-write when following link
+  11. Auto-write when following link
                                   |vim-markdown-auto-write-when-following-link|
  4. Mappings                                            |vim-markdown-mappings|
  5. Commands                                            |vim-markdown-commands|
@@ -173,24 +172,6 @@ your '.vimrc':
   let g:tex_conceal = ""
   let g:vim_markdown_math = 1
 <
--------------------------------------------------------------------------------
-                                     *vim-markdown-fenced-code-block-languages*
-Fenced code block languages ~
-
-You can use filetype name as fenced code block languages for syntax
-highlighting. If you want to use different name from filetype, you can add it
-in your '.vimrc' like so:
->
-  let g:vim_markdown_fenced_languages = ['csharp=cs']
-<
-This will cause the following to be highlighted using the 'cs' filetype syntax.
->
-  ```csharp
-  ...
-  ```
-<
-Default is "['c++=cpp', 'viml=vim', 'bash=sh', 'ini=dosini']".
-
 -------------------------------------------------------------------------------
                                                *vim-markdown-syntax-extensions*
 Syntax extensions ~
