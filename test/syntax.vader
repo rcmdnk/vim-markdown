@@ -549,9 +549,9 @@ a (http://b.bb) c
 
 Execute (autolink in parenthesis):
   AssertNotEqual SyntaxOf('a'), 'mkdInlineURL'
-  AssertEqual SyntaxOf('('), 'mkdDelimiter'
+  AssertNotEqual SyntaxOf('('), 'mkdDelimiter'
   AssertEqual SyntaxOf('b'), 'mkdInlineURL'
-  AssertEqual SyntaxOf(')'), 'mkdDelimiter'
+  AssertNotEqual SyntaxOf(')'), 'mkdDelimiter'
   AssertNotEqual SyntaxOf('c'), 'mkdInlineURL'
 
 Given markdown;

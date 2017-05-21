@@ -57,9 +57,8 @@ execute 'syn region htmlBoldItalic matchgroup=mkdBoldItalic start="\%(^\|\s\)\@<
 " [link](URL) | [link][id] | [link][] | ![image](URL)
 syn region mkdFootnotes matchgroup=mkdDelimiter start="\[^"   end="\]"
 execute 'syn region mkdID matchgroup=mkdDelimiter    start="\["    end="\]" contained oneline' . s:conceal
-execute 'syn match  mkdURL "(\@<=\S\+\%(.*)\)\@=" contained oneline' . s:conceal
-execute 'syn region mkdURLBracket matchgroup=mkdDelimiter start="\%(\]\)\@<=(" end=")"  contained oneline contains=mkdURL keepend' . s:concealends
-execute 'syn region mkdLink matchgroup=mkdDelimiter  start="\\\@<!\[" end="\]\ze\s*[[(]" contains=@Spell nextgroup=mkdURLBracket,mkdID skipwhite oneline' . s:concealends
+execute 'syn region mkdURL matchgroup=mkdDelimiter   start="("     end=")"  contained oneline' . s:conceal
+execute 'syn region mkdLink matchgroup=mkdDelimiter  start="\\\@<!!\?\[\ze[^]\n]*\n\?[^]\n]*\][[(]" end="\]" contains=@mkdNonListItem,@Spell nextgroup=mkdURL,mkdID skipwhite' . s:concealends
 
 " Inline url (http(s)://, ftp://, //)
 syn region mkdInlineURL start=/\%([[:alnum:]._-]\+:\)\=\/\// end=/\%()\|}\|]\|,\|\"\|\'\| \|$\|\. \|\.$\)\@=/
@@ -96,8 +95,7 @@ syn region mkdCode matchgroup=mkdCodeDelimiter start=/^[~]\{3,}.*$/ end=/^[~]\{3
 syn region mkdCode matchgroup=mkdInlineCodeDelimiter start="<pre[^>]*>" end="</pre>"
 syn region mkdCode matchgroup=mkdInlineCodeDelimiter start="<code[^>]*>" end="</code>"
 syn match  mkdIndentCode   /^\s*\n\%(\%(\s\{4,}[^ ]\|\t\t\+[^\t]\).*\n\)\+/
-syn match  mkdListItem     "^\s*[-*+]\s\+"
-syn match  mkdListItem     "^\s*\d\+\.\s\+"
+syn match  mkdListItem     /^\s*\%([-*+]\|\d\+\.\)\ze\s\+/
 syn match  mkdRule         /^\s*\*\s\{0,1}\*\s\{0,1}\*$/
 syn match  mkdRule         /^\s*-\s\{0,1}-\s\{0,1}-$/
 syn match  mkdRule         /^\s*_\s\{0,1}_\s\{0,1}_$/
@@ -157,6 +155,8 @@ if get(g:, 'vim_markdown_math', 0)
     syn region mkdMath start="\\\@<!\$\$" end="\$\$" skip="\\\$" keepend
   endtry
 endif
+
+syn cluster mkdNonListItem contains=@htmlTop,htmlItalic,htmlBold,htmlBoldItalic,mkdFootnotes,mkdInlineURL,mkdLink,mkdLinkDef,mkdLineBreak,mkdBlockquote,mkdCode,mkdRule,htmlH1,htmlH2,htmlH3,htmlH4,htmlH5,htmlH6,mkdMath
 
 "highlighting for Markdown groups
 HtmlHiLink mkdString        String
