@@ -149,12 +149,12 @@ It never increases its default size (half screen), it only shrinks.
 let g:vim_markdown_toc_autofit = 1
 ```
 
-### Text emphasis restriction to single-lines
+### Text emphasis on multi-lines
 
-By default text emphasis works across multiple lines until a closing token is found. However, it's possible to restrict text emphasis to a single line (ie, for it to be applied a closing token must be found on the same line). To do so:
+By default text emphasis **does not** work across multiple lines until a closing token is found. However, it's possible to enable text emphasis on multi-lines. To do so:
 
 ```vim
-let g:vim_markdown_emphasis_multiline = 0
+let g:vim_markdown_emphasis_multiline = 1
 ```
 
 ### Syntax Concealing
