@@ -19,8 +19,8 @@ body { font-family: monospace; color: #ffffff; background-color: #000000; }
 .Directory { color: #afffff; }
 .ErrorMsg { color: #ffffff; background-color: #c00000; padding-bottom: 1px; }
 .MoreMsg { color: #87ffaf; }
-.Title { color: #ffd7ff; }
 .LineNr { color: #ffff00; }
+.Title { color: #ffd7ff; }
 .WarningMsg { color: #ffd7d7; }
 .Comment { color: #00ffff; }
 .Constant { color: #ff40ff; }
@@ -83,10 +83,10 @@ Single underscore _is not markupped.
 
 <span class="WarningMsg">__</span><span class="WarningMsg">Multi</span><span class="WarningMsg">__</span> _underscores_between__ _words_test_test_test.
 
-<span class="Identifier">* </span>List
-<span class="Identifier">* </span>List
-<span class="Identifier">    * </span>List (<span class="Underlined"><a href="https://url.in.brackets">https://url.in.brackets</a></span>)
-<span class="Identifier">    * </span><span class="LineNr">*</span><span class="LineNr">List</span><span class="LineNr">*</span> <span class="WarningMsg">__</span><span class="WarningMsg">List</span><span class="WarningMsg">__</span>
+<span class="Identifier">*</span> List
+<span class="Identifier">*</span> List
+<span class="Identifier">    *</span> List (<span class="Underlined"><a href="https://url.in.brackets">https://url.in.brackets</a></span>)
+<span class="Identifier">    *</span> <span class="LineNr">*</span><span class="LineNr">List</span><span class="LineNr">*</span> <span class="WarningMsg">__</span><span class="WarningMsg">List</span><span class="WarningMsg">__</span>
 
 <span class="Special">{%</span><span class="MoreMsg">Liquid Tag</span><span class="Special">%}</span>
 
@@ -96,16 +96,16 @@ Single underscore _is not markupped.
 
 <span class="Title"># Codes test</span>
 
-<span class="MoreMsg">~~~~~~~~~~~~~~~~~~~~~</span>
+<span class="Special">~~~~~~~~~~~~~~~~~~~~~</span>
 
 <span class="Constant">a one-line code block</span>
 
-<span class="MoreMsg">~~~~~~~~~~~~~~~~~~~~~</span>
+<span class="Special">~~~~~~~~~~~~~~~~~~~~~</span>
 
-<span class="MoreMsg">~~~~~~~~~~~~~~~~~~~~~</span>
+<span class="Special">~~~~~~~~~~~~~~~~~~~~~</span>
 <span class="Constant">a one-line code block</span>
 <span class="Constant">a one-line code block</span>
-<span class="MoreMsg">~~~~~~~~~~~~~~~~~~~~~</span>
+<span class="Special">~~~~~~~~~~~~~~~~~~~~~</span>
 
 Remain html syntax in most places: <span class="Special">`</span><span class="Constant">runtime! syntax/html.vim</span><span class="Special">`</span>
 
@@ -114,13 +114,13 @@ Remain html syntax in most places: <span class="Special">`</span><span class="Co
 <span class="Special">&lt;code&gt;</span><span class="Constant">code</span><span class="Special">&lt;/code&gt;</span>
 <span class="Special">&lt;pre&gt;</span><span class="Constant">pre</span><span class="Special">&lt;/pre&gt;</span>
 
-<span class="MoreMsg">```</span>
+<span class="Special">```</span>
 <span class="Constant">triple backticks</span>
-<span class="MoreMsg">```</span>
+<span class="Special">```</span>
 
-<span class="MoreMsg">{%codeblock%}</span>
+<span class="Special">{%codeblock%}</span>
 <span class="Constant">Jekyll Codeblocke</span>
-<span class="MoreMsg">{%endcodeblock%}</span>
+<span class="Special">{%endcodeblock%}</span>
 
 <span class="Constant">    code with 4 spaces</span>
 <span class="Constant">    code with 4 spaces</span>
@@ -162,9 +162,9 @@ One line test
 
 
 
-<span class="MoreMsg">```</span>
+<span class="Special">```</span>
 <span class="Constant">echo no lang, triple backticks</span>
-<span class="MoreMsg">```</span>
+<span class="Special">```</span>
 
 <span class="MoreMsg">```sh</span>
 <span class="Comment">#!/bin/sh</span>
@@ -173,9 +173,9 @@ One line test
 
 <span class="MoreMsg">```</span>
 
-<span class="MoreMsg">~~~</span>
+<span class="Special">~~~</span>
 <span class="Constant">triple waves</span>
-<span class="MoreMsg">~~~</span>
+<span class="Special">~~~</span>
 
 <span class="MoreMsg">{%codeblock lang:cpp%}</span>
 <span class="PreProc">#include </span><span class="Constant">&lt;iostream&gt;</span>
@@ -224,7 +224,7 @@ puts <span class="Special">&quot;</span><span class="Constant">PHP Markdown Extr
 <span class="PreProc">end</span>
 <span class="MoreMsg">~~~</span>
 
-<span class="MoreMsg">~~~ruby</span>
+<span class="Special">~~~ruby</span>
 <span class="Constant">puts &quot;PHP Markdown Extra wave codeblock&quot;</span>
 <span class="Constant">def func(flag)</span>
 <span class="Constant">  if(flag)</span>
@@ -233,7 +233,7 @@ puts <span class="Special">&quot;</span><span class="Constant">PHP Markdown Extr
 <span class="Constant">    puts &quot;FAILED&quot;</span>
 <span class="Constant">  end</span>
 <span class="Constant">end</span>
-<span class="MoreMsg">~~~</span>
+<span class="Special">~~~</span>
 
 
 <span class="MoreMsg">{%codeblock Rakefile lang:ruby%}</span>
@@ -402,12 +402,12 @@ _sf_check_args_first &quot;<span class="PreProc">$@</span>&quot;
 }
 <span class="MoreMsg">```</span>
 
-<span class="MoreMsg">~~~cpp</span>
+<span class="Special">~~~cpp</span>
 <span class="Constant">#include &lt;iostream&gt;</span>
 <span class="Constant">for(int i=0;i&lt;10;i++){</span>
 <span class="Constant">  std::cout &lt;&lt; &quot;triple ~&quot; &lt;&lt; std::endl;</span>
 <span class="Constant">}</span>
-<span class="MoreMsg">~~~</span>
+<span class="Special">~~~</span>
 
 <span class="MoreMsg">```cpp</span>
 {%codeblock test.cxx lang:cpp%}
@@ -450,7 +450,7 @@ _sf_check_args_first &quot;<span class="PreProc">$@</span>&quot;
 
 <span class="Title">## HTML Blocks</span>
 
-<span class="Comment">&gt; </span><span class="Special">[</span><span class="Underlined">HTML Blocks (Kramdown)</span><span class="Special">](</span><span class="Constant"><a href="http://kramdown.gettalong.org/syntax.html#html-blocks">http://kramdown.gettalong.org/syntax.html#html-blocks</a></span><span class="Special">)</span>
+<span class="Comment">&gt; </span><span class="Special">[</span><span class="Underlined">HTML Blocks (Kramdown)</span><span class="Special">]</span><span class="Special">(</span><span class="Constant"><a href="http://kramdown.gettalong.org/syntax.html#html-blocks">http://kramdown.gettalong.org/syntax.html#html-blocks</a></span><span class="Special">)</span>
 
 <span class="Identifier">&lt;</span><span class="Statement">div</span><span class="Identifier">&gt;</span>
 This is <span class="LineNr">*</span><span class="LineNr">nottrue</span><span class="LineNr">*</span> markdown text.
@@ -526,13 +526,13 @@ hoge
 
 aaa
 
-<span class="Identifier">* </span>1
-<span class="Identifier">* </span>2
-<span class="Identifier">* </span>3
+<span class="Identifier">*</span> 1
+<span class="Identifier">*</span> 2
+<span class="Identifier">*</span> 3
 <span class="Special">{%</span><span class="MoreMsg">endfnin</span><span class="Special">%}</span>。
 
 
-<span class="Title"># </span><span class="Special">[</span><span class="Underlined">Daring Fireball: Markdown Syntax Documentation</span><span class="Special">](</span><span class="Constant"><a href="http://daringfireball.net/projects/markdown/syntax">http://daringfireball.net/projects/markdown/syntax</a></span><span class="Special">)</span>
+<span class="Title"># </span><span class="Special">[</span><span class="Underlined">Daring Fireball: Markdown Syntax Documentation</span><span class="Special">]</span><span class="Special">(</span><span class="Constant"><a href="http://daringfireball.net/projects/markdown/syntax">http://daringfireball.net/projects/markdown/syntax</a></span><span class="Special">)</span>
 
 <span class="Title">This is an H1</span>
 <span class="Title">=============</span>
@@ -554,13 +554,13 @@ Test
 <span class="Comment">&gt; </span>
 <span class="Comment">&gt;     return shell_exec(&quot;echo $input | $markdown_script&quot;);</span>
 
-<span class="Identifier">* </span>Red
-<span class="Identifier">* </span>Green
-<span class="Identifier">* </span>Blue
+<span class="Identifier">*</span> Red
+<span class="Identifier">*</span> Green
+<span class="Identifier">*</span> Blue
 
-<span class="Identifier">1. </span>Bird
-<span class="Identifier">2. </span>McHale
-<span class="Identifier">3. </span>Parish
+<span class="Identifier">1.</span> Bird
+<span class="Identifier">2.</span> McHale
+<span class="Identifier">3.</span> Parish
 
 This is a normal paragraph:
 
@@ -568,8 +568,8 @@ This is a normal paragraph:
 
 <span class="Identifier">* * *</span>
 
-This is <span class="Special">[</span><span class="Underlined">an example</span><span class="Special">](</span><span class="Constant"><a href="http://example.com/">http://example.com/</a></span> &quot;Title&quot;<span class="Special">)</span> inline link.
-This is <span class="Special">[</span><span class="Underlined">an example</span><span class="Special">][</span><span class="Identifier">id</span><span class="Special">]</span> reference-style link.
+This is <span class="Special">[</span><span class="Underlined">an example</span><span class="Special">]</span><span class="Special">(</span><span class="Constant"><a href="http://example.com/">http://example.com/</a></span> &quot;Title&quot;<span class="Special">)</span> inline link.
+This is <span class="Special">[</span><span class="Underlined">an example</span><span class="Special">]</span><span class="Special">[</span><span class="Identifier">id</span><span class="Special">]</span> reference-style link.
 <span class="Special">[</span><span class="Identifier">id</span><span class="Special">]:</span> <span class="Constant"><a href="http://example.com/">http://example.com/</a></span>  <span class="Special">&quot;</span><span class="Constant">Optional Title Here</span><span class="Special">&quot;</span>
 <span class="Special">[</span><span class="Identifier">foo</span><span class="Special">]:</span> <span class="Constant"><a href="http://example.com/">http://example.com/</a></span>  <span class="Special">&quot;</span><span class="Constant">Optional Title Here</span><span class="Special">&quot;</span>
 <span class="Special">[</span><span class="Identifier">foo</span><span class="Special">]:</span> <span class="Constant"><a href="http://example.com/">http://example.com/</a></span>  <span class="Special">'</span><span class="Constant">Optional Title Here</span><span class="Special">'</span>
@@ -599,12 +599,13 @@ A single backtick in a code span:<span class="Special"> `` </span><span class="C
 A backtick-delimited string in a code span:<span class="Special"> `` </span><span class="Constant">`foo`</span><span class="Special"> ``</span>
 Please don't use any <span class="Special">`</span><span class="Constant">&lt;blink&gt;</span><span class="Special">`</span> tags.
 
-!<span class="Special">[</span><span class="Underlined">Alt text</span><span class="Special">](</span><span class="Constant">/path/to/img.jpg</span><span class="Special">)</span>
-!<span class="Special">[</span><span class="Underlined">Alt text</span><span class="Special">](</span><span class="Constant">/path/to/img.jpg</span> &quot;Optional title&quot;<span class="Special">)</span>
-!<span class="Special">[</span><span class="Underlined">Alt text</span><span class="Special">][</span><span class="Identifier">id</span><span class="Special">]</span>
+<span class="Special">![</span><span class="Underlined">Alt text</span><span class="Special">]</span><span class="Special">(</span><span class="Constant">/path/to/img.jpg</span><span class="Special">)</span>
+<span class="Special">![</span><span class="Underlined">Alt text</span><span class="Special">]</span><span class="Special">(</span><span class="Constant">/path/to/img.jpg</span> &quot;Optional title&quot;<span class="Special">)</span>
+<span class="Special">![</span><span class="Underlined">Alt text</span><span class="Special">]</span><span class="Special">[</span><span class="Identifier">id</span><span class="Special">]</span>
+<span class="Special">[![</span><span class="Underlined">Alt text</span><span class="Special">]</span><span class="Special">(</span><span class="Constant">/path/to/img.jpg</span> &quot;Optional title&quot;<span class="Special">)</span><span class="Special">]</span><span class="Special">(</span><span class="Constant">/img/url</span><span class="Special">)</span>
 <span class="Special">[</span><span class="Identifier">id</span><span class="Special">]:</span> <span class="Constant">url/to/image</span>  <span class="Special">&quot;</span><span class="Constant">Optional title attribute</span><span class="Special">&quot;</span>
 
-<span class="Special">[</span><span class="Underlined">Michel Fortin – PHP Markdown Extra</span><span class="Special">](</span><span class="Constant"><a href="http://michelf.ca/projects/php-markdown/extra/">http://michelf.ca/projects/php-markdown/extra/</a></span><span class="Special">)</span>
+<span class="Special">[</span><span class="Underlined">Michel Fortin – PHP Markdown Extra</span><span class="Special">]</span><span class="Special">(</span><span class="Constant"><a href="http://michelf.ca/projects/php-markdown/extra/">http://michelf.ca/projects/php-markdown/extra/</a></span><span class="Special">)</span>
 
 <span class="Identifier">&lt;</span><span class="Statement">div</span><span class="Identifier"> markdown=</span><span class="Constant">&quot;1&quot;</span><span class="Identifier">&gt;</span>
 This is <span class="LineNr">*</span><span class="LineNr">true</span><span class="LineNr">*</span> markdown text.

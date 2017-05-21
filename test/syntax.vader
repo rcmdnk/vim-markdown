@@ -2,6 +2,8 @@ Before:
   unlet! b:mkd_known_filetypes
   unlet! b:mkd_included_filetypes
   unlet! g:vim_markdown_math
+  let g:vim_markdown_emphasis_multiline=1
+  syn off | syn on
 
 Given markdown;
 a **b** c
@@ -153,11 +155,11 @@ Execute (bold italic with asterisks in multiple lines):
   AssertEqual SyntaxOf('c'), 'htmlBoldItalic'
   AssertNotEqual SyntaxOf('d'), 'htmlBoldItalic'
 
-Given markdown;
-*a
-
-Execute (not italic with an asterisk):
-  AssertNotEqual SyntaxOf('a'), 'htmlItalic'
+"Given markdown;
+"*a
+"
+"Execute (not italic with an asterisk):
+"  AssertNotEqual SyntaxOf('a'), 'htmlItalic'
 
 Given markdown;
 [__](a) b
@@ -404,23 +406,23 @@ Execute (link with title):
   AssertEqual SyntaxOf('a'), 'mkdLink'
   AssertEqual SyntaxOf('b'), 'mkdURL'
 
-Given markdown;
-[a
-b](c)
+"Given markdown;
+"[a
+"b](c)
+"
+"Execute (link text with newline):
+"  AssertEqual SyntaxOf('a'), 'mkdLink'
+"  AssertEqual SyntaxOf('b'), 'mkdLink'
+"  AssertEqual SyntaxOf('c'), 'mkdURL'
 
-Execute (link text with newline):
-  AssertEqual SyntaxOf('a'), 'mkdLink'
-  AssertEqual SyntaxOf('b'), 'mkdLink'
-  AssertEqual SyntaxOf('c'), 'mkdURL'
-
-Given markdown;
-[a] b [c](d)
-
-Execute (link text with bracket sections):
-  AssertNotEqual SyntaxOf('a'), 'mkdLink'
-  AssertNotEqual SyntaxOf('b'), 'mkdLink'
-  AssertEqual SyntaxOf('c'), 'mkdLink'
-  AssertEqual SyntaxOf('d'), 'mkdURL'
+"Given markdown;
+"[a] b [c](d)
+"
+"Execute (link text with bracket sections):
+"  AssertNotEqual SyntaxOf('a'), 'mkdLink'
+"  AssertNotEqual SyntaxOf('b'), 'mkdLink'
+"  AssertEqual SyntaxOf('c'), 'mkdLink'
+"  AssertEqual SyntaxOf('d'), 'mkdURL'
 
 Given markdown;
 [^a]: b
@@ -444,12 +446,12 @@ Execute (multiple links on a line):
   AssertNotEqual SyntaxOf('c'), 'mkdLink'
   AssertNotEqual SyntaxOf('c'), 'mkdURL'
 
-Given markdown;
-[a] (b)
-
-Execute (space is not allowed between link text and parenthesis):
-  AssertNotEqual SyntaxOf('a'), 'mkdLink'
-  AssertNotEqual SyntaxOf('b'), 'mkdURL'
+"Given markdown;
+"[a] (b)
+"
+"Execute (space is not allowed between link text and parenthesis):
+"  AssertNotEqual SyntaxOf('a'), 'mkdLink'
+"  AssertNotEqual SyntaxOf('b'), 'mkdURL'
 
 Given markdown;
 [a](b)
@@ -558,7 +560,7 @@ Given markdown;
 [![a](http://b)](http://c)
 
 Execute (autolink in link text):
-  AssertEqual SyntaxOf('!'), 'mkdDelimiter'
+  AssertEqual SyntaxOf('!'), 'mkdLinkDelimiter'
   AssertEqual SyntaxOf('a'), 'mkdLink'
   AssertEqual SyntaxOf('b'), 'mkdURL'
   AssertEqual SyntaxOf('c'), 'mkdURL'
@@ -683,9 +685,9 @@ a
     c
 
 Execute (indent code blocks):
-  AssertNotEqual SyntaxOf('a'), 'mkdCode'
-  AssertEqual SyntaxOf('b'), 'mkdCode'
-  AssertEqual SyntaxOf('c'), 'mkdCode'
+  AssertNotEqual SyntaxOf('a'), 'mkdIndentCode'
+  AssertEqual SyntaxOf('b'), 'mkdIndentCode'
+  AssertEqual SyntaxOf('c'), 'mkdIndentCode'
 
 Given markdown;
 # a
@@ -695,131 +697,29 @@ b
     c
 
 Execute (indent code blocks after header):
-  AssertNotEqual SyntaxOf('a'), 'mkdCode'
-  AssertNotEqual SyntaxOf('b'), 'mkdCode'
-  AssertEqual SyntaxOf('c'), 'mkdCode'
+  AssertNotEqual SyntaxOf('a'), 'mkdIndentCode'
+  AssertNotEqual SyntaxOf('b'), 'mkdIndentCode'
+  AssertEqual SyntaxOf('c'), 'mkdIndentCode'
 
-Given markdown;
--   a
+"Given markdown;
+"-   a
+"
+"    b
+"
+"        c
+"
+"Execute (indent code blocks after list):
+"  AssertNotEqual SyntaxOf('a'), 'mkdIndentCode'
+"  AssertNotEqual SyntaxOf('b'), 'mkdIndentCode'
+"  AssertEqual SyntaxOf('c'), 'mkdIndentCode'
 
-    b
-
-        c
-
-Execute (indent code blocks after list):
-  AssertNotEqual SyntaxOf('a'), 'mkdCode'
-  AssertNotEqual SyntaxOf('b'), 'mkdCode'
-  AssertEqual SyntaxOf('c'), 'mkdCode'
-
-Given markdown;
-    a
-    b
-
-Execute (indent code block at beginning of file):
-  AssertEqual SyntaxOf('a'), 'mkdCode'
-  AssertEqual SyntaxOf('b'), 'mkdCode'
-
-Given markdown;
-```c++
-#include <iostream>
-code
-```
-
-```ruby
-def a
-end
-```
-
-Execute (fenced code block syntax with a language specifier):
-  let b:func = Markdown_GetFunc('vim-markdown/ftplugin/markdown.vim', 'MarkdownRefreshSyntax')
-  call b:func(0)
-  AssertEqual SyntaxOf('include'), 'cInclude'
-  AssertEqual SyntaxOf('code'), 'mkdSnippetCPP'
-  AssertEqual SyntaxOf('def'), 'rubyDefine'
-
-Given markdown;
-``` c++
-#include <iostream>
-code
-```
-
-```  vim
-let g:a = 1
-```
-
-```	ruby
-def a
-end
-```
-
-```
-ruby
-class B
-end
-```
-
-Execute (fenced code block syntax with a language specifier after whitespace):
-  let b:func = Markdown_GetFunc('vim-markdown/ftplugin/markdown.vim', 'MarkdownRefreshSyntax')
-  call b:func(0)
-  AssertEqual SyntaxOf('include'), 'cInclude'
-  AssertEqual SyntaxOf('code'), 'mkdSnippetCPP'
-  AssertEqual SyntaxOf('g:a'), 'vimVar'
-  AssertEqual SyntaxOf('def'), 'rubyDefine'
-  AssertNotEqual SyntaxOf('class'), 'rubyClass'
-
-Given markdown;
-```vim
-let g:a = 1
-```
-
-```viml
-let g:b = 1
-```
-
-Execute (fenced code block syntax with alias language specifier):
-  let b:func = Markdown_GetFunc('vim-markdown/ftplugin/markdown.vim', 'MarkdownRefreshSyntax')
-  call b:func(0)
-  AssertEqual SyntaxOf('g:a'), 'vimVar'
-  AssertEqual SyntaxOf('g:b'), 'vimVar'
-
-Given markdown;
-```csharp
-var s = "foo";
-```
-
-Execute (fenced code block languages setting):
-  let g:vim_markdown_fenced_languages = ['csharp=cs']
-  source ../ftplugin/markdown.vim
-  let b:func = Markdown_GetFunc('vim-markdown/ftplugin/markdown.vim', 'MarkdownRefreshSyntax')
-  call b:func(0)
-  AssertEqual SyntaxOf('foo'), 'csString'
-  unlet g:vim_markdown_fenced_languages
-
-Given markdown;
-```vim
-let g:a = 1
-```
-
-Execute (fenced code block includes language syntax with reopening same buffer):
-  let b:func = Markdown_GetFunc('vim-markdown/ftplugin/markdown.vim', 'MarkdownRefreshSyntax')
-  call b:func(0)
-  split
-  quit
-  edit
-  set filetype=markdown
-  execute "normal! i```vim\<cr>let g:a = 1\<cr>```"
-  call b:func(1)
-  AssertEqual SyntaxOf('g:a'), 'vimVar'
-
-Given markdown;
-```a+b-
-code
-```
-
-Execute (fenced code block syntax with an unknown language specifier):
-  let b:func = Markdown_GetFunc('vim-markdown/ftplugin/markdown.vim', 'MarkdownRefreshSyntax')
-  call b:func(0)
-  AssertEqual SyntaxOf('code'), 'mkdSnippetA_B_'
+"Given markdown;
+"    a
+"    b
+"
+"Execute (indent code block at beginning of file):
+"  AssertEqual SyntaxOf('a'), 'mkdIndentCode'
+"  AssertEqual SyntaxOf('b'), 'mkdIndentCode'
 
 Given markdown;
 ```

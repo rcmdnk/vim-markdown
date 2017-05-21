@@ -55,10 +55,11 @@ execute 'syn region htmlBoldItalic matchgroup=mkdBoldItalic start="\%(^\|\s\)\@<
 execute 'syn region htmlBoldItalic matchgroup=mkdBoldItalic start="\%(^\|\s\)\@<=___\%([^_]\)\@=" end="_\@<!___\%(\s\|$\)\@=" contains=@Spell' . s:oneline . s:concealends
 
 " [link](URL) | [link][id] | [link][] | ![image](URL)
-syn region mkdFootnotes matchgroup=mkdDelimiter start="\[^"   end="\]"
-execute 'syn region mkdID matchgroup=mkdDelimiter    start="\["    end="\]" contained oneline' . s:conceal
-execute 'syn region mkdURL matchgroup=mkdDelimiter   start="("     end=")"  contained oneline' . s:conceal
-execute 'syn region mkdLink matchgroup=mkdDelimiter  start="\\\@<!!\?\[\ze[^]\n]*\n\?[^]\n]*\][[(]" end="\]" contains=@mkdNonListItem,@Spell nextgroup=mkdURL,mkdID skipwhite' . s:concealends
+syn region mkdFootnotes matchgroup=mkdFootnotesDelimiter start="\[^"   end="\]"
+execute 'syn region mkdID matchgroup=mkdIDDelimiter    start="\["    end="\]" contained oneline' . s:conceal
+execute 'syn match  mkdURL "(\@<=\S\+\%(.*)\)\@=" contained oneline' . s:conceal
+execute 'syn region mkdURLBracket matchgroup=mkdDelimiter start="\%(\]\)\@<=(" end=")"  contained oneline contains=mkdURL keepend' . s:concealends
+execute 'syn region mkdLink matchgroup=mkdLinkDelimiter  start="\\\@<!!\?\[" end="\]\ze\s*[[(]" contains=@mkdNonListItem,@Spell nextgroup=mkdURLBracket,mkdID skipwhite oneline' . s:concealends
 
 " Inline url (http(s)://, ftp://, //)
 syn region mkdInlineURL start=/\%([[:alnum:]._-]\+:\)\=\/\// end=/\%()\|}\|]\|,\|\"\|\'\| \|$\|\. \|\.$\)\@=/
@@ -90,7 +91,7 @@ syn match  mkdLineBreak    /  \+$/
 syn region mkdBlockquote   start=/^\s*>/                   end=/$/ contains=mkdLink,mkdInlineURL,mkdLineBreak,@Spell
 syn region mkdCode matchgroup=mkdInlineCodeDelimiter start=/\%(\%([^\\]\|^\)\\\)\@<!`/ end=/\%(\%([^\\]\|^\)\\\)\@<!`/
 syn region mkdCode matchgroup=mkdInlineCodeDelimiter start=/\s*``[^`]*/ end=/[^`]*``\s*/
-syn region mkdCode matchgroup=mkdCodeDelimiter start=/^\s*```\s*[0-9A-Za-z_-]*\s*$/ end=/^\s*```\s*$/
+syn region mkdCode matchgroup=mkdCodeDelimiter start=/^\s*\z(`\{3,}\)[^`]*$/   end=/^\s*\z1`*\s*$/
 syn region mkdCode matchgroup=mkdCodeDelimiter start=/^[~]\{3,}.*$/ end=/^[~]\{3,}$/
 syn region mkdCode matchgroup=mkdInlineCodeDelimiter start="<pre[^>]*>" end="</pre>"
 syn region mkdCode matchgroup=mkdInlineCodeDelimiter start="<code[^>]*>" end="</code>"
@@ -178,7 +179,11 @@ HtmlHiLink mkdLinkDef       mkdID
 HtmlHiLink mkdLinkDefTarget mkdURL
 HtmlHiLink mkdLinkTitle     htmlString
 HtmlHiLink mkdDelimiter     Delimiter
-HtmlHiLink mkdCodeDelimiter MoreMsg
+HtmlHiLink mkdFootnotesDelimiter mkdDelimiter
+HtmlHiLink mkdIDDelimiter   mkdDelimiter
+HtmlHiLink mkdURLDelimiter  mkdDelimiter
+HtmlHiLink mkdLinkDelimiter mkdDelimiter
+HtmlHiLink mkdCodeDelimiter mkdDelimiter
 HtmlHiLink mkdInlineCodeDelimiter Delimiter
 HtmlHiLink mkdFrontmatterDelimiter     Delimiter
 HtmlHiLink liquidTag        MoreMsg
@@ -187,7 +192,7 @@ HtmlHiLink liquidComment    NonText
 HtmlHiLink liquidCommentTag NonText
 HtmlHiLink liquidOutput     Directory
 " For markdown_quote_syntax
-HtmlHiLink markdownCodeDelimiter mkdCodeDelimiter
+HtmlHiLink markdownCodeDelimiter liquidTag
 
 let b:current_syntax = "markdown"
 
