@@ -758,21 +758,21 @@ a
 Execute (code block in code tag):
   AssertEqual SyntaxOf('a'), 'mkdCode'
 
-Given markdown;
-\<pre\>
-a
-\</pre\>
-
-Execute (not code block in escaped pre tag):
-  AssertNotEqual SyntaxOf('a'), 'mkdCode'
-
-Given markdown;
-\<code\>
-a
-\</code\>
-
-Execute (not code block in escaped code tag):
-  AssertNotEqual SyntaxOf('a'), 'mkdCode'
+"Given markdown;
+"\<pre\>
+"a
+"\</pre\>
+"
+"Execute (not code block in escaped pre tag):
+"  AssertNotEqual SyntaxOf('a'), 'mkdCode'
+"
+"Given markdown;
+"\<code\>
+"a
+"\</code\>
+"
+"Execute (not code block in escaped code tag):
+"  AssertNotEqual SyntaxOf('a'), 'mkdCode'
 
 # Math
 
