@@ -7,7 +7,7 @@
 " original version from Steve Losh's gist: https://gist.github.com/1038710
 
 func! Foldexpr_markdown(lnum)
-  if get(g:, 'vim_markdown_better_folding', 0)
+  if get(g:, 'vim_markdown_better_folding', 1)
 
     let syn1 = synIDattr(synID(a:lnum,1,1), 'name')
 
@@ -82,11 +82,10 @@ func! Foldexpr_markdown(lnum)
   elseif l2 =~ '^--\+\s*$'
     " next line is underlined (level 2)
     if s:vim_markdown_folding_level >= 2
-      return '='
-    else
       return '>2'
+    else
+      return '='
     endif
-    return '>2'
   elseif l1 =~ '^#[^!]' && matchend(l1, '^#\+') <= s:vim_markdown_folding_level
     " current line starts with hashes
     return '>'.matchend(l1, '^#\+')
