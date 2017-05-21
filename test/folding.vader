@@ -1,9 +1,11 @@
 Before:
+  let g:vim_markdown_folding_level=2
   source ../after/ftplugin/markdown.vim
 
 After:
   setlocal foldexpr=0
   setlocal foldmethod=manual
+  unlet g:vim_markdown_folding_level
 
 Given markdown;
 # Title
@@ -20,11 +22,11 @@ This is code block
 foobar
 
 Execute (fold level # in code block):
-  AssertEqual foldlevel(1), 0, '# Title'
-  AssertEqual foldlevel(3), 1, '## Chapter 1'
-  AssertEqual foldlevel(7), 2, '# This is just a comment'
-  AssertEqual foldlevel(8), 2, '```'
-  AssertEqual foldlevel(10), 1, '## Chapter 2'
+  AssertEqual foldlevel(1), 1, '# Title'
+  AssertEqual foldlevel(3), 2, '## Chapter 1'
+  AssertEqual foldlevel(7), 3, '# This is just a comment'
+  AssertEqual foldlevel(8), 3, '```'
+  AssertEqual foldlevel(10), 2, '## Chapter 2'
   AssertEqual foldlevel(12), 2, 'foobar'
 
 Given markdown;
@@ -47,7 +49,7 @@ Given markdown;
 # H2
 
 Execute (fold level # in last line):
-  AssertEqual foldlevel(1), 0, '# H1'
-  AssertEqual foldlevel(3), 1, '## H1.1'
-  AssertEqual foldlevel(5), 1, '## H1.2'
-  AssertEqual foldlevel(7), 0, '# H2'
+  AssertEqual foldlevel(1), 1, '# H1'
+  AssertEqual foldlevel(3), 2, '## H1.1'
+  AssertEqual foldlevel(5), 2, '## H1.2'
+  AssertEqual foldlevel(7), 1, '# H2'
