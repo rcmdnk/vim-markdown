@@ -29,9 +29,8 @@ Syntax highlighting, matching rules and mappings for [the original Markdown](htt
         * Original [vim-markdown-quote-syntax](https://github.com/joker1007/vim-markdown-quote-syntax)
         has now these features.
 * Better folding
-    * `let g:vim_markdown_better_folding=1` allows better folding, especially
-    for YAML block, Jekyll/Octopress codeblock.
-    * Note: It may make it slow for large files.
+    *  Better folding, especially for YAML block, Jekyll/Octopress codeblock.
+    * `let g:vim_markdown_better_folding=0` disables them and does foldings only for chapters.
 
 If you use [Vundle](https://github.com/gmarik/Vundle.vim), do:
 
