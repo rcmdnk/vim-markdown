@@ -58,7 +58,7 @@ execute 'syn region htmlBoldItalic matchgroup=mkdBoldItalic start="\%(^\|\s\)\zs
 syn region mkdFootnotes matchgroup=mkdFootnotesDelimiter start="\[^"   end="\]"
 execute 'syn region mkdID matchgroup=mkdIDDelimiter    start="\["    end="\]" contained oneline' . s:conceal
 execute 'syn match  mkdURL "(\@<=\S\+\%(.*)\)\@=" contained oneline' . s:conceal
-execute 'syn region mkdURLBracket matchgroup=mkdDelimiter start="\%(\]\)\@<=(" end=")"  contained oneline contains=mkdURL keepend' . s:concealends
+execute 'syn region mkdURLBracket matchgroup=mkdDelimiter start="\%(\]\)\@<=(" end=")"  contained oneline contains=mkdURL keepend'
 execute 'syn region mkdLink matchgroup=mkdLinkDelimiter  start="\\\@<!!\?\[" end="\]\ze\s*[[(]" contains=@mkdNonListItem,@Spell nextgroup=mkdURLBracket,mkdID skipwhite oneline' . s:concealends
 
 " Inline url (http(s)://, ftp://, //)

@@ -24,6 +24,15 @@ Bracket test [  w/o line break ]
 Bracket test [  w/ line break
 ]
 
+Bracket Link test [  w/o line break ](/link/)
+
+Bracket test [  w/ line break
+](/link)
+
+[Link](https://url)
+
+[Link] (https://url/with/space)
+
 This is https://inline.url. End with `.`, `,`, ` ` or etc... (don't markup last `.`)
 ftp://ftp.is.also.markuped end with space.
 (https://url.in.brackets)
