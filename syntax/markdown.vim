@@ -47,12 +47,12 @@ if get(g:, 'vim_markdown_emphasis_multiline', 0)
 else
     let s:oneline = ' oneline'
 endif
-execute 'syn region htmlItalic matchgroup=mkdItalic start="\%(^\|\s\)\@<=\*\%([^\*]\)\@=" end="\*\@<!\*\%(\s\|$\)\@=" contains=@Spell' . s:oneline . s:concealends
-execute 'syn region htmlItalic matchgroup=mkdItalic start="\%(^\|\s\)\@<=_\%([^_]\)\@=" end="_\@<!_\%(\s\|$\)\@=" contains=@Spell' . s:oneline . s:concealends
-execute 'syn region htmlBold matchgroup=mkdBold start="\%(^\|\s\)\@<=\*\*\%([^\*]\)\@=" end="\*\@<!\*\*\%(\s\|$\)\@=" contains=@Spell' . s:oneline . s:concealends
-execute 'syn region htmlBold matchgroup=mkdBold start="\%(^\|\s\)\@<=__\%([^_]\)\@=" end="_\@<!__\%(\s\|$\)\@=" contains=@Spell' . s:oneline . s:concealends
-execute 'syn region htmlBoldItalic matchgroup=mkdBoldItalic start="\%(^\|\s\)\@<=\*\*\*\%([^\*]\)\@=" end="\*\@<!\*\*\*\%(\s\|$\)\@=" contains=@Spell' . s:oneline . s:concealends
-execute 'syn region htmlBoldItalic matchgroup=mkdBoldItalic start="\%(^\|\s\)\@<=___\%([^_]\)\@=" end="_\@<!___\%(\s\|$\)\@=" contains=@Spell' . s:oneline . s:concealends
+execute 'syn region htmlItalic matchgroup=mkdItalic start="\%(^\|\s\)\zs\*\ze[^\\\*\t ]\%(\%([^*]\|\\\*\|\n\)*[^\\\*\t ]\)\?\*\_W" end="[^\\\*\t ]\zs\*\ze\_W" keepend contains=@Spell' . s:oneline . s:concealends
+execute 'syn region htmlItalic matchgroup=mkdItalic start="\%(^\|\s\)\zs_\ze[^\\_\t ]" end="[^\\_\t ]\zs_\ze\_W" keepend contains=@Spell' . s:oneline . s:concealends
+execute 'syn region htmlBold matchgroup=mkdBold start="\%(^\|\s\)\zs\*\*\ze\S" end="\S\zs\*\*" keepend contains=@Spell' . s:oneline . s:concealends
+execute 'syn region htmlBold matchgroup=mkdBold start="\%(^\|\s\)\zs__\ze\S" end="\S\zs__" keepend contains=@Spell' . s:oneline . s:concealends
+execute 'syn region htmlBoldItalic matchgroup=mkdBoldItalic start="\%(^\|\s\)\zs\*\*\*\ze\S" end="\S\zs\*\*\*" keepend contains=@Spell' . s:oneline . s:concealends
+execute 'syn region htmlBoldItalic matchgroup=mkdBoldItalic start="\%(^\|\s\)\zs___\ze\S" end="\S\zs___" keepend contains=@Spell' . s:oneline . s:concealends
 
 " [link](URL) | [link][id] | [link][] | ![image](URL)
 syn region mkdFootnotes matchgroup=mkdFootnotesDelimiter start="\[^"   end="\]"
