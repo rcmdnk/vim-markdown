@@ -106,10 +106,8 @@ With space
 One line test
 
     code with 4 spaces
-    code with 4 spaces
-    code with 4 spaces
 
-One line test
+Seprated line test
 
     code with 4 spaces
     code with 4 spaces
@@ -117,19 +115,13 @@ One line test
 
     code with 4 spaces
 
-One line test
+Indent code in the list
 
-    code with 4 spaces
+*   List start
 
-One line test
+    This is not a code
 
-    code with 4 spaces
-    code with 4 spaces
-    code with 4 spaces
-
-    code with 4 spaces
-
-
+        This is a code
 
 
 ```
