@@ -89,12 +89,13 @@ syn match  htmlH2       /^.\+\n-\+$/ contains=mkdLink,mkdInlineURL,@Spell
 "define Markdown groups
 syn match  mkdLineBreak    /  \+$/
 syn region mkdBlockquote   start=/^\s*>/                   end=/$/ contains=mkdLink,mkdInlineURL,mkdLineBreak,@Spell
-syn region mkdCode matchgroup=mkdInlineCodeDelimiter start=/\%(\%([^\\]\|^\)\\\)\@<!`/ end=/\%(\%([^\\]\|^\)\\\)\@<!`/
-syn region mkdCode matchgroup=mkdInlineCodeDelimiter start=/\s*``[^`]*/ end=/[^`]*``\s*/
-syn region mkdCode matchgroup=mkdCodeDelimiter start=/^\s*\z(`\{3,}\)[^`]*$/   end=/^\s*\z1`*\s*$/
-syn region mkdCode matchgroup=mkdCodeDelimiter start=/^[~]\{3,}.*$/ end=/^[~]\{3,}$/
-syn region mkdCode matchgroup=mkdInlineCodeDelimiter start="<pre[^>]*>" end="</pre>"
-syn region mkdCode matchgroup=mkdInlineCodeDelimiter start="<code[^>]*>" end="</code>"
+syn region mkdCode matchgroup=mkdInlineCodeDelimiter start=/\(\([^\\]\|^\)\\\)\@<!`/ end=/\(\([^\\]\|^\)\\\)\@<!`/
+syn region mkdCode matchgroup=mkdInlineCodeDelimiter start=/\s*``[^`]*/              end=/[^`]*``\s*/
+syn region mkdCode matchgroup=mkdCodeDelimiter       start=/^\s*\z(`\{3,}\)[^`]*$/   end=/^\s*\z1`*\s*$/
+syn region mkdCode matchgroup=mkdCodeDelimiter       start=/\s*\~\~[^\~]*/           end=/[^\~]*\~\~\s*/
+syn region mkdCode matchgroup=mkdCodeDelimiter       start=/^\s*\z(\~\{3,}\)\s*[0-9A-Za-z_+-]*\s*$/         end=/^\s*\z1\~*\s*$/
+syn region mkdCode matchgroup=mkdInlineCodeDelimiter start="<pre[^>]*\\\@<!>"        end="</pre>"
+syn region mkdCode matchgroup=mkdInlineCodeDelimiter start="<code[^>]*\\\@<!>"       end="</code>"
 syn match  mkdIndentCode   /^\s*\n\%(\%(\s\{4,}[^ ]\|\t\t\+[^\t]\).*\n\)\+/
 syn match  mkdListItem     /^\s*\%([-*+]\|\d\+\.\)\ze\s\+/
 syn match  mkdRule         /^\s*\*\s\{0,1}\*\s\{0,1}\*$/
