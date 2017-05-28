@@ -94,8 +94,7 @@ syn region mkdCode matchgroup=mkdInlineCodeDelimiter start=/\s*``[^`]*/         
 syn region mkdCode matchgroup=mkdCodeDelimiter       start=/^\s*\z(`\{3,}\)[^`]*$/   end=/^\s*\z1`*\s*$/
 syn region mkdCode matchgroup=mkdCodeDelimiter       start=/\s*\~\~[^\~]*/           end=/[^\~]*\~\~\s*/
 syn region mkdCode matchgroup=mkdCodeDelimiter       start=/^\s*\z(\~\{3,}\)\s*[0-9A-Za-z_+-]*\s*$/         end=/^\s*\z1\~*\s*$/
-syn region mkdCode matchgroup=mkdInlineCodeDelimiter start="<pre[^>]*\\\@<!>"        end="</pre>"
-syn region mkdCode matchgroup=mkdInlineCodeDelimiter start="<code[^>]*\\\@<!>"       end="</code>"
+syn region mkdCode matchgroup=mkdInlineCodeDelimiter start="<\z(pre\|code\)[^>]*\\\@<!>"        end="</\z1>"
 syn match  mkdIndentCode   /^\s*\n\%(\%(\s\{4,}[^ ]\|\t\t\+[^\t]\).*\n\)\+/
 syn match  mkdListItem     /^\s*\%([-*+]\|\d\+\.\)\ze\s\+/
 syn match  mkdRule         /^\s*\*\s\{0,1}\*\s\{0,1}\*$/
