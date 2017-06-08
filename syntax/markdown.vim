@@ -95,9 +95,13 @@ syn region mkdCode matchgroup=mkdCodeDelimiter       start=/^\s*\z(`\{3,}\)[^`]*
 syn region mkdCode matchgroup=mkdCodeDelimiter       start=/\s*\~\~[^\~]*/           end=/[^\~]*\~\~\s*/
 syn region mkdCode matchgroup=mkdCodeDelimiter       start=/^\s*\z(\~\{3,}\)\s*[0-9A-Za-z_+-]*\s*$/         end=/^\s*\z1\~*\s*$/
 syn region mkdCode matchgroup=mkdInlineCodeDelimiter start="<\z(pre\|code\)[^>]*\\\@<!>"        end="</\z1>"
-syn match  mkdIndentCode   /^\s*\n\%(\%(\s\{4,}[^ ]\|\t\t\+[^\t]\).*\n\)\+/
+syn match  mkdIndentCode   /\%(^\s*\n\|\%^\)\%(\%(\s\{4,}[^ ]\|\t\+[^\t]\).*\n\)\+/
+syn match  mkdIndentCode0   /^\s*\n\%(\%(\s\{8,}[^ ]\|\t\t\+[^\t]\).*\n\)\+/ contained
+syn match  mkdIndentCode1   /^\s*\n\%(\%(\s\{12,}[^ ]\|\t\t\t\+[^\t]\).*\n\)\+/ contained
 syn match  mkdListItem     /^\s*\%([-*+]\|\d\+\.\)\ze\s\+/ contained
-syn region mkdListBlock    start=/^\s*\%([-*+]\|\d\+\.\)\s\+/ end="\ze\(^\S\|^$^$\|\%$\)" contains=@mkdNonListItem,mkdListItem,@Spell
+syn region mkdListBlock0    start=/^\%([-*+]\|\d\+\.\)\s\+/ end="\ze\(^\S\|^$^$\|\%$\)" contains=@mkdNonListItem,mkdListItem,@Spell,mkdListBlock1,mkdIndentCode0
+syn region mkdListBlock1    start=/^\s\{4}\%([-*+]\|\d\+\.\)\s\+/ end="\ze\(^\S\|^$^$\|\%$\)" contained contains=@mkdNonListItem,mkdListItem,@Spell,mkdListBlock2,mkdIndentCode1
+syn region mkdListBlock2    start=/^\s\{8}\%([-*+]\|\d\+\.\)\s\+/ end="\ze\(^\S\|^$^$\|\%$\)" contained contains=@mkdNonListItem,mkdListItem,@Spell,mkdIndentCode2
 syn match  mkdRule         /^\s*\*\s\{0,1}\*\s\{0,1}\*$/
 syn match  mkdRule         /^\s*-\s\{0,1}-\s\{0,1}-$/
 syn match  mkdRule         /^\s*_\s\{0,1}_\s\{0,1}_$/
@@ -166,7 +170,9 @@ HtmlHiLink mkdItalic        htmlItalic
 HtmlHiLink mkdBold          htmlBold
 HtmlHiLink mkdBoldItalic    htmlBoldItalic
 HtmlHiLink mkdCode          String
-HtmlHiLink mkdIndentCode    String
+HtmlHiLink mkdIndentCode    mkdCode
+HtmlHiLink mkdIndentCode0   mkdCode
+HtmlHiLink mkdIndentCode1   mkdCode
 HtmlHiLink mkdBlockquote    Comment
 HtmlHiLink mkdListItem      Identifier
 HtmlHiLink mkdRule          Identifier

@@ -414,7 +414,7 @@ Execute (link with title):
 "  AssertEqual SyntaxOf('a'), 'mkdLink'
 "  AssertEqual SyntaxOf('b'), 'mkdLink'
 "  AssertEqual SyntaxOf('c'), 'mkdURL'
-
+"
 "Given markdown;
 "[a] b [c](d)
 "
@@ -701,25 +701,127 @@ Execute (indent code blocks after header):
   AssertNotEqual SyntaxOf('b'), 'mkdIndentCode'
   AssertEqual SyntaxOf('c'), 'mkdIndentCode'
 
-"Given markdown;
-"-   a
-"
-"    b
-"
-"        c
-"
-"Execute (indent code blocks after list):
-"  AssertNotEqual SyntaxOf('a'), 'mkdIndentCode'
-"  AssertNotEqual SyntaxOf('b'), 'mkdIndentCode'
-"  AssertEqual SyntaxOf('c'), 'mkdIndentCode'
+Given markdown;
+-   a
+
+    b
+
+        c
+
+Execute (indent code blocks after list):
+  AssertNotEqual SyntaxOf('a'), 'mkdIndentCode0'
+  AssertNotEqual SyntaxOf('b'), 'mkdIndentCode0'
+  AssertEqual SyntaxOf('c'), 'mkdIndentCode0'
+
+Given markdown;
+    a
+    b
+
+Execute (indent code block at beginning of file):
+  AssertEqual SyntaxOf('a'), 'mkdIndentCode'
+  AssertEqual SyntaxOf('b'), 'mkdIndentCode'
 
 "Given markdown;
-"    a
-"    b
+"```c++
+"#include <iostream>
+"code
+"```
 "
-"Execute (indent code block at beginning of file):
-"  AssertEqual SyntaxOf('a'), 'mkdIndentCode'
-"  AssertEqual SyntaxOf('b'), 'mkdIndentCode'
+"```ruby
+"def a
+"end
+"```
+"
+"Execute (fenced code block syntax with a language specifier):
+"  let b:func = Markdown_GetFunc('vim-markdown/ftplugin/markdown.vim', 'MarkdownRefreshSyntax')
+"  call b:func(0)
+"  AssertEqual SyntaxOf('include'), 'cInclude'
+"  AssertEqual SyntaxOf('code'), 'mkdSnippetCPP'
+"  AssertEqual SyntaxOf('def'), 'rubyDefine'
+"
+"Given markdown;
+"``` c++
+"#include <iostream>
+"code
+"```
+"
+"```  vim
+"let g:a = 1
+"```
+"
+"```	ruby
+"def a
+"end
+"```
+"
+"```
+"ruby
+"class B
+"end
+"```
+"
+"Execute (fenced code block syntax with a language specifier after whitespace):
+"  let b:func = Markdown_GetFunc('vim-markdown/ftplugin/markdown.vim', 'MarkdownRefreshSyntax')
+"  call b:func(0)
+"  AssertEqual SyntaxOf('include'), 'cInclude'
+"  AssertEqual SyntaxOf('code'), 'mkdSnippetCPP'
+"  AssertEqual SyntaxOf('g:a'), 'vimVar'
+"  AssertEqual SyntaxOf('def'), 'rubyDefine'
+"  AssertNotEqual SyntaxOf('class'), 'rubyClass'
+"
+"Given markdown;
+"```vim
+"let g:a = 1
+"```
+"
+"```viml
+"let g:b = 1
+"```
+"
+"Execute (fenced code block syntax with alias language specifier):
+"  let b:func = Markdown_GetFunc('vim-markdown/ftplugin/markdown.vim', 'MarkdownRefreshSyntax')
+"  call b:func(0)
+"  AssertEqual SyntaxOf('g:a'), 'vimVar'
+"  AssertEqual SyntaxOf('g:b'), 'vimVar'
+"
+"Given markdown;
+"```csharp
+"var s = "foo";
+"```
+"
+"Execute (fenced code block languages setting):
+"  let g:vim_markdown_fenced_languages = ['csharp=cs']
+"  source ../ftplugin/markdown.vim
+"  let b:func = Markdown_GetFunc('vim-markdown/ftplugin/markdown.vim', 'MarkdownRefreshSyntax')
+"  call b:func(0)
+"  AssertEqual SyntaxOf('foo'), 'csString'
+"  unlet g:vim_markdown_fenced_languages
+"
+"Given markdown;
+"```vim
+"let g:a = 1
+"```
+"
+"Execute (fenced code block includes language syntax with reopening same buffer):
+"  let b:func = Markdown_GetFunc('vim-markdown/ftplugin/markdown.vim', 'MarkdownRefreshSyntax')
+"  call b:func(0)
+"  split
+"  quit
+"  edit
+"  set filetype=markdown
+"  execute "normal! i```vim\<cr>let g:a = 1\<cr>```"
+"  call b:func(1)
+"  AssertEqual SyntaxOf('g:a'), 'vimVar'
+"
+"Given markdown;
+"```a+b-
+"code
+"```
+"
+"Execute (fenced code block syntax with an unknown language specifier):
+"  let b:func = Markdown_GetFunc('vim-markdown/ftplugin/markdown.vim', 'MarkdownRefreshSyntax')
+"  call b:func(0)
+"  AssertEqual SyntaxOf('code'), 'mkdSnippetA_B_'
 
 Given markdown;
 ```
