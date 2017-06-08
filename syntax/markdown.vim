@@ -96,7 +96,8 @@ syn region mkdCode matchgroup=mkdCodeDelimiter       start=/\s*\~\~[^\~]*/      
 syn region mkdCode matchgroup=mkdCodeDelimiter       start=/^\s*\z(\~\{3,}\)\s*[0-9A-Za-z_+-]*\s*$/         end=/^\s*\z1\~*\s*$/
 syn region mkdCode matchgroup=mkdInlineCodeDelimiter start="<\z(pre\|code\)[^>]*\\\@<!>"        end="</\z1>"
 syn match  mkdIndentCode   /^\s*\n\%(\%(\s\{4,}[^ ]\|\t\t\+[^\t]\).*\n\)\+/
-syn match  mkdListItem     /^\s*\%([-*+]\|\d\+\.\)\ze\s\+/
+syn match  mkdListItem     /^\s*\%([-*+]\|\d\+\.\)\ze\s\+/ contained
+syn region mkdListBlock    start=/^\s*\%([-*+]\|\d\+\.\)\s\+/ end="\ze\(^\S\|^$^$\|\%$\)" contains=@mkdNonListItem,mkdListItem,@Spell
 syn match  mkdRule         /^\s*\*\s\{0,1}\*\s\{0,1}\*$/
 syn match  mkdRule         /^\s*-\s\{0,1}-\s\{0,1}-$/
 syn match  mkdRule         /^\s*_\s\{0,1}_\s\{0,1}_$/
@@ -157,7 +158,7 @@ if get(g:, 'vim_markdown_math', 0)
   endtry
 endif
 
-syn cluster mkdNonListItem contains=@htmlTop,htmlItalic,htmlBold,htmlBoldItalic,mkdFootnotes,mkdInlineURL,mkdLink,mkdLinkDef,mkdLineBreak,mkdBlockquote,mkdCode,mkdRule,htmlH1,htmlH2,htmlH3,htmlH4,htmlH5,htmlH6,mkdMath
+syn cluster mkdNonListItem contains=@htmlTop,htmlItalic,htmlBold,htmlBoldItalic,mkdFootnotes,mkdInlineURL,mkdLink,mkdLinkDef,mkdLineBreak,mkdBlockquote,mkdCode,mkdRule,htmlH1,htmlH2,htmlH3,htmlH4,htmlH5,htmlH6,mkdMath,LiquidTag,LiquidOutput,LiquidComment
 
 "highlighting for Markdown groups
 HtmlHiLink mkdString        String
