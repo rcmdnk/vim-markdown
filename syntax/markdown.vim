@@ -55,11 +55,10 @@ execute 'syn region htmlBoldItalic matchgroup=mkdBoldItalic start="\%(^\|\s\)\zs
 execute 'syn region htmlBoldItalic matchgroup=mkdBoldItalic start="\%(^\|\s\)\zs___\ze\S" end="\S\zs___" keepend contains=@Spell' . s:oneline . s:concealends
 
 " [link](URL) | [link][id] | [link][] | ![image](URL)
-syn region mkdFootnotes matchgroup=mkdFootnotesDelimiter start="\[^"   end="\]"
+syn region mkdFootnotes matchgroup=mkdFootnotesDelimiter start="\[^"    end="\]"
 execute 'syn region mkdID matchgroup=mkdIDDelimiter    start="\["    end="\]" contained oneline' . s:conceal
-execute 'syn match  mkdURL "(\@<=\S\+\%(.*)\)\@=" contained oneline' . s:conceal
-execute 'syn region mkdURLBracket matchgroup=mkdDelimiter start="\%(\]\)\@<=(" end=")"  contained oneline contains=mkdURL keepend' . s:concealends
-execute 'syn region mkdLink matchgroup=mkdLinkDelimiter  start="\\\@<!!\?\[" end="\]\ze\s*[[(]" contains=@mkdNonListItem,@Spell nextgroup=mkdURLBracket,mkdID skipwhite oneline' . s:concealends
+execute 'syn region mkdURL matchgroup=mkdDelimiter   start="("     end=")"  contained oneline' . s:conceal
+execute 'syn region mkdLink matchgroup=mkdLinkDelimiter  start="\\\@<!!\?\[\ze[^]\n]*\n\?[^]\n]*\][[(]" end="\]" contains=@mkdNonListItem,@Spell nextgroup=mkdURL,mkdID skipwhite' . s:concealends
 
 " Inline url (http(s)://, ftp://, //)
 syn region mkdInlineURL start=/\%([[:alnum:]._-]\+:\)\=\/\// end=/\%()\|}\|]\|,\|\"\|\'\| \|$\|\. \|\.$\)\@=/

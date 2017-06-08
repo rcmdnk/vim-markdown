@@ -19,13 +19,13 @@ body { font-family: monospace; color: #ffffff; background-color: #000000; }
 .Directory { color: #afffff; }
 .ErrorMsg { color: #ffffff; background-color: #c00000; padding-bottom: 1px; }
 .MoreMsg { color: #87ffaf; }
+.Identifier { color: #00ffff; font-weight: bold; }
 .LineNr { color: #ffff00; }
 .Title { color: #ffd7ff; }
 .WarningMsg { color: #ffd7d7; }
 .Comment { color: #00ffff; }
 .Constant { color: #ff40ff; }
 .Special { color: #ffd7d7; }
-.Identifier { color: #00ffff; font-weight: bold; }
 .Statement { color: #ffff00; }
 .PreProc { color: #5fd7ff; }
 -->
@@ -65,14 +65,14 @@ Bracket test [  w/o line break ]
 Bracket test [  w/ line break
 ]
 
-Bracket Link test <span class="Special">[</span><span class="Underlined">  w/o line break </span><span class="Special">]</span><span class="Special">(</span><span class="Constant">/link/</span><span class="Special">)</span>
+Bracket Link test <span class="Special">[</span><span class="Underlined">  w/o line break </span><span class="Special">](</span><span class="Constant">/link/</span><span class="Special">)</span>
 
-Bracket test [  w/ line break
-](/link)
+Bracket test <span class="Special">[</span><span class="Underlined">  w/ line break</span>
+<span class="Special">](</span><span class="Constant">/link</span><span class="Special">)</span>
 
-<span class="Special">[</span><span class="Underlined">Link</span><span class="Special">]</span><span class="Special">(</span><span class="Constant"><a href="https://url">https://url</a></span><span class="Special">)</span>
+<span class="Special">[</span><span class="Underlined">Link</span><span class="Special">](</span><span class="Constant"><a href="https://url">https://url</a></span><span class="Special">)</span>
 
-<span class="Special">[</span><span class="Underlined">Link</span><span class="Special">]</span> (<span class="Underlined"><a href="https://url/with/space">https://url/with/space</a></span>)
+[Link] (<span class="Underlined"><a href="https://url/with/space">https://url/with/space</a></span>)
 
 This is <span class="Underlined"><a href="https://inline.url">https://inline.url</a></span>. End with <span class="Special">`</span><span class="Constant">.</span><span class="Special">`</span>, <span class="Special">`</span><span class="Constant">,</span><span class="Special">`</span>, <span class="Special">`</span><span class="Constant"> </span><span class="Special">`</span> or etc... (don't markup last <span class="Special">`</span><span class="Constant">.</span><span class="Special">`</span>)
 <span class="Underlined">ftp://ftp.is.also.markuped</span> end with space.
@@ -460,7 +460,7 @@ _sf_check_args_first &quot;<span class="PreProc">$@</span>&quot;
 
 <span class="Title">## HTML Blocks</span>
 
-<span class="Comment">&gt; </span><span class="Special">[</span><span class="Underlined">HTML Blocks (Kramdown)</span><span class="Special">]</span><span class="Special">(</span><span class="Constant"><a href="http://kramdown.gettalong.org/syntax.html#html-blocks">http://kramdown.gettalong.org/syntax.html#html-blocks</a></span><span class="Special">)</span>
+<span class="Comment">&gt; </span><span class="Special">[</span><span class="Underlined">HTML Blocks (Kramdown)</span><span class="Special">](</span><span class="Constant"><a href="http://kramdown.gettalong.org/syntax.html#html-blocks">http://kramdown.gettalong.org/syntax.html#html-blocks</a></span><span class="Special">)</span>
 
 <span class="Identifier">&lt;</span><span class="Statement">div</span><span class="Identifier">&gt;</span>
 This is <span class="LineNr">*</span><span class="LineNr">nottrue</span><span class="LineNr">*</span> markdown text.
@@ -542,7 +542,7 @@ aaa
 <span class="Special">{%</span><span class="MoreMsg">endfnin</span><span class="Special">%}</span>。
 
 
-<span class="Title"># </span><span class="Special">[</span><span class="Underlined">Daring Fireball: Markdown Syntax Documentation</span><span class="Special">]</span><span class="Special">(</span><span class="Constant"><a href="http://daringfireball.net/projects/markdown/syntax">http://daringfireball.net/projects/markdown/syntax</a></span><span class="Special">)</span>
+<span class="Title"># </span><span class="Special">[</span><span class="Underlined">Daring Fireball: Markdown Syntax Documentation</span><span class="Special">](</span><span class="Constant"><a href="http://daringfireball.net/projects/markdown/syntax">http://daringfireball.net/projects/markdown/syntax</a></span><span class="Special">)</span>
 
 <span class="Title">This is an H1</span>
 <span class="Title">=============</span>
@@ -578,16 +578,16 @@ This is a normal paragraph:
 
 <span class="Identifier">* * *</span>
 
-This is <span class="Special">[</span><span class="Underlined">an example</span><span class="Special">]</span><span class="Special">(</span><span class="Constant"><a href="http://example.com/">http://example.com/</a></span> &quot;Title&quot;<span class="Special">)</span> inline link.
-This is <span class="Special">[</span><span class="Underlined">an example</span><span class="Special">]</span><span class="Special">[</span><span class="Identifier">id</span><span class="Special">]</span> reference-style link.
+This is <span class="Special">[</span><span class="Underlined">an example</span><span class="Special">](</span><span class="Constant"><a href="http://example.com/">http://example.com/</a> &quot;Title&quot;</span><span class="Special">)</span> inline link.
+This is <span class="Special">[</span><span class="Underlined">an example</span><span class="Special">][</span><span class="Identifier">id</span><span class="Special">]</span> reference-style link.
 <span class="Special">[</span><span class="Identifier">id</span><span class="Special">]:</span> <span class="Constant"><a href="http://example.com/">http://example.com/</a></span>  <span class="Special">&quot;</span><span class="Constant">Optional Title Here</span><span class="Special">&quot;</span>
 <span class="Special">[</span><span class="Identifier">foo</span><span class="Special">]:</span> <span class="Constant"><a href="http://example.com/">http://example.com/</a></span>  <span class="Special">&quot;</span><span class="Constant">Optional Title Here</span><span class="Special">&quot;</span>
 <span class="Special">[</span><span class="Identifier">foo</span><span class="Special">]:</span> <span class="Constant"><a href="http://example.com/">http://example.com/</a></span>  <span class="Special">'</span><span class="Constant">Optional Title Here</span><span class="Special">'</span>
 <span class="Special">[</span><span class="Identifier">foo</span><span class="Special">]:</span> <span class="Constant"><a href="http://example.com/">http://example.com/</a></span>  <span class="Special">(</span><span class="Constant">Optional Title Here</span><span class="Special">)</span>
 <span class="Special">[</span><span class="Identifier">foo</span><span class="Special">]:</span> <span class="Special">&lt;</span><span class="Underlined"><a href="http://example.com/">http://example.com/</a></span><span class="Special">&gt;</span>  &quot;Optional Title Here&quot;
 
-I get 10 times more traffic from <span class="Special">[</span><span class="Underlined">Google</span><span class="Special">]</span> <span class="Special">[</span><span class="Identifier">1</span><span class="Special">]</span> than from
-<span class="Special">[</span><span class="Underlined">Yahoo</span><span class="Special">]</span> <span class="Special">[</span><span class="Identifier">2</span><span class="Special">]</span> or <span class="Special">[</span><span class="Underlined">MSN</span><span class="Special">]</span> <span class="Special">[</span><span class="Identifier">3</span><span class="Special">]</span>.
+I get 10 times more traffic from [Google] [1] than from
+[Yahoo] [2] or [MSN] [3].
 
   <span class="Special">[</span><span class="Identifier">1</span><span class="Special">]:</span> <span class="Constant"><a href="http://google.com/">http://google.com/</a></span>        <span class="Special">&quot;</span><span class="Constant">Google</span><span class="Special">&quot;</span>
   <span class="Special">[</span><span class="Identifier">2</span><span class="Special">]:</span> <span class="Constant"><a href="http://search.yahoo.com/">http://search.yahoo.com/</a></span>  <span class="Special">&quot;</span><span class="Constant">Yahoo Search</span><span class="Special">&quot;</span>
@@ -609,13 +609,13 @@ A single backtick in a code span:<span class="Special"> `` </span><span class="C
 A backtick-delimited string in a code span:<span class="Special"> `` </span><span class="Constant">`foo`</span><span class="Special"> ``</span>
 Please don't use any <span class="Special">`</span><span class="Constant">&lt;blink&gt;</span><span class="Special">`</span> tags.
 
-<span class="Special">![</span><span class="Underlined">Alt text</span><span class="Special">]</span><span class="Special">(</span><span class="Constant">/path/to/img.jpg</span><span class="Special">)</span>
-<span class="Special">![</span><span class="Underlined">Alt text</span><span class="Special">]</span><span class="Special">(</span><span class="Constant">/path/to/img.jpg</span> &quot;Optional title&quot;<span class="Special">)</span>
-<span class="Special">![</span><span class="Underlined">Alt text</span><span class="Special">]</span><span class="Special">[</span><span class="Identifier">id</span><span class="Special">]</span>
-<span class="Special">[![</span><span class="Underlined">Alt text</span><span class="Special">]</span><span class="Special">(</span><span class="Constant">/path/to/img.jpg</span> &quot;Optional title&quot;<span class="Special">)</span><span class="Special">]</span><span class="Special">(</span><span class="Constant">/img/url</span><span class="Special">)</span>
+<span class="Special">![</span><span class="Underlined">Alt text</span><span class="Special">](</span><span class="Constant">/path/to/img.jpg</span><span class="Special">)</span>
+<span class="Special">![</span><span class="Underlined">Alt text</span><span class="Special">](</span><span class="Constant">/path/to/img.jpg &quot;Optional title&quot;</span><span class="Special">)</span>
+<span class="Special">![</span><span class="Underlined">Alt text</span><span class="Special">][</span><span class="Identifier">id</span><span class="Special">]</span>
+<span class="Special">[![</span><span class="Underlined">Alt text</span><span class="Special">](</span><span class="Constant">/path/to/img.jpg &quot;Optional title&quot;</span><span class="Special">)](</span><span class="Constant">/img/url</span><span class="Special">)</span>
 <span class="Special">[</span><span class="Identifier">id</span><span class="Special">]:</span> <span class="Constant">url/to/image</span>  <span class="Special">&quot;</span><span class="Constant">Optional title attribute</span><span class="Special">&quot;</span>
 
-<span class="Special">[</span><span class="Underlined">Michel Fortin – PHP Markdown Extra</span><span class="Special">]</span><span class="Special">(</span><span class="Constant"><a href="http://michelf.ca/projects/php-markdown/extra/">http://michelf.ca/projects/php-markdown/extra/</a></span><span class="Special">)</span>
+<span class="Special">[</span><span class="Underlined">Michel Fortin – PHP Markdown Extra</span><span class="Special">](</span><span class="Constant"><a href="http://michelf.ca/projects/php-markdown/extra/">http://michelf.ca/projects/php-markdown/extra/</a></span><span class="Special">)</span>
 
 <span class="Identifier">&lt;</span><span class="Statement">div</span><span class="Identifier"> markdown=</span><span class="Constant">&quot;1&quot;</span><span class="Identifier">&gt;</span>
 This is <span class="LineNr">*</span><span class="LineNr">true</span><span class="LineNr">*</span> markdown text.
