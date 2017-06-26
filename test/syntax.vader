@@ -902,21 +902,21 @@ Execute (math):
   AssertNotEqual SyntaxOf('x')[0:2], 'tex'
   AssertNotEqual SyntaxOf('y')[0:2], 'tex'
 
-Given markdown;
-a
-
-$
-b
-$
-
-c
-
-Execute (multiline math):
-  let g:vim_markdown_math=1
-  syn off | syn on
-  AssertNotEqual SyntaxOf('a')[0:2], 'tex'
-  AssertEqual SyntaxOf('b')[0:2], 'tex'
-  AssertNotEqual SyntaxOf('c')[0:2], 'tex'
+"Given markdown;
+"a
+"
+"$
+"b
+"$
+"
+"c
+"
+"Execute (multiline math):
+"  let g:vim_markdown_math=1
+"  syn off | syn on
+"  AssertNotEqual SyntaxOf('a')[0:2], 'tex'
+"  AssertEqual SyntaxOf('b')[0:2], 'tex'
+"  AssertNotEqual SyntaxOf('c')[0:2], 'tex'
 
 Given markdown;
 $ \sqrt{a}{b} $
