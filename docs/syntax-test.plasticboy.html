@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-<title>~/.vim/dein/repos/github.com/rcmdnk/vim-markdown/docs/syntax-test.md.html</title>
+<title>~/.vim/dein/repos/github.com/rcmdnk/vim-markdown/test/syntax-test.md.html</title>
 <meta name="Generator" content="Vim/8.0">
 <meta name="plugin-version" content="vim7.4_v2">
 <meta name="syntax" content="mkd">
@@ -13,19 +13,19 @@
 pre { white-space: pre-wrap; font-family: monospace; color: #ffffff; background-color: #000000; }
 body { font-family: monospace; color: #ffffff; background-color: #000000; }
 * { font-size: 1em; }
+.LineNr { color: #ffff00; }
 .Title { color: #ffd7ff; }
 .WarningMsg { color: #ffd7d7; }
+.Error { color: #ffffff; background-color: #ff6060; padding-bottom: 1px; }
+.Comment { color: #00ffff; }
+.PreProc { color: #5fd7ff; }
 .Type { color: #87ffaf; }
 .Underlined { color: #5fd7ff; text-decoration: underline; }
-.LineNr { color: #ffff00; }
-.Error { color: #ffffff; background-color: #ff6060; padding-bottom: 1px; }
 .ErrorMsg { color: #ffffff; background-color: #c00000; padding-bottom: 1px; }
-.Comment { color: #00ffff; }
 .Constant { color: #ff40ff; }
 .Special { color: #ffd7d7; }
 .Identifier { color: #00ffff; font-weight: bold; }
 .Statement { color: #ffff00; }
-.PreProc { color: #5fd7ff; }
 -->
 </style>
 
@@ -145,10 +145,8 @@ With space
 One line test
 
 <span class="Constant">    code with 4 spaces</span>
-<span class="Constant">    code with 4 spaces</span>
-<span class="Constant">    code with 4 spaces</span>
 
-One line test
+Seprated line test
 
 <span class="Constant">    code with 4 spaces</span>
 <span class="Constant">    code with 4 spaces</span>
@@ -156,20 +154,21 @@ One line test
 
 <span class="Constant">    code with 4 spaces</span>
 
-One line test
+Indent code in the list
 
-<span class="Constant">    code with 4 spaces</span>
+<span class="Identifier">*</span> List start
 
-One line test
+    This is not a code
 
-<span class="Constant">    code with 4 spaces</span>
-<span class="Constant">    code with 4 spaces</span>
-<span class="Constant">    code with 4 spaces</span>
+<span class="Constant">        This is a code</span>
 
-<span class="Constant">    code with 4 spaces</span>
+<span class="Identifier">    *</span> Second List
 
+      This is not a code
 
+<span class="Constant">        This is not a code</span>
 
+<span class="Constant">            This is a code</span>
 
 <span class="Constant">```</span>
 <span class="Constant">echo no lang, triple backticks</span>

@@ -115,6 +115,17 @@ To enable/disable folding use Vim's standard folding configuration.
 set [no]foldenable
 ```
 
+### Change fold style
+
+Level 1 heading which is served as a document title is not folded.
+`g:vim_markdown_folding_level` setting is not active with this fold style.
+
+To prevent foldtext from being set add the following to your `.vimrc`:
+
+```vim
+let g:vim_markdown_override_foldtext = 0
+```
+
 ### Set header folding level
 
 Folding level is a number between 1 and 6. By default, if not specified, it is set to 1.
@@ -185,6 +196,10 @@ let g:tex_conceal = ""
 let g:vim_markdown_math = 1
 ```
 
+### Code block languages
+
+Use [vim-markdown-quote-syntax](https://github.com/joker1007/vim-markdown-quote-syntax) for code block highlighting.
+
 ### Syntax extensions
 
 The following options control which syntax extensions will be turned on. They are off by default.
@@ -225,6 +240,10 @@ JSON syntax highlight requires [vim-json](https://github.com/elzr/vim-json).
 let g:vim_markdown_json_frontmatter = 1
 ```
 
+### New list item indent
+
+If you move new line after an item line,
+new item line will appear in the same indent level.
 ### Do not require .md extensions for Markdown links
 
 If you want to have a link like this `[link text](link-url)` and follow it for editing in vim using the `ge` command, but have it open the file "link-url.md" instead of the file "link-url", then use this option:

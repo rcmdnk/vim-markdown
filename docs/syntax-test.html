@@ -13,21 +13,21 @@
 pre { white-space: pre-wrap; font-family: monospace; color: #ffffff; background-color: #000000; }
 body { font-family: monospace; color: #ffffff; background-color: #000000; }
 * { font-size: 1em; }
+.PreProc { color: #5fd7ff; }
 .Type { color: #87ffaf; }
 .Underlined { color: #5fd7ff; text-decoration: underline; }
 .NonText { color: #8080ff; }
 .Directory { color: #afffff; }
 .ErrorMsg { color: #ffffff; background-color: #c00000; padding-bottom: 1px; }
 .MoreMsg { color: #87ffaf; }
-.Identifier { color: #00ffff; font-weight: bold; }
 .LineNr { color: #ffff00; }
 .Title { color: #ffd7ff; }
 .WarningMsg { color: #ffd7d7; }
 .Comment { color: #00ffff; }
 .Constant { color: #ff40ff; }
 .Special { color: #ffd7d7; }
+.Identifier { color: #00ffff; font-weight: bold; }
 .Statement { color: #ffff00; }
-.PreProc { color: #5fd7ff; }
 -->
 </style>
 
@@ -65,12 +65,12 @@ Bracket test [  w/o line break ]
 Bracket test [  w/ line break
 ]
 
-Bracket Link test <span class="Special">[</span><span class="Underlined">  w/o line break </span><span class="Special">](</span><span class="Constant">/link/</span><span class="Special">)</span>
+Bracket Link test <span class="Special">[</span><span class="Underlined">  w/o line break </span><span class="Special">]</span><span class="Special">(</span><span class="Constant">/link/</span><span class="Special">)</span>
 
 Bracket test <span class="Special">[</span><span class="Underlined">  w/ line break</span>
-<span class="Special">](</span><span class="Constant">/link</span><span class="Special">)</span>
+<span class="Special">]</span><span class="Special">(</span><span class="Constant">/link</span><span class="Special">)</span>
 
-<span class="Special">[</span><span class="Underlined">Link</span><span class="Special">](</span><span class="Constant"><a href="https://url">https://url</a></span><span class="Special">)</span>
+<span class="Special">[</span><span class="Underlined">Link</span><span class="Special">]</span><span class="Special">(</span><span class="Constant"><a href="https://url">https://url</a></span><span class="Special">)</span>
 
 [Link] (<span class="Underlined"><a href="https://url/with/space">https://url/with/space</a></span>)
 
@@ -88,7 +88,7 @@ Wrong Mail address in brackets: <span class="Identifier">&lt;</span>user<span cl
 Single asterisk *is not markupped.
 Single underscore _is not markupped.
 
-<span class="LineNr">*</span><span class="LineNr">Multi</span><span class="LineNr">*</span> *asterisks*between** *words*test*test*test.
+<span class="LineNr">*</span><span class="LineNr">Multi</span><span class="LineNr">*</span> <span class="LineNr">*</span><span class="LineNr">asterisks</span><span class="LineNr">*</span>between** <span class="LineNr">*</span><span class="LineNr">words</span><span class="LineNr">*</span>test<span class="LineNr">*</span><span class="LineNr">test</span><span class="LineNr">*</span>test.
 
 <span class="WarningMsg">__</span><span class="WarningMsg">Multi</span><span class="WarningMsg">__</span> _underscores_between__ _words_test_test_test.
 
@@ -129,9 +129,9 @@ Remain html syntax in most places: <span class="Special">`</span><span class="Co
 <span class="Constant">triple backticks</span>
 <span class="Special">```</span>
 
-<span class="Special">{%codeblock%}</span>
+<span class="MoreMsg">{%codeblock%}</span>
 <span class="Constant">Jekyll Codeblocke</span>
-<span class="Special">{%endcodeblock%}</span>
+<span class="MoreMsg">{%endcodeblock%}</span>
 
 <span class="Constant">    code with 4 spaces</span>
 <span class="Constant">    code with 4 spaces</span>
@@ -460,7 +460,7 @@ _sf_check_args_first &quot;<span class="PreProc">$@</span>&quot;
 
 <span class="Title">## HTML Blocks</span>
 
-<span class="Comment">&gt; </span><span class="Special">[</span><span class="Underlined">HTML Blocks (Kramdown)</span><span class="Special">](</span><span class="Constant"><a href="http://kramdown.gettalong.org/syntax.html#html-blocks">http://kramdown.gettalong.org/syntax.html#html-blocks</a></span><span class="Special">)</span>
+<span class="Comment">&gt; </span><span class="Special">[</span><span class="Underlined">HTML Blocks (Kramdown)</span><span class="Special">]</span><span class="Special">(</span><span class="Constant"><a href="http://kramdown.gettalong.org/syntax.html#html-blocks">http://kramdown.gettalong.org/syntax.html#html-blocks</a></span><span class="Special">)</span>
 
 <span class="Identifier">&lt;</span><span class="Statement">div</span><span class="Identifier">&gt;</span>
 This is <span class="LineNr">*</span><span class="LineNr">nottrue</span><span class="LineNr">*</span> markdown text.
@@ -542,7 +542,7 @@ aaa
 <span class="Special">{%</span><span class="MoreMsg">endfnin</span><span class="Special">%}</span>。
 
 
-<span class="Title"># </span><span class="Special">[</span><span class="Underlined">Daring Fireball: Markdown Syntax Documentation</span><span class="Special">](</span><span class="Constant"><a href="http://daringfireball.net/projects/markdown/syntax">http://daringfireball.net/projects/markdown/syntax</a></span><span class="Special">)</span>
+<span class="Title"># </span><span class="Special">[</span><span class="Underlined">Daring Fireball: Markdown Syntax Documentation</span><span class="Special">]</span><span class="Special">(</span><span class="Constant"><a href="http://daringfireball.net/projects/markdown/syntax">http://daringfireball.net/projects/markdown/syntax</a></span><span class="Special">)</span>
 
 <span class="Title">This is an H1</span>
 <span class="Title">=============</span>
@@ -578,8 +578,8 @@ This is a normal paragraph:
 
 <span class="Identifier">* * *</span>
 
-This is <span class="Special">[</span><span class="Underlined">an example</span><span class="Special">](</span><span class="Constant"><a href="http://example.com/">http://example.com/</a> &quot;Title&quot;</span><span class="Special">)</span> inline link.
-This is <span class="Special">[</span><span class="Underlined">an example</span><span class="Special">][</span><span class="Identifier">id</span><span class="Special">]</span> reference-style link.
+This is <span class="Special">[</span><span class="Underlined">an example</span><span class="Special">]</span><span class="Special">(</span><span class="Constant"><a href="http://example.com/">http://example.com/</a> &quot;Title&quot;</span><span class="Special">)</span> inline link.
+This is <span class="Special">[</span><span class="Underlined">an example</span><span class="Special">]</span><span class="Special">[</span><span class="Identifier">id</span><span class="Special">]</span> reference-style link.
 <span class="Special">[</span><span class="Identifier">id</span><span class="Special">]:</span> <span class="Constant"><a href="http://example.com/">http://example.com/</a></span>  <span class="Special">&quot;</span><span class="Constant">Optional Title Here</span><span class="Special">&quot;</span>
 <span class="Special">[</span><span class="Identifier">foo</span><span class="Special">]:</span> <span class="Constant"><a href="http://example.com/">http://example.com/</a></span>  <span class="Special">&quot;</span><span class="Constant">Optional Title Here</span><span class="Special">&quot;</span>
 <span class="Special">[</span><span class="Identifier">foo</span><span class="Special">]:</span> <span class="Constant"><a href="http://example.com/">http://example.com/</a></span>  <span class="Special">'</span><span class="Constant">Optional Title Here</span><span class="Special">'</span>
@@ -600,7 +600,7 @@ I get 10 times more traffic from [Google] [1] than from
 <span class="ErrorMsg">***</span><span class="ErrorMsg">triple asterisks</span><span class="ErrorMsg">***</span>
 <span class="ErrorMsg">___</span><span class="ErrorMsg">triple underscores</span><span class="ErrorMsg">___</span>
 
-un*frigging*believable
+un<span class="LineNr">*</span><span class="LineNr">frigging</span><span class="LineNr">*</span>believable
 \*this text is surrounded by literal asterisks\*
 
 Use the <span class="Special">`</span><span class="Constant">printf()</span><span class="Special">`</span> function.
@@ -609,13 +609,13 @@ A single backtick in a code span:<span class="Special"> `` </span><span class="C
 A backtick-delimited string in a code span:<span class="Special"> `` </span><span class="Constant">`foo`</span><span class="Special"> ``</span>
 Please don't use any <span class="Special">`</span><span class="Constant">&lt;blink&gt;</span><span class="Special">`</span> tags.
 
-<span class="Special">![</span><span class="Underlined">Alt text</span><span class="Special">](</span><span class="Constant">/path/to/img.jpg</span><span class="Special">)</span>
-<span class="Special">![</span><span class="Underlined">Alt text</span><span class="Special">](</span><span class="Constant">/path/to/img.jpg &quot;Optional title&quot;</span><span class="Special">)</span>
-<span class="Special">![</span><span class="Underlined">Alt text</span><span class="Special">][</span><span class="Identifier">id</span><span class="Special">]</span>
-<span class="Special">[![</span><span class="Underlined">Alt text</span><span class="Special">](</span><span class="Constant">/path/to/img.jpg &quot;Optional title&quot;</span><span class="Special">)](</span><span class="Constant">/img/url</span><span class="Special">)</span>
+<span class="Special">![</span><span class="Underlined">Alt text</span><span class="Special">]</span><span class="Special">(</span><span class="Constant">/path/to/img.jpg</span><span class="Special">)</span>
+<span class="Special">![</span><span class="Underlined">Alt text</span><span class="Special">]</span><span class="Special">(</span><span class="Constant">/path/to/img.jpg &quot;Optional title&quot;</span><span class="Special">)</span>
+<span class="Special">![</span><span class="Underlined">Alt text</span><span class="Special">]</span><span class="Special">[</span><span class="Identifier">id</span><span class="Special">]</span>
+<span class="Special">[![</span><span class="Underlined">Alt text</span><span class="Special">]</span><span class="Special">(</span><span class="Constant">/path/to/img.jpg &quot;Optional title&quot;</span><span class="Special">)</span><span class="Special">]</span><span class="Special">(</span><span class="Constant">/img/url</span><span class="Special">)</span>
 <span class="Special">[</span><span class="Identifier">id</span><span class="Special">]:</span> <span class="Constant">url/to/image</span>  <span class="Special">&quot;</span><span class="Constant">Optional title attribute</span><span class="Special">&quot;</span>
 
-<span class="Special">[</span><span class="Underlined">Michel Fortin – PHP Markdown Extra</span><span class="Special">](</span><span class="Constant"><a href="http://michelf.ca/projects/php-markdown/extra/">http://michelf.ca/projects/php-markdown/extra/</a></span><span class="Special">)</span>
+<span class="Special">[</span><span class="Underlined">Michel Fortin – PHP Markdown Extra</span><span class="Special">]</span><span class="Special">(</span><span class="Constant"><a href="http://michelf.ca/projects/php-markdown/extra/">http://michelf.ca/projects/php-markdown/extra/</a></span><span class="Special">)</span>
 
 <span class="Identifier">&lt;</span><span class="Statement">div</span><span class="Identifier"> markdown=</span><span class="Constant">&quot;1&quot;</span><span class="Identifier">&gt;</span>
 This is <span class="LineNr">*</span><span class="LineNr">true</span><span class="LineNr">*</span> markdown text.

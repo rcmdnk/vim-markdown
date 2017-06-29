@@ -193,7 +193,7 @@ HtmlHiLink mkdCodeDelimiter mkdDelimiter
 HtmlHiLink mkdInlineCodeDelimiter Delimiter
 HtmlHiLink mkdFrontmatterDelimiter     Delimiter
 HtmlHiLink liquidTag        MoreMsg
-HtmlHiLink liquidCodeTag    mkdCodeDelimiter
+HtmlHiLink liquidCodeTag    LiquidTag
 HtmlHiLink liquidComment    NonText
 HtmlHiLink liquidCommentTag NonText
 HtmlHiLink liquidOutput     Directory
