@@ -76,7 +76,7 @@ doc: build/html2vimdoc build/vim-tools
 # Install the dependencies.
 build/html2vimdoc: | build
 	virtualenv build/html2vimdoc
-	build/html2vimdoc/bin/pip install beautifulsoup coloredlogs==4.0 markdown
+	build/html2vimdoc/bin/pip install beautifulsoup4 coloredlogs==4.0 markdown
 
 build/vim-tools: | build
 	git clone https://github.com/xolox/vim-tools.git build/vim-tools
